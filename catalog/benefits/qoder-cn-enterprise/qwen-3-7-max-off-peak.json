@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "qoder-cn-enterprise",
+  "id": "qwen-3-7-max-off-peak",
+  "title": "Qwen3.7-Max 错峰 Credits 折扣",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount",
+    "https://docs.qoder.cn/product-overview/credits",
+    "https://docs.qoder.cn/product-overview/billing-description"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["Qwen3.7-Max"]
+    },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["团队版", "企业标准版", "企业专属版"]
+    },
+    {
+      "kind": "text",
+      "description": "仅限 Qoder CN（全家桶）企业成员席位；必须有可用 Credits，并在该订阅已开放的产品内使用。活动不额外授予客户端使用权，不涵盖原灵码独立订单。"
+    },
+    {
+      "kind": "one_of",
+      "field": "client",
+      "values": [
+        "Qoder CN",
+        "Qoder CN IDE",
+        "Qoder CN CLI",
+        "Qoder CN Mobile",
+        "QoderWake CN",
+        "Qoder CN Cloud Agents"
+      ]
+    },
+    {
+      "kind": "text",
+      "description": "使用列明产品的最新版本，在优惠窗口内发起指定模型请求；自动生效，无须领取。消耗仍计入可用 Credits，并非加赠额度。"
+    },
+    {
+      "kind": "text",
+      "description": "活动表列标准参考倍率 0.5x、错峰参考倍率 0.1x；效果记录官方明确的相对折扣，不把参考倍率当作每请求固定 Credits。实际基础消耗仍由真实请求决定。"
+    }
+  ],
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "Qwen3.7-Max 错峰折扣自 2026 年 6 月 23 日开始；北京时间每日 22:00–08:00，含周末及公共假日；结束时间暂未公布。",
+    "reason": "重复窗口与时区已有官方说明，但生效开始只公布日期，没有精确时点，不能自行将 6 月 23 日补成午夜或该日窗口开始。"
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "Credits",
+    "value": "0.2"
+  }
+}

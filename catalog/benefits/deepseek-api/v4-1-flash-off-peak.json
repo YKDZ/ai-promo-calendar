@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "deepseek-api",
+  "id": "v4-1-flash-off-peak",
+  "title": "DeepSeek-V4.1-Flash 自营 API 闲时半价",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://api-docs.deepseek.com/quick_start/pricing/",
+    "https://api-docs.deepseek.com/zh-cn/updates/"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": [
+        "deepseek-flash",
+        "deepseek-v4-flash",
+        "deepseek-v4-flash-vision-exp"
+      ]
+    },
+    {
+      "kind": "text",
+      "description": "仅适用于 DeepSeek 自营 API 当前 DeepSeek-V4.1-Flash，同时支持思考与非思考模式；不是第三方平台同名模型的计费。"
+    },
+    {
+      "kind": "text",
+      "description": "旧模型已经下线；兼容名称 deepseek-v4-flash、deepseek-v4-flash-vision-exp 的请求现路由至 V4.1 Flash 并按 Flash 价格计费。"
+    },
+    {
+      "kind": "text",
+      "description": "费率保留英文官方价目表的美元与每 1M tokens 单位；regular 为高峰单价、benefit 为闲时单价。输入缓存命中、未命中和输出分别计费，不推算人民币金额。"
+    }
+  ],
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "01:00 - 04:00 and 06:00 - 10:00 UTC",
+    "reason": "上述高峰窗口适用于周一至周五且排除中国公共假日；官方将其他时段（含周末和中国公共假日全天）列为闲时。尚未取得经复核的年度假日日历及其与 UTC 日期的对应，不能生成不含假日例外的确定重复窗口。2026-09-10 更新日志说明随 V4.1 Flash 上线同步降价，但没有给出该次生效的精确时刻；不能把公告日期当作午夜。"
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "input-cache-hit",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "0.006",
+        "benefit": "0.003"
+      },
+      {
+        "meter": "input-cache-miss",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "0.3",
+        "benefit": "0.15"
+      },
+      {
+        "meter": "output",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "1.2",
+        "benefit": "0.6"
+      }
+    ]
+  }
+}
