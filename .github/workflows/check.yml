@@ -33,6 +33,7 @@ jobs:
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version-file: package.json
+          package-manager-cache: false
       - name: Check changed file scope
         env:
           PR_HEAD_REF: ${{ github.head_ref }}
@@ -48,14 +49,12 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 1
+      - name: Set up pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
       - name: Set up Node.js
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version-file: package.json
-      - name: Set up pnpm
-        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
-        with:
-          cache: true
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run Root Check
