@@ -1,0 +1,236 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+
+import type {
+  CatalogFile,
+  ChannelRecord,
+  DiscoveryCatalog,
+  TimedBenefit,
+} from "../src/model.ts";
+import { validateCatalog } from "../src/validate.ts";
+
+const channel: ChannelRecord = {
+  $schema: "../schema/channel.schema.json",
+  schemaVersion: 1,
+  billingProvider: "示例计费方",
+  accessChannel: { id: "example-plan", name: "示例套餐", kind: "plan" },
+  sourceReferences: ["https://example.test/plan"],
+  billingDecisionInstant: {
+    kind: "server_received",
+    description: "以服务端接收请求时刻判价",
+    sourceReferences: ["https://example.test/billing"],
+  },
+};
+
+const benefit: TimedBenefit = {
+  $schema: "../../schema/benefit.schema.json",
+  schemaVersion: 1,
+  accessChannelId: "example-plan",
+  id: "night-credits",
+  title: "测试用夜间积分系数",
+  evidenceStatus: "supported",
+  sourceReferences: ["https://example.test/pricing"],
+  eligibilityConditions: [
+    { kind: "one_of", field: "model", values: ["model-a"] },
+    { kind: "text", description: "须先领取活动资格" },
+  ],
+  timeCondition: {
+    kind: "recurring",
+    timeZone: "Asia/Shanghai",
+    sourceTimeZoneText: "北京时间",
+    windows: [
+      { weekdays: [1, 2, 3, 4, 5, 6, 7], start: "22:00", end: "08:00" },
+    ],
+    calendarExceptions: {
+      coveredYears: [2026],
+      overrides: [{ date: "2026-10-01", windows: [] }],
+      sourceReferences: ["https://example.test/calendar"],
+    },
+  },
+  effect: {
+    kind: "multiplier",
+    target: "credits",
+    unit: "模型调用积分",
+    value: "0.5",
+  },
+};
+
+const discovery: DiscoveryCatalog = {
+  $schema: "schema/discovery.schema.json",
+  schemaVersion: 1,
+  entries: [
+    {
+      title: "示例文档",
+      url: "https://example.test/docs",
+      description: "只作调查入口",
+    },
+  ],
+};
+
+function file(path: string, value: unknown): CatalogFile {
+  return { path, content: JSON.stringify(value) };
+}
+
+function snapshot(): CatalogFile[] {
+  return [
+    file("discovery.json", discovery),
+    file("channels/example-plan.json", channel),
+    file("benefits/example-plan/night-credits.json", benefit),
+  ];
+}
+
+function messages(files: CatalogFile[]): string[] {
+  const result = validateCatalog(files);
+  return result.valid
+    ? []
+    : result.issues.map((item) => `${item.file}${item.path}: ${item.message}`);
+}
+
+void test("接受独立权益、跨午夜窗口与零权益渠道", () => {
+  const files = snapshot();
+  const result = validateCatalog(files);
+  assert.equal(result.valid, true);
+  if (!result.valid) assert.fail();
+  assert.equal(result.catalog.benefits.length, 1);
+
+  const withoutBenefit = files.filter(
+    (item) => !item.path.startsWith("benefits/"),
+  );
+  assert.equal(validateCatalog(withoutBenefit).valid, true);
+
+  const quotaBenefit = structuredClone(benefit);
+  quotaBenefit.effect = {
+    kind: "unit_rate",
+    entries: [
+      {
+        meter: "额外试用额度",
+        measure: { kind: "quota", unit: "次" },
+        per: "活动期",
+        regular: "0",
+        benefit: "100",
+      },
+    ],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", quotaBenefit);
+  assert.equal(validateCatalog(files).valid, true);
+});
+
+void test("证据不确定与不可求值是独立维度", () => {
+  const files = snapshot();
+  const uncertain: TimedBenefit = {
+    ...benefit,
+    evidenceStatus: "uncertain",
+    uncertaintyReason: "两个官方页面对活动是否仍有效的说法冲突",
+    timeCondition: {
+      kind: "unresolved",
+      publishedText: "每天夜间，未说明时区",
+      reason: "无法确定对应的 UTC 时刻",
+    },
+    effect: {
+      kind: "unresolved",
+      publishedText: "夜间加量",
+      reason: "未公布加量数值",
+    },
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", uncertain);
+  assert.equal(validateCatalog(files).valid, true);
+
+  const missingReason = structuredClone(uncertain) as Record<string, unknown>;
+  delete missingReason.uncertaintyReason;
+  files[2] = file("benefits/example-plan/night-credits.json", missingReason);
+  assert.ok(
+    messages(files).some((message) =>
+      message.includes("night-credits.json/uncertaintyReason"),
+    ),
+  );
+});
+
+void test("拒绝坏 JSON、错误文件位置、缺失渠道和悬空权益关系", () => {
+  const files = snapshot();
+  files[0] = { path: "discovery.json", content: "{" };
+  files[1] = file("channels/wrong-name.json", channel);
+  const missingChannel = structuredClone(benefit);
+  missingChannel.accessChannelId = "missing-plan";
+  missingChannel.combinationRelations = [
+    {
+      relation: "exclusive",
+      otherBenefitId: "missing-rule",
+      sourceReferences: ["https://example.test/terms"],
+    },
+  ];
+  files[2] = file("benefits/missing-plan/night-credits.json", missingChannel);
+  files.push(file("benefits/not-json.txt", {}));
+  const found = messages(files);
+  assert.ok(found.some((message) => message.includes("不是有效 JSON")));
+  assert.ok(
+    found.some((message) => message.includes("渠道 ID 必须与文件名一致")),
+  );
+  assert.ok(
+    found.some((message) => message.includes("被引用的使用渠道不存在")),
+  );
+  assert.ok(
+    found.some((message) => message.includes("被引用的同渠道权益不存在")),
+  );
+  assert.ok(found.some((message) => message.includes("不是约定的")));
+});
+
+void test("拒绝错误来源、无效时间和反向优惠", () => {
+  const files = snapshot();
+  const invalid = structuredClone(benefit);
+  invalid.sourceReferences = ["https://user:secret@example.test/pricing"];
+  invalid.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-02-30T00:00:00Z",
+    endsAt: "2026-02-01T00:00:00Z",
+    endInclusive: false,
+  };
+  invalid.effect = {
+    kind: "multiplier",
+    target: "credits",
+    unit: "模型调用积分",
+    value: "1.2",
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", invalid);
+  const found = messages(files);
+  assert.ok(found.some((message) => message.includes("无凭据")));
+  assert.ok(found.some((message) => message.includes("开始时点无效")));
+  assert.ok(found.some((message) => message.includes("倍数必须小于 1")));
+
+  const invalidZone = structuredClone(benefit);
+  if (invalidZone.timeCondition.kind !== "recurring") assert.fail();
+  invalidZone.timeCondition.timeZone = "Bad/Zone";
+  invalidZone.timeCondition.calendarExceptions!.coveredYears = [2025];
+  invalidZone.effect = {
+    kind: "unit_rate",
+    entries: [
+      {
+        meter: "input",
+        measure: { kind: "money", currency: "CNY" },
+        per: "百万 Token",
+        regular: "2",
+        benefit: "3",
+      },
+    ],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", invalidZone);
+  const more = messages(files);
+  assert.ok(more.some((message) => message.includes("IANA 时区")));
+  assert.ok(more.some((message) => message.includes("已核验年份")));
+  assert.ok(more.some((message) => message.includes("费率须低于")));
+});
+
+void test("拒绝 ID 与文件名不一致、重复入口 URL 和同渠道重复权益", () => {
+  const files = snapshot();
+  const duplicateDiscovery = structuredClone(discovery);
+  duplicateDiscovery.entries.push(
+    structuredClone(duplicateDiscovery.entries[0]!),
+  );
+  files[0] = file("discovery.json", duplicateDiscovery);
+  files.push(file("benefits/example-plan/another-name.json", benefit));
+  const found = messages(files);
+  assert.ok(found.some((message) => message.includes("发现入口 URL 不得重复")));
+  assert.ok(
+    found.some((message) => message.includes("权益 ID 必须与文件名一致")),
+  );
+  assert.ok(found.some((message) => message.includes("权益 ID 不得重复")));
+});

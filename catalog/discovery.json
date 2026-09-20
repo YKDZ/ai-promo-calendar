@@ -1,0 +1,36 @@
+{
+  "$schema": "schema/discovery.schema.json",
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "title": "DeepSeek 自营 API 模型与价格",
+      "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+      "description": "巡查自营 API 的现行模型、峰谷时段、费率与法定假日例外；历史生效时间仍需核对对应公告。"
+    },
+    {
+      "title": "DeepSeek 更新日志",
+      "url": "https://api-docs.deepseek.com/zh-cn/updates/",
+      "description": "发现定价及生效时间公告；公告发布时间不自动等于价格生效时间。"
+    },
+    {
+      "title": "阿里云百炼 Token Plan 个人版",
+      "url": "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
+      "description": "巡查个人版套餐的模型、Credits 消耗、时间权益和适用条件；不能套用到普通按量 API 或团队版。"
+    },
+    {
+      "title": "阿里云百炼 Token Plan 团队版",
+      "url": "https://help.aliyun.com/zh/model-studio/token-plan-team-overview",
+      "description": "独立巡查团队版支持模型和夜间权益；不能沿用个人版的适用模型名单。"
+    },
+    {
+      "title": "Qoder CN 官方文档索引",
+      "url": "https://docs.qoder.cn/llms.txt",
+      "description": "从文档与活动索引发现 Qoder CN 的新条款；索引本身不证明具体活动，须打开相应活动页。"
+    },
+    {
+      "title": "Qoder CN 计费说明",
+      "url": "https://docs.qoder.cn/product-overview/billing-description",
+      "description": "核对 Qoder CN 自己的订阅与 Credits 计费渠道；使用 Qwen 模型不等于阿里云百炼直接计费。"
+    }
+  ]
+}

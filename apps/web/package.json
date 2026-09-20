@@ -1,0 +1,54 @@
+{
+  "name": "@off-peak-calendar/web",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#/*": {
+      "types": "./src/*.ts",
+      "default": "./src/*.ts"
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./src/main.ts",
+      "default": "./src/main.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "format:check": "oxfmt --list-different --config ../../oxfmt.config.ts .",
+    "format:write": "oxfmt --write --config ../../oxfmt.config.ts .",
+    "lint": "oxlint --quiet --format=unix --config ../../oxlint.config.ts .",
+    "lint:fix": "oxlint --format=unix --config ../../oxlint.config.ts . --fix",
+    "preview": "vite preview",
+    "test": "vitest run --reporter=agent --silent=passed-only",
+    "test:e2e": "playwright test",
+    "typecheck": "node --conditions=source scripts/run-vue-tsc.ts --build --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@vue/devtools-api": "catalog:",
+    "pinia": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@off-peak-calendar/typescript-config": "workspace:*",
+    "@playwright/test": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "@types/node": "catalog:",
+    "@types/web-bluetooth": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vue/tsconfig": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "engines": {
+    "node": "24"
+  }
+}
