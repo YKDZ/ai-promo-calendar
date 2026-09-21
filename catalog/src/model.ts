@@ -110,7 +110,7 @@ export type TimedBenefit = {
   title: string;
   sourceReferences: SourceReference[];
   eligibilityConditions: EligibilityCondition[];
-  timeTrigger?: TimeTrigger;
+  timeTrigger: TimeTrigger;
   timeCondition: TimeCondition;
   entitlementValidityNote?: string;
   effect: Effect;

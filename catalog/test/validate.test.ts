@@ -146,6 +146,25 @@ void test("证据不确定与不可求值是独立维度", () => {
   );
 });
 
+void test("拒绝未声明时间触发事件的权益", () => {
+  const files = snapshot();
+  const missingTimeTrigger = structuredClone(benefit) as Record<
+    string,
+    unknown
+  >;
+  delete missingTimeTrigger.timeTrigger;
+  files[2] = file(
+    "benefits/example-plan/night-credits.json",
+    missingTimeTrigger,
+  );
+
+  assert.ok(
+    messages(files).some((message) =>
+      message.includes("night-credits.json/timeTrigger"),
+    ),
+  );
+});
+
 void test("接受日期精度的重复规则与仅结束边界待核实的活动", () => {
   const files = snapshot();
   const dateOnlyStart = structuredClone(benefit);

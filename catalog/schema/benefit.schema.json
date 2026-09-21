@@ -411,6 +411,7 @@
         "evidenceStatus",
         "sourceReferences",
         "eligibilityConditions",
+        "timeTrigger",
         "timeCondition",
         "effect"
       ],
