@@ -6,52 +6,17 @@
   "title": "指定模型夜间 Credits 五折",
   "evidenceStatus": "supported",
   "sourceReferences": [
-    "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview"
+    "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
+    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview"
   ],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "model",
-      "values": [
-        "qwen3.8-max",
-        "qwen3.8-max-preview",
-        "deepseek-v4-pro-0813",
-        "deepseek-v4-flash-0731",
-        "deepseek-v4.1-flash"
-      ]
-    },
-    {
-      "kind": "one_of",
-      "field": "plan_tier",
-      "values": ["Lite", "Essential", "Standard", "Pro"]
-    },
-    {
-      "kind": "one_of",
-      "field": "region",
-      "values": ["华北2（北京）"]
-    },
-    {
-      "kind": "text",
-      "description": "仅限兼容的 AI 编程和智能体工具中的交互式使用；不用于自动化脚本、应用后端或非交互批量任务。Claude Code、Qwen Code、Qoder、Qoder CN、OpenClaw 等为兼容示例，不是封闭工具清单。"
-    },
-    {
-      "kind": "text",
-      "description": "个人版 API Key 仅由订阅所属用户本人使用，不共享；所用额度与调用权限须有效。qwen3.8-max-preview 兼容名称会路由至正式 qwen3.8-max，按后者计算 Credits。"
-    },
-    {
-      "kind": "text",
-      "description": "优惠针对官方列明模型的 Credits 消耗，不将模型支持列表等同于优惠列表，也不推断模型内置工具的独立收费或 Harness 费用享受同样折扣。"
-    }
+    {"kind":"one_of","field":"model","values":["qwen3.8-max","qwen3.8-max-preview","deepseek-v4-pro-0813","deepseek-v4-flash-0731"]},
+    {"kind":"one_of","field":"plan_tier","values":["Lite","Essential","Standard","Pro"]},
+    {"kind":"one_of","field":"region","values":["华北2（北京）"]},
+    {"kind":"text","description":"仅限兼容的 AI 编程和智能体工具中的交互式使用；不用于自动化脚本、应用后端或非交互批量任务。Claude Code、Qwen Code、Qoder、Qoder CN、OpenClaw 等为兼容示例，不是封闭工具清单。"},
+    {"kind":"text","description":"个人版 API Key 仅由订阅所属用户本人使用，不共享；所用额度与调用权限须有效。官方同时说明 qwen3.8-max-preview 会路由至正式 qwen3.8-max，Credits 抵扣和用量统计均按 qwen3.8-max 计算。"},
+    {"kind":"text","description":"优惠仅针对当前条款明确列出的 qwen3.8-max、deepseek-v4-pro-0813、deepseek-v4-flash-0731 的 Credits 消耗；不把模型支持列表中的其他模型或工具独立收费自动纳入。"}
   ],
-  "timeCondition": {
-    "kind": "unresolved",
-    "publishedText": "限时夜间五折：每晚 22:00 - 次日 08:00，指定模型 Credits 消耗享 5 折优惠。",
-    "reason": "该条款没有明确时区及活动起止边界；部署地域为北京不等于已声明北京时间，不能填写推测的 IANA 时区或有效期。"
-  },
-  "effect": {
-    "kind": "multiplier",
-    "target": "credits",
-    "unit": "Credits",
-    "value": "0.5"
-  }
+  "timeCondition": {"kind":"recurring","timeZone":"Etc/GMT-8","sourceTimeZoneText":"UTC+8","windows":[{"weekdays":[1,2,3,4,5,6,7],"start":"22:00","end":"08:00"}]},
+  "effect": {"kind":"multiplier","target":"credits","unit":"Credits","value":"0.5"}
 }

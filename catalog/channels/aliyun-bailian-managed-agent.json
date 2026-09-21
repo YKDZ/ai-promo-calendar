@@ -1,0 +1,10 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 1,
+  "billingProvider": "阿里云百炼",
+  "accessChannel": {"id":"aliyun-bailian-managed-agent","name":"阿里云百炼 Managed Agents","kind":"other"},
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/managed-agents-billing",
+    "https://help.aliyun.com/zh/model-studio/managed-agents-builtin-tools"
+  ]
+}
