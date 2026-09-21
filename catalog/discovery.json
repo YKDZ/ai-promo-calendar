@@ -96,6 +96,16 @@
       "title": "阿里云百炼 Managed Agents 内置工具",
       "url": "https://help.aliyun.com/zh/model-studio/managed-agents-builtin-tools",
       "description": "巡查 web_search、web_fetch 等内置工具的独立计费和限时权益；工具页没有给出的活动边界不得从更新日志日期自行补齐。"
+    },
+    {
+      "title": "阿里云百炼 Managed Agents 计费与赠送额度",
+      "url": "https://help.aliyun.com/zh/model-studio/managed-agents-billing",
+      "description": "分别核对商业化政策版本、会话运行时赠送和取得后的相对有效期；模型和工具独立计费，不推定所有账户已获发额度。"
+    },
+    {
+      "title": "阿里云百炼 Token Plan 个人版 Harness 权益",
+      "url": "https://help.aliyun.com/zh/model-studio/token-plan-harness-benefits",
+      "description": "调查 Standard 与 Pro 附赠工具额度及独立后付费折扣；常规订阅周期权益不自动当作限时促销，不与模型 Credits 或团队版混算。"
     }
   ]
 }

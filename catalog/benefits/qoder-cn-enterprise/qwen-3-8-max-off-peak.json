@@ -11,11 +11,7 @@
     "https://docs.qoder.cn/product-overview/billing-description"
   ],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "model",
-      "values": ["Qwen3.8-Max"]
-    },
+    { "kind": "one_of", "field": "model", "values": ["Qwen3.8-Max"] },
     {
       "kind": "one_of",
       "field": "plan_tier",
@@ -39,23 +35,20 @@
     },
     {
       "kind": "text",
-      "description": "使用列明产品的最新版本，在优惠窗口内发起指定模型请求；自动生效，无须领取。消耗仍计入可用 Credits，并非加赠额度。"
+      "description": "使用列明产品的最新版本；优惠自动生效，无须领取。消耗仍计入可用 Credits，并非加赠额度。"
     },
     {
       "kind": "text",
-      "description": "活动表列标准参考倍率 0.5x、错峰参考倍率 0.2x；效果记录官方明确的相对折扣，不把参考倍率当作每请求固定 Credits。实际基础消耗仍由真实请求决定。"
+      "description": "活动表的标准参考倍率为 0.5x，错峰参考倍率为 0.2x；参考倍率不是每请求固定 Credits，实际基础消耗由真实请求决定。"
     }
   ],
+  "timeTrigger": { "kind": "model_request" },
   "timeCondition": {
     "kind": "recurring",
     "timeZone": "Asia/Shanghai",
     "sourceTimeZoneText": "北京时间",
     "windows": [
-      {
-        "weekdays": [1, 2, 3, 4, 5, 6, 7],
-        "start": "22:00",
-        "end": "08:00"
-      }
+      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "22:00", "end": "08:00" }
     ],
     "validFrom": "2026-09-04T22:00:00+08:00"
   },

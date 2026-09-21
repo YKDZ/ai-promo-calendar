@@ -9,35 +9,28 @@
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview"
   ],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "plan_tier",
-      "values": ["Pro"]
-    },
-    {
-      "kind": "one_of",
-      "field": "region",
-      "values": ["华北2（北京）"]
-    },
+    { "kind": "one_of", "field": "plan_tier", "values": ["Pro"] },
+    { "kind": "one_of", "field": "region", "values": ["华北2（北京）"] },
     {
       "kind": "text",
-      "description": "仅记录 Token Plan 个人版对应套餐的月度订阅标价；不是普通按量 API、团队席位或用量包价格。未把页面未说明的续费、升级或叠加规则补成确定权益。"
+      "description": "仅记录 Token Plan 个人版对应套餐的月度订阅标价；不是普通按量 API、团队席位或用量包价格。不推断未说明的续费、升级或优惠叠加规则。"
     }
   ],
+  "timeTrigger": {
+    "kind": "other",
+    "description": "个人版套餐订阅订单的计价；公开条款未明确用订单创建、支付或其他时刻判定限时价格。"
+  },
   "timeCondition": {
     "kind": "unresolved",
-    "publishedText": "原价 600 元/月，限时 499 元/月。",
-    "reason": "官方确认限时价格，但未明确起止日期、时刻与时区，无法精确判断某一历史或未来订单是否落在活动期。"
+    "publishedText": "套餐档位与定价表将本项月度价格标为限时价格。",
+    "reason": "未公布活动起止日期、时刻或时区，不能结构化订单计价的政策窗口。"
   },
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
         "meter": "Pro 套餐订阅",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
+        "measure": { "kind": "money", "currency": "CNY" },
         "per": "月",
         "regular": "600",
         "benefit": "499"

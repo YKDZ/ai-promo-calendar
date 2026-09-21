@@ -11,11 +11,7 @@
     "https://docs.qoder.cn/enterprise/service-account"
   ],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "model",
-      "values": ["Qwen3.7-Max"]
-    },
+    { "kind": "one_of", "field": "model", "values": ["Qwen3.7-Max"] },
     {
       "kind": "one_of",
       "field": "plan_tier",
@@ -32,13 +28,18 @@
     },
     {
       "kind": "text",
-      "description": "活动表列标准参考倍率 0.5x、错峰参考倍率 0.1x；效果记录官方明确的相对折扣，不把参考倍率当作每请求固定 Credits。实际基础消耗仍由真实请求决定。"
+      "description": "活动表的标准参考倍率为 0.5x，错峰参考倍率为 0.1x；参考倍率不是每请求固定 Credits，实际基础消耗由真实请求决定。"
     }
   ],
+  "timeTrigger": { "kind": "model_request" },
   "timeCondition": {
-    "kind": "unresolved",
-    "publishedText": "Qwen3.7-Max 错峰折扣自 2026 年 6 月 23 日开始；北京时间每日 01:00–07:00，含周末及公共假日；结束时间暂未公布。",
-    "reason": "重复窗口与时区已有官方说明，但生效开始只公布日期，没有精确时点，不能自行将 6 月 23 日补成午夜或该日窗口开始。"
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "sourceTimeZoneText": "北京时间",
+    "windows": [
+      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "01:00", "end": "07:00" }
+    ],
+    "validFromDate": "2026-06-23"
   },
   "effect": {
     "kind": "multiplier",

@@ -9,11 +9,7 @@
     "https://help.aliyun.com/zh/model-studio/security/billing"
   ],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "tool",
-      "values": ["Agent 安全高级防护"]
-    },
+    { "kind": "one_of", "field": "tool", "values": ["Agent 安全高级防护"] },
     {
       "kind": "text",
       "description": "高级防护需在安全策略页面完成服务授权后开通；百炼默认防护随 Agent 使用自动生效且永久免费，不属于本限时活动。"
@@ -24,33 +20,31 @@
     },
     {
       "kind": "text",
-      "description": "effect.regular 记录同页公布的正式计费后单价，effect.benefit=0 表示当前限时免费阶段；不表示已知正式收费开始时间。"
+      "description": "通常费率采用同页公布的正式计费后单价，用于与限时阶段比较；不表示已知正式收费生效时间。"
     }
   ],
+  "timeTrigger": {
+    "kind": "other",
+    "description": "Agent 实际运行并使用高级防护，以及高级防护检测用量的产生；不是模型请求、订单支付或领取事件。"
+  },
   "timeCondition": {
     "kind": "unresolved",
-    "publishedText": "截至 2026 年 9 月，Agent 安全高级防护仍处于限时免费阶段；平台将在正式收费前至少提前一个月通知。",
-    "reason": "官方未公布限时免费开始时点或正式收费生效时点，不能推断活动绝对起止边界。"
+    "publishedText": "截至 2026 年 9 月高级防护仍限时免费，正式收费前至少提前一个月通知。",
+    "reason": "未公布免费开始时点、可识别的重复窗口或正式收费生效时点，不能构造确定的政策区间。"
   },
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
         "meter": "Agent 防御席位费",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
+        "measure": { "kind": "money", "currency": "CNY" },
         "per": "席位·小时",
         "regular": "0.42",
         "benefit": "0"
       },
       {
         "meter": "超额 Credits 用量",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
+        "measure": { "kind": "money", "currency": "CNY" },
         "per": "Credit",
         "regular": "0.0015",
         "benefit": "0"

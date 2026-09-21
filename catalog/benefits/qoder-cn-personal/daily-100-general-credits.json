@@ -10,18 +10,14 @@
     "https://docs.qoder.cn/product-overview/credits"
   ],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "account_type",
-      "values": ["个人用户"]
-    },
+    { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
     {
       "kind": "text",
       "description": "Qoder CN 新老个人用户均可，包括体验版、专业版、高级版、旗舰版、免费账号、试用期及会员卡用户；不适用于团队版、企业标准版、企业专属版订阅。"
     },
     {
       "kind": "text",
-      "description": "只能在 Qoder CN 桌面端主动领取，每账号每轮一次；仅登录不会自动发放，错过不能补领，未领取额度不滚入下一轮。"
+      "description": "只能在 Qoder CN 桌面端主动领取。领取轮次为北京时间每日 10:00 至次日 10:00 前，每账号每轮一次；仅登录不会自动发放，错过不能补领，未领取额度不滚入下一轮。"
     },
     {
       "kind": "text",
@@ -29,24 +25,27 @@
     },
     {
       "kind": "text",
-      "description": "各笔奖励独立到期，新领取不延长旧奖励；消耗先用最早到期 Credits，到期时间相同时先套餐后资源包。"
+      "description": "消耗先用最早到期 Credits，到期时间相同时先套餐后资源包。"
     }
   ],
+  "timeTrigger": { "kind": "claim" },
   "timeCondition": {
-    "kind": "unresolved",
-    "publishedText": "北京时间（UTC+8）2026 年 9 月 18 日 10:00 起，每日 10:00 至次日 10:00 前每轮可领取一次；每笔奖励自领取之日起 30 天有效，活动结束时间另行公告。",
-    "reason": "领取窗口与奖励可用期不是同一时间条件；实际到期时间取决于每笔主动领取时点，缺少账号领取与剩余额度事实时不能生成统一确定可用窗口。"
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "sourceTimeZoneText": "北京时间（UTC+8）",
+    "windows": [
+      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "00:00", "end": "24:00" }
+    ],
+    "validFrom": "2026-09-18T10:00:00+08:00"
   },
+  "entitlementValidityNote": "每笔奖励自领取之日起 30 天有效，未使用部分到期失效；各笔独立到期，新领取不会延长旧奖励的有效期。",
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
         "meter": "本活动额外发放额度",
-        "measure": {
-          "kind": "quota",
-          "unit": "通用 Credits"
-        },
-        "per": "每账号每轮主动领取",
+        "measure": { "kind": "quota", "unit": "通用 Credits" },
+        "per": "一次合资格领取",
         "regular": "0",
         "benefit": "100"
       }
