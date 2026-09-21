@@ -5,15 +5,46 @@
   "id": "qwen-3-7-max-off-peak",
   "title": "Qwen3.7-Max 错峰 Credits 折扣",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount", "https://docs.qoder.cn/product-overview/credits", "https://docs.qoder.cn/enterprise/service-account"],
-  "eligibilityConditions": [
-    {"kind": "one_of", "field": "model", "values": ["Qwen3.7-Max"]},
-    {"kind": "one_of", "field": "plan_tier", "values": ["Teams", "Enterprise", "Enterprise VPC"]},
-    {"kind": "text", "description": "仅限已开通组织 Service Account 按量后付费的有效服务账号；使用服务账号凭证，不借用成员席位或管理员身份。Credits 是后付费用量，不是预付余额或免费发放额度，须未被账号或组织用量限制阻断。"},
-    {"kind": "one_of", "field": "account_type", "values": ["Service Account"]},
-    {"kind": "text", "description": "活动表的标准参考倍率为 0.5x，错峰参考倍率为 0.1x；参考倍率不是每请求固定 Credits，实际基础消耗由真实请求决定。"}
+  "sourceReferences": [
+    "https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount",
+    "https://docs.qoder.cn/product-overview/credits",
+    "https://docs.qoder.cn/enterprise/service-account"
   ],
-  "timeTrigger": {"kind": "model_request"},
-  "timeCondition": {"kind": "recurring", "timeZone": "Asia/Shanghai", "sourceTimeZoneText": "北京时间", "windows": [{"weekdays": [1,2,3,4,5,6,7], "start": "01:00", "end": "07:00"}], "validFromDate": "2026-06-23"},
-  "effect": {"kind": "multiplier", "target": "credits", "unit": "Credits", "value": "0.2"}
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "model", "values": ["Qwen3.7-Max"] },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Teams", "Enterprise", "Enterprise VPC"]
+    },
+    {
+      "kind": "text",
+      "description": "仅限已开通组织 Service Account 按量后付费的有效服务账号；使用服务账号凭证，不借用成员席位或管理员身份。Credits 是后付费用量，不是预付余额或免费发放额度，须未被账号或组织用量限制阻断。"
+    },
+    {
+      "kind": "one_of",
+      "field": "account_type",
+      "values": ["Service Account"]
+    },
+    {
+      "kind": "text",
+      "description": "活动表的标准参考倍率为 0.5x，错峰参考倍率为 0.1x；参考倍率不是每请求固定 Credits，实际基础消耗由真实请求决定。"
+    }
+  ],
+  "timeTrigger": { "kind": "model_request" },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "sourceTimeZoneText": "北京时间",
+    "windows": [
+      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "01:00", "end": "07:00" }
+    ],
+    "validFromDate": "2026-06-23"
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "Credits",
+    "value": "0.2"
+  }
 }

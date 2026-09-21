@@ -5,66 +5,211 @@
   "id": "v4-1-flash-off-peak",
   "title": "DeepSeek-V4.1-Flash 自营 API 闲时半价",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://api-docs.deepseek.com/zh-cn/quick_start/pricing/", "https://api-docs.deepseek.com/zh-cn/news/news260910/", "https://api-docs.deepseek.com/news/news260910/"],
-  "eligibilityConditions": [
-    {"kind": "one_of", "field": "model", "values": ["deepseek-flash", "deepseek-v4-flash", "deepseek-v4-flash-vision-exp"]},
-    {"kind": "text", "description": "仅适用于 DeepSeek 自营 API 当前 DeepSeek-V4.1-Flash，同时支持思考与非思考模式；不是第三方平台同名模型的计费。"},
-    {"kind": "text", "description": "两个旧兼容模型名对应的旧模型已经下线，其请求现路由至 V4.1 Flash 并按 Flash 价格计费。"},
-    {"kind": "text", "description": "通常费率为同一计费项的高峰单价，优惠费率为闲时单价；保留人民币原价，不换算其他币种。"}
+  "sourceReferences": [
+    "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+    "https://api-docs.deepseek.com/zh-cn/news/news260910/",
+    "https://api-docs.deepseek.com/news/news260910/"
   ],
-  "timeTrigger": {"kind": "model_request"},
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": [
+        "deepseek-flash",
+        "deepseek-v4-flash",
+        "deepseek-v4-flash-vision-exp"
+      ]
+    },
+    {
+      "kind": "text",
+      "description": "仅适用于 DeepSeek 自营 API 当前 DeepSeek-V4.1-Flash，同时支持思考与非思考模式；不是第三方平台同名模型的计费。"
+    },
+    {
+      "kind": "text",
+      "description": "两个旧兼容模型名对应的旧模型已经下线，其请求现路由至 V4.1 Flash 并按 Flash 价格计费。"
+    },
+    {
+      "kind": "text",
+      "description": "通常费率为同一计费项的高峰单价，优惠费率为闲时单价；保留人民币原价，不换算其他币种。"
+    }
+  ],
+  "timeTrigger": { "kind": "model_request" },
   "timeCondition": {
-    "kind": "recurring", "timeZone": "Asia/Shanghai", "sourceTimeZoneText": "北京时间",
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "sourceTimeZoneText": "北京时间",
     "windows": [
-      {"weekdays": [1,2,3,4,5], "start": "00:00", "end": "09:00"},
-      {"weekdays": [1,2,3,4,5], "start": "12:00", "end": "14:00"},
-      {"weekdays": [1,2,3,4,5], "start": "18:00", "end": "24:00"},
-      {"weekdays": [6,7], "start": "00:00", "end": "24:00"}
+      { "weekdays": [1, 2, 3, 4, 5], "start": "00:00", "end": "09:00" },
+      { "weekdays": [1, 2, 3, 4, 5], "start": "12:00", "end": "14:00" },
+      { "weekdays": [1, 2, 3, 4, 5], "start": "18:00", "end": "24:00" },
+      { "weekdays": [6, 7], "start": "00:00", "end": "24:00" }
     ],
     "validFrom": "2026-09-10T12:00:00+08:00",
     "calendarExceptions": {
       "coveredYears": [2026],
       "overrides": [
-        {"date": "2026-01-01", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-01-02", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-01-03", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-15", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-16", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-17", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-18", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-19", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-20", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-21", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-22", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-02-23", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-04-04", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-04-05", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-04-06", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-05-01", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-05-02", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-05-03", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-05-04", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-05-05", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-06-19", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-06-20", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-06-21", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-09-25", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-09-26", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-09-27", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-10-01", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-10-02", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-10-03", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-10-04", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-10-05", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-10-06", "windows": [{"start": "00:00", "end": "24:00"}]},
-        {"date": "2026-10-07", "windows": [{"start": "00:00", "end": "24:00"}]}
+        {
+          "date": "2026-01-01",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-01-02",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-01-03",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-15",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-16",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-17",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-18",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-19",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-20",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-21",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-22",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-02-23",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-04-04",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-04-05",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-04-06",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-05-01",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-05-02",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-05-03",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-05-04",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-05-05",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-06-19",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-06-20",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-06-21",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-09-25",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-09-26",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-09-27",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-10-01",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-10-02",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-10-03",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-10-04",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-10-05",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-10-06",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        },
+        {
+          "date": "2026-10-07",
+          "windows": [{ "start": "00:00", "end": "24:00" }]
+        }
       ],
-      "sourceReferences": ["https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202511/t20251104_4258838.html"]
+      "sourceReferences": [
+        "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202511/t20251104_4258838.html"
+      ]
     }
   },
-  "effect": {"kind": "unit_rate", "entries": [
-    {"meter": "input-cache-hit", "measure": {"kind": "money", "currency": "CNY"}, "per": "1M tokens", "regular": "0.04", "benefit": "0.02"},
-    {"meter": "input-cache-miss", "measure": {"kind": "money", "currency": "CNY"}, "per": "1M tokens", "regular": "2", "benefit": "1"},
-    {"meter": "output", "measure": {"kind": "money", "currency": "CNY"}, "per": "1M tokens", "regular": "8", "benefit": "4"}
-  ]}
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "input-cache-hit",
+        "measure": { "kind": "money", "currency": "CNY" },
+        "per": "1M tokens",
+        "regular": "0.04",
+        "benefit": "0.02"
+      },
+      {
+        "meter": "input-cache-miss",
+        "measure": { "kind": "money", "currency": "CNY" },
+        "per": "1M tokens",
+        "regular": "2",
+        "benefit": "1"
+      },
+      {
+        "meter": "output",
+        "measure": { "kind": "money", "currency": "CNY" },
+        "per": "1M tokens",
+        "regular": "8",
+        "benefit": "4"
+      }
+    ]
+  }
 }

@@ -5,13 +5,40 @@
   "id": "commercial-launch-runtime-grant",
   "title": "Managed Agents 商业化运行时赠送额度",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://help.aliyun.com/zh/model-studio/managed-agents-billing"],
-  "eligibilityConditions": [
-    {"kind": "one_of", "field": "meter", "values": ["会话运行时费"]},
-    {"kind": "text", "description": "仅为获发本项赠送的 Managed Agents 账户抵扣会话运行时，额度不限会话数，不抵扣模型调用费及工具/MCP 调用费。公开页没有列出自动发放对象和发放次数，不能推定所有账户、每次新会话或每月均可获得一份。"}
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/managed-agents-billing"
   ],
-  "timeTrigger": {"kind": "other", "description": "商业化版本下运行时赠送额度的发放或生效；官方未公开确定具体账户获赠的触发机制，不能认定为支付、领取或模型请求。"},
-  "timeCondition": {"kind": "recurring", "timeZone": "Etc/GMT-8", "sourceTimeZoneText": "UTC+8", "windows": [{"weekdays": [1,2,3,4,5,6,7], "start": "00:00", "end": "24:00"}], "validFrom": "2026-08-17T09:00:00+08:00"},
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "meter", "values": ["会话运行时费"] },
+    {
+      "kind": "text",
+      "description": "仅为获发本项赠送的 Managed Agents 账户抵扣会话运行时，额度不限会话数，不抵扣模型调用费及工具/MCP 调用费。公开页没有列出自动发放对象和发放次数，不能推定所有账户、每次新会话或每月均可获得一份。"
+    }
+  ],
+  "timeTrigger": {
+    "kind": "other",
+    "description": "商业化版本下运行时赠送额度的发放或生效；官方未公开确定具体账户获赠的触发机制，不能认定为支付、领取或模型请求。"
+  },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Etc/GMT-8",
+    "sourceTimeZoneText": "UTC+8",
+    "windows": [
+      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "00:00", "end": "24:00" }
+    ],
+    "validFrom": "2026-08-17T09:00:00+08:00"
+  },
   "entitlementValidityNote": "赠送运行时自额度生效日起 30 天内有效，逾期失效；这不是自文档更新日或每次会话启动日重新计算的有效期。",
-  "effect": {"kind": "unit_rate", "entries": [{"meter": "赠送会话运行时额度", "measure": {"kind": "quota", "unit": "小时运行时"}, "per": "本项赠送的总额度（不限会话数）", "regular": "0", "benefit": "10"}]}
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "赠送会话运行时额度",
+        "measure": { "kind": "quota", "unit": "小时运行时" },
+        "per": "本项赠送的总额度（不限会话数）",
+        "regular": "0",
+        "benefit": "10"
+      }
+    ]
+  }
 }

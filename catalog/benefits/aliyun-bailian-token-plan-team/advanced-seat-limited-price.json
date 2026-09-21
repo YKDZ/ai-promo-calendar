@@ -5,14 +5,35 @@
   "id": "advanced-seat-limited-price",
   "title": "高级坐席限时订阅价格",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://help.aliyun.com/zh/model-studio/token-plan-team-overview", "https://help.aliyun.com/en/model-studio/token-plan-team-overview"],
-  "eligibilityConditions": [
-    {"kind": "one_of", "field": "plan_tier", "values": ["高级坐席"]},
-    {"kind": "one_of", "field": "region", "values": ["华北2（北京）"]},
-    {"kind": "one_of", "field": "billing_mode", "values": ["新购", "续费", "自动续费", "加购坐席", "升级坐席"]},
-    {"kind": "text", "description": "仅限 Token Plan 团队版。加购或升级与现有订阅统一到期，不将公布的月度标价当成所有订单的固定实付金额。"}
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/token-plan-team-overview",
+    "https://help.aliyun.com/en/model-studio/token-plan-team-overview"
   ],
-  "timeTrigger": {"kind": "other", "description": "团队版坐席订单的计价；来源列明订单类型，但未明确按订单创建、支付或其他时刻判定活动。"},
-  "timeCondition": {"kind": "unresolved", "publishedText": "订阅计费规则将本项坐席价格标为限时价格。", "reason": "条款未公布限时价格的起止日期、时刻及时区，无法结构化政策窗口。"},
-  "effect": {"kind": "unresolved", "publishedText": "高级坐席原价 698 元/坐席/月，限时 550 元/坐席/月；加购、升级按剩余时长折算，实际收费取折算金额与限时价中的较低值。", "reason": "满月标价不能作为所有订单的固定单价；剩余订阅时长及原档位影响实际费用，不能统一为单价或单一倍数。"}
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "plan_tier", "values": ["高级坐席"] },
+    { "kind": "one_of", "field": "region", "values": ["华北2（北京）"] },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["新购", "续费", "自动续费", "加购坐席", "升级坐席"]
+    },
+    {
+      "kind": "text",
+      "description": "仅限 Token Plan 团队版。加购或升级与现有订阅统一到期，不将公布的月度标价当成所有订单的固定实付金额。"
+    }
+  ],
+  "timeTrigger": {
+    "kind": "other",
+    "description": "团队版坐席订单的计价；来源列明订单类型，但未明确按订单创建、支付或其他时刻判定活动。"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "订阅计费规则将本项坐席价格标为限时价格。",
+    "reason": "条款未公布限时价格的起止日期、时刻及时区，无法结构化政策窗口。"
+  },
+  "effect": {
+    "kind": "unresolved",
+    "publishedText": "高级坐席原价 698 元/坐席/月，限时 550 元/坐席/月；加购、升级按剩余时长折算，实际收费取折算金额与限时价中的较低值。",
+    "reason": "满月标价不能作为所有订单的固定单价；剩余订阅时长及原档位影响实际费用，不能统一为单价或单一倍数。"
+  }
 }

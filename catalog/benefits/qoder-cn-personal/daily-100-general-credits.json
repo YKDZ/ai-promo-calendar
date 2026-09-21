@@ -5,16 +5,50 @@
   "id": "daily-100-general-credits",
   "title": "每日主动领取 100 通用 Credits",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://docs.qoder.cn/events/100credits", "https://docs.qoder.cn/product-overview/credits"],
-  "eligibilityConditions": [
-    {"kind": "one_of", "field": "account_type", "values": ["个人用户"]},
-    {"kind": "text", "description": "Qoder CN 新老个人用户均可，包括体验版、专业版、高级版、旗舰版、免费账号、试用期及会员卡用户；不适用于团队版、企业标准版、企业专属版订阅。"},
-    {"kind": "text", "description": "只能在 Qoder CN 桌面端主动领取。领取轮次为北京时间每日 10:00 至次日 10:00 前，每账号每轮一次；仅登录不会自动发放，错过不能补领，未领取额度不滚入下一轮。"},
-    {"kind": "text", "description": "奖励存入个人资源包，仅限同一账号使用；不会提升套餐等级或额外开放功能。使用范围：Qoder CN、Qoder CN IDE、Qoder CN JetBrains 插件、Qoder CN CLI、QoderWake CN、Qoder Cloud Agents CN、Qoder CN 移动端、Qoder CN 网页版。"},
-    {"kind": "text", "description": "消耗先用最早到期 Credits，到期时间相同时先套餐后资源包。"}
+  "sourceReferences": [
+    "https://docs.qoder.cn/events/100credits",
+    "https://docs.qoder.cn/product-overview/credits"
   ],
-  "timeTrigger": {"kind": "claim"},
-  "timeCondition": {"kind": "recurring", "timeZone": "Asia/Shanghai", "sourceTimeZoneText": "北京时间（UTC+8）", "windows": [{"weekdays": [1,2,3,4,5,6,7], "start": "00:00", "end": "24:00"}], "validFrom": "2026-09-18T10:00:00+08:00"},
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
+    {
+      "kind": "text",
+      "description": "Qoder CN 新老个人用户均可，包括体验版、专业版、高级版、旗舰版、免费账号、试用期及会员卡用户；不适用于团队版、企业标准版、企业专属版订阅。"
+    },
+    {
+      "kind": "text",
+      "description": "只能在 Qoder CN 桌面端主动领取。领取轮次为北京时间每日 10:00 至次日 10:00 前，每账号每轮一次；仅登录不会自动发放，错过不能补领，未领取额度不滚入下一轮。"
+    },
+    {
+      "kind": "text",
+      "description": "奖励存入个人资源包，仅限同一账号使用；不会提升套餐等级或额外开放功能。使用范围：Qoder CN、Qoder CN IDE、Qoder CN JetBrains 插件、Qoder CN CLI、QoderWake CN、Qoder Cloud Agents CN、Qoder CN 移动端、Qoder CN 网页版。"
+    },
+    {
+      "kind": "text",
+      "description": "消耗先用最早到期 Credits，到期时间相同时先套餐后资源包。"
+    }
+  ],
+  "timeTrigger": { "kind": "claim" },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "sourceTimeZoneText": "北京时间（UTC+8）",
+    "windows": [
+      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "00:00", "end": "24:00" }
+    ],
+    "validFrom": "2026-09-18T10:00:00+08:00"
+  },
   "entitlementValidityNote": "每笔奖励自领取之日起 30 天有效，未使用部分到期失效；各笔独立到期，新领取不会延长旧奖励的有效期。",
-  "effect": {"kind": "unit_rate", "entries": [{"meter": "本活动额外发放额度", "measure": {"kind": "quota", "unit": "通用 Credits"}, "per": "一次合资格领取", "regular": "0", "benefit": "100"}]}
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "本活动额外发放额度",
+        "measure": { "kind": "quota", "unit": "通用 Credits" },
+        "per": "一次合资格领取",
+        "regular": "0",
+        "benefit": "100"
+      }
+    ]
+  }
 }
