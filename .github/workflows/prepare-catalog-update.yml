@@ -61,7 +61,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Format catalog files
-        run: pnpm --filter @off-peak-calendar/catalog format:write
+        run: pnpm --filter @ai-promo-calendar/catalog format:write
       - name: Verify formatted scope
         env:
           CATALOG_HEAD_REF: ${{ env.TARGET_BRANCH }}
@@ -70,7 +70,7 @@ jobs:
         run: node catalog/src/pr-scope.ts
       - name: Validate catalog data
         run: |
-          pnpm --filter @off-peak-calendar/catalog format:check
+          pnpm --filter @ai-promo-calendar/catalog format:check
           pnpm run validate:catalog
       - name: Commit formatting changes
         run: |

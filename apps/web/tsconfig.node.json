@@ -1,5 +1,5 @@
 {
-  "extends": "@off-peak-calendar/typescript-config/base.json",
+  "extends": "@ai-promo-calendar/typescript-config/base.json",
   "compilerOptions": {
     "composite": true,
     "customConditions": ["source"],

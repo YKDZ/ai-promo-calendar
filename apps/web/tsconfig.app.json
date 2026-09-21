@@ -1,7 +1,7 @@
 {
   "extends": [
     "@vue/tsconfig/tsconfig.dom.json",
-    "@off-peak-calendar/typescript-config/base.json"
+    "@ai-promo-calendar/typescript-config/base.json"
   ],
   "compilerOptions": {
     "composite": true,

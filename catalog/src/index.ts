@@ -10,8 +10,8 @@ export type {
   Effect,
   EligibilityCondition,
   LocalWindow,
-  SourceReference,
   TimeCondition,
+  TimeTrigger,
   TimedBenefit,
 } from "./model.ts";
 export { validateCatalog } from "./validate.ts";

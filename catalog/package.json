@@ -1,5 +1,5 @@
 {
-  "name": "@off-peak-calendar/catalog",
+  "name": "@ai-promo-calendar/catalog",
   "private": true,
   "type": "module",
   "exports": {
@@ -9,8 +9,10 @@
     }
   },
   "scripts": {
+    "check:generated-types": "node --conditions=source scripts/generate-types.ts --check",
     "format:check": "oxfmt --list-different --config ../oxfmt.config.ts .",
     "format:write": "oxfmt --write --config ../oxfmt.config.ts .",
+    "generate:types": "node --conditions=source scripts/generate-types.ts",
     "lint": "oxlint --quiet --format=unix --config ../oxlint.config.ts .",
     "lint:fix": "oxlint --format=unix --config ../oxlint.config.ts . --fix",
     "test": "node --conditions=source --test test/*.test.ts",
@@ -21,8 +23,9 @@
     "ajv": "catalog:"
   },
   "devDependencies": {
-    "@off-peak-calendar/typescript-config": "workspace:*",
+    "@ai-promo-calendar/typescript-config": "workspace:*",
     "@types/node": "catalog:",
+    "json-schema-to-typescript": "catalog:",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
