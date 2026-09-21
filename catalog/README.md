@@ -22,8 +22,8 @@
 
 ## 检查与提交
 
-仓库根目录的 `pnpm validate:catalog` 核验当前目录的 JSON、文件名、跨文件引用及已知业务不变量；**Validate Catalog** 工作流也可手动运行，并由总检查复用。校验器不抓取网页，不判断来源是否仍有效、权威或适用于某位数据消费者。
+仓库根目录的 `pnpm validate:catalog` 核验当前目录的 JSON、文件名、跨文件引用及已知业务不变量。**Prepare Catalog Update** 与 `check.yml` 各自在对应环境中直接运行这条命令；复用的是校验器代码和命令，而不是整份工作流。校验器不抓取网页，不判断来源是否仍有效、权威或适用于某位数据消费者。
 
-日常数据维护从最新 `main` 创建 `catalog-update/` 分支，只修改上述三类数据 JSON。提交数据后，先手动运行 **Prepare Catalog Update** 工作流并将该分支填入 `target_branch`；工作流会在 GitHub Runner 中核对分支与文件范围、格式化和校验目录，并在确有格式变化时把机械修正提交回原分支。准备成功后再创建 PR，避免依赖维护者本地是否安装 Git、Node 或 pnpm。数据和 Schema、代码、文档、工作流的修改必须拆成不同 PR。
+日常数据维护从最新 `main` 创建 `catalog-update/` 分支，只修改上述三类数据 JSON，并尽量把本轮候选文件组成一次原子提交，避免逐文件推送反复触发自动化。向该分支推送后会自动运行 **Prepare Catalog Update**：它在 GitHub Runner 中核对分支与文件范围、格式化和校验目录，并在确有格式变化时把机械修正提交回原分支；人类也可用 `target_branch` 手动触发同一流程。准备成功后再创建 PR，避免依赖维护者本地是否安装 Git、Node 或 pnpm。数据和 Schema、代码、文档、工作流的修改必须拆成不同 PR。
 
 自动化创建 PR／Issue 时主动填写仓库模板要求的证据与原因，不能假定 GitHub API 会自动套模板。PR 仍须等待 **Validate Catalog**、**Catalog PR Scope** 和 **Root Check**；准备工作流不能替代合入检查。仓库上线后，还须由管理员把目录校验和 PR 范围检查设为必需检查，才能阻止失败 PR 合并。
