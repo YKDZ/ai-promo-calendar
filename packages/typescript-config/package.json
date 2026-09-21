@@ -1,5 +1,5 @@
 {
-  "name": "@off-peak-calendar/typescript-config",
+  "name": "@ai-promo-calendar/typescript-config",
   "private": true,
   "files": [
     "base.json"

@@ -1,5 +1,5 @@
 {
-  "extends": "@off-peak-calendar/typescript-config/base.json",
+  "extends": "@ai-promo-calendar/typescript-config/base.json",
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "customConditions": ["source"],
@@ -8,8 +8,9 @@
     "moduleResolution": "nodenext",
     "noEmit": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "target": "es2023",
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "test/**/*.ts"]
+  "include": ["scripts/**/*.ts", "src/**/*.ts", "test/**/*.ts"]
 }

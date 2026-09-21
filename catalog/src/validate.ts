@@ -9,7 +9,6 @@ import type {
   ChannelRecord,
   DateWindow,
   DiscoveryCatalog,
-  SourceReference,
   TimedBenefit,
 } from "./model.ts";
 
@@ -111,7 +110,7 @@ function compareDecimals(left: string, right: string): number {
 }
 
 function checkSourceReference(
-  source: SourceReference,
+  source: string,
   file: string,
   path: string,
   issues: ValidationIssue[],
@@ -132,7 +131,7 @@ function checkSourceReference(
 }
 
 function checkSourceReferences(
-  sources: SourceReference[],
+  sources: string[],
   file: string,
   path: string,
   issues: ValidationIssue[],

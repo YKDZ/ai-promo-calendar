@@ -75,7 +75,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Install Playwright browser
-        run: pnpm --filter @off-peak-calendar/web exec playwright install --with-deps chromium
+        run: pnpm --filter @ai-promo-calendar/web exec playwright install --with-deps chromium
       - name: Run Root Check
         run: pnpm run check
       - name: Stage Root Check diagnostics

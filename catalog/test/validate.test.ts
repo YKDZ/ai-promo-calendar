@@ -72,6 +72,15 @@ function file(path: string, value: unknown): CatalogFile {
   return { path, content: JSON.stringify(value) };
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function record(value: unknown): Record<string, unknown> {
+  assert.ok(isRecord(value));
+  return value;
+}
+
 function snapshot(): CatalogFile[] {
   return [
     file("discovery.json", discovery),
@@ -136,7 +145,7 @@ void test("证据不确定与不可求值是独立维度", () => {
   files[2] = file("benefits/example-plan/night-credits.json", uncertain);
   assert.equal(validateCatalog(files).valid, true);
 
-  const missingReason = structuredClone(uncertain) as Record<string, unknown>;
+  const missingReason = record(structuredClone(uncertain));
   delete missingReason.uncertaintyReason;
   files[2] = file("benefits/example-plan/night-credits.json", missingReason);
   assert.ok(
@@ -148,10 +157,7 @@ void test("证据不确定与不可求值是独立维度", () => {
 
 void test("拒绝未声明时间触发事件的权益", () => {
   const files = snapshot();
-  const missingTimeTrigger = structuredClone(benefit) as Record<
-    string,
-    unknown
-  >;
+  const missingTimeTrigger = record(structuredClone(benefit));
   delete missingTimeTrigger.timeTrigger;
   files[2] = file(
     "benefits/example-plan/night-credits.json",
@@ -207,15 +213,12 @@ void test("把局部资格冲突与整项证据状态分开", () => {
   files[2] = file("benefits/example-plan/night-credits.json", locallyUncertain);
   assert.equal(validateCatalog(files).valid, true);
 
-  const missingReason = structuredClone(locallyUncertain) as Record<
-    string,
-    unknown
-  >;
-  const conditions = missingReason.eligibilityConditions as Record<
-    string,
-    unknown
-  >[];
-  delete conditions[0]!.uncertaintyReason;
+  const missingReason = record(structuredClone(locallyUncertain));
+  const conditions = missingReason.eligibilityConditions;
+  assert.ok(Array.isArray(conditions));
+  const firstCondition = conditions[0];
+  assert.ok(isRecord(firstCondition));
+  delete firstCondition.uncertaintyReason;
   files[2] = file("benefits/example-plan/night-credits.json", missingReason);
   assert.ok(
     messages(files).some((message) => message.includes("uncertaintyReason")),
@@ -251,7 +254,7 @@ void test("拒绝错误日期、互斥开始边界及不完整的局部不确定
   files[2] = file("benefits/example-plan/night-credits.json", invalidDate);
   assert.equal(validateCatalog(files).valid, false);
 
-  const invalidBoundary = structuredClone(benefit) as Record<string, unknown>;
+  const invalidBoundary = record(structuredClone(benefit));
   invalidBoundary.timeCondition = {
     kind: "absolute",
     startsAt: "2026-09-01T10:00:00+08:00",
