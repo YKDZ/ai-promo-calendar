@@ -13,7 +13,11 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["deepseek-v4-pro-0813", "deepseek-v4-flash-0731"]
+      "values": [
+        "deepseek-v4-pro-0813",
+        "deepseek-v4-flash-0731",
+        "deepseek-v4.1-flash"
+      ]
     },
     {
       "kind": "one_of",
@@ -35,7 +39,7 @@
     },
     {
       "kind": "text",
-      "description": "优惠仅针对团队版当前条款明确列出的 deepseek-v4-pro-0813、deepseek-v4-flash-0731 的 Credits 消耗；不沿用个人版 qwen3.8-max 名单，也不把模型支持列表中的其他模型自动纳入。"
+      "description": "优惠仅针对团队版当前条款明确列出的 deepseek-v4-pro-0813、deepseek-v4-flash-0731、deepseek-v4.1-flash 的 Credits 消耗；不沿用个人版 qwen3.8-max 名单，也不把模型支持列表中的其他模型自动纳入。"
     }
   ],
   "timeCondition": {

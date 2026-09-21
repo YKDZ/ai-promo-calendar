@@ -17,7 +17,8 @@
         "qwen3.8-max",
         "qwen3.8-max-preview",
         "deepseek-v4-pro-0813",
-        "deepseek-v4-flash-0731"
+        "deepseek-v4-flash-0731",
+        "deepseek-v4.1-flash"
       ]
     },
     {
@@ -40,7 +41,7 @@
     },
     {
       "kind": "text",
-      "description": "优惠仅针对当前条款明确列出的 qwen3.8-max、deepseek-v4-pro-0813、deepseek-v4-flash-0731 的 Credits 消耗；不把模型支持列表中的其他模型或工具独立收费自动纳入。"
+      "description": "优惠仅针对当前条款明确列出的 qwen3.8-max、deepseek-v4-pro-0813、deepseek-v4-flash-0731、deepseek-v4.1-flash 的 Credits 消耗；不把模型支持列表中的其他模型或工具独立收费自动纳入。"
     }
   ],
   "timeCondition": {
