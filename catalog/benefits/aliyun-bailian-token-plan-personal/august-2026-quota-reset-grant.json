@@ -5,38 +5,13 @@
   "id": "august-2026-quota-reset-grant",
   "title": "存量个人订阅获赠一次 7 天限额重置",
   "evidenceStatus": "supported",
-  "sourceReferences": [
-    "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
-    "https://www.aliyun.com/notice/118513"
-  ],
+  "sourceReferences": ["https://help.aliyun.com/zh/model-studio/token-plan-personal-overview", "https://www.aliyun.com/notice/118513"],
   "eligibilityConditions": [
-    {
-      "kind": "text",
-      "description": "仅限 2026 年 8 月 5 日前已订阅 Token Plan 个人版的用户；须持有尚未使用且仍在有效期内的这次赠送权益。"
-    },
-    {
-      "kind": "text",
-      "description": "执行重置后，当前 7 天窗口内的已消耗 Credits 归零并重新累计；不表示获赠同量可提现 Credits，也不改变团队版额度。"
-    }
+    {"kind": "text", "description": "仅限 2026 年 8 月 5 日前已订阅 Token Plan 个人版的用户；不因此向团队版或之后新订阅用户授予本次赠送。"},
+    {"kind": "text", "description": "使用重置时须持有尚未消耗的赠送次数；执行后当前 7 天窗口内的已消耗 Credits 归零并重新累计，不表示获赠同量可提现 Credits。"}
   ],
-  "timeCondition": {
-    "kind": "unresolved",
-    "publishedText": "2026 年 8 月 5 日前订阅的用户，将于 8 月 5 日起获发 1 次 7 天额度重置权益，可在权益有效期内按需使用。",
-    "reason": "概述未列赠送权益的到期时间和精确发放时点；关联官方公告正文未能完整读取。不得把仍列在概述中的赠送认定为永久可用，也不推断已经失效。"
-  },
-  "effect": {
-    "kind": "unit_rate",
-    "entries": [
-      {
-        "meter": "本活动额外发放额度",
-        "measure": {
-          "kind": "quota",
-          "unit": "7 天额度重置次数"
-        },
-        "per": "符合资格的个人版订阅用户（本次赠送）",
-        "regular": "0",
-        "benefit": "1"
-      }
-    ]
-  }
+  "timeTrigger": {"kind": "other", "description": "平台向符合资格的存量订阅发放重置次数；概述没有说明可用于判定发放的具体账户事件，不能改记成新订单支付或用户领取。"},
+  "timeCondition": {"kind": "unresolved", "publishedText": "该次存量用户权益从 2026 年 8 月 5 日起发放。", "reason": "仅公布发放开始日期，未给时区、发放时刻或可独立判断的重复窗口；关联升级公告正文重试仍未完整取得。"},
+  "entitlementValidityNote": "官方要求在赠送权益有效期内按需使用，但概述未公布统一截止或取得后的相对有效期；不能把重置的 7 天用量窗口当成该赠送权益的有效期，也不推断赠送已失效。",
+  "effect": {"kind": "unit_rate", "entries": [{"meter": "本活动额外发放额度", "measure": {"kind": "quota", "unit": "7 天额度重置次数"}, "per": "符合资格的个人版订阅用户（本次赠送）", "regular": "0", "benefit": "1"}]}
 }

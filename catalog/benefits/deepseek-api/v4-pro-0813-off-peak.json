@@ -5,67 +5,66 @@
   "id": "v4-pro-0813-off-peak",
   "title": "DeepSeek-V4-Pro-0813 自营 API 闲时半价",
   "evidenceStatus": "supported",
-  "sourceReferences": [
-    "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
-    "https://api-docs.deepseek.com/updates/"
-  ],
+  "sourceReferences": ["https://api-docs.deepseek.com/zh-cn/quick_start/pricing/", "https://api-docs.deepseek.com/updates/", "https://api-docs.deepseek.com/zh-cn/news/news260813/", "https://api-docs.deepseek.com/zh-cn/updates/"],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "model",
-      "values": ["deepseek-v4-pro"]
-    },
-    {
-      "kind": "text",
-      "description": "仅适用于 DeepSeek 自营 API 当前 DeepSeek-V4-Pro-0813，同时支持思考与非思考模式；不是第三方平台同名模型的计费。"
-    },
-    {
-      "kind": "text",
-      "description": "费率保留中文官方价目表的人民币与每 1M tokens 单位；regular 为高峰单价、benefit 为闲时单价。输入缓存命中、未命中和输出分别计费。"
-    },
-    {
-      "kind": "text",
-      "description": "2026-09-10 更新日志明确表示 2026-09-14 后继续提供 V4 Pro API 且计费方式保持不变；不沿用此前已被该更新推翻的路由计划。"
-    }
+    {"kind": "one_of", "field": "model", "values": ["deepseek-v4-pro"]},
+    {"kind": "text", "description": "仅适用于 DeepSeek 自营 API 当前 DeepSeek-V4-Pro-0813，同时支持思考与非思考模式；不是第三方平台同名模型的计费。"},
+    {"kind": "text", "description": "通常费率为同一计费项的高峰单价，优惠费率为闲时单价；保留人民币原价，不换算其他币种。"},
+    {"kind": "text", "description": "2026-09-10 更新日志明确表示 2026-09-14 后继续提供 V4 Pro API 且计费方式保持不变；不沿用此前已被该更新推翻的路由计划。"}
   ],
+  "timeTrigger": {"kind": "model_request"},
   "timeCondition": {
-    "kind": "unresolved",
-    "publishedText": "峰谷定价自北京时间 2026-08-17 00:00 起生效；北京时间周一至周五（不含中国法定节假日）09:00-12:00、14:00-18:00 为高峰，其余时段（含周末和中国法定节假日全天）为空闲时段。",
-    "reason": "现行规则明确包含中国法定节假日例外，但目录尚未嵌入可逐日核对的官方节假日日历；若只写普通周循环会把法定节假日误判为工作日，故暂不把规则强行求值为 recurring。"
+    "kind": "recurring", "timeZone": "Asia/Shanghai", "sourceTimeZoneText": "北京时间",
+    "windows": [
+      {"weekdays": [1,2,3,4,5], "start": "00:00", "end": "09:00"},
+      {"weekdays": [1,2,3,4,5], "start": "12:00", "end": "14:00"},
+      {"weekdays": [1,2,3,4,5], "start": "18:00", "end": "24:00"},
+      {"weekdays": [6,7], "start": "00:00", "end": "24:00"}
+    ],
+    "validFrom": "2026-08-17T00:00:00+08:00",
+    "calendarExceptions": {
+      "coveredYears": [2026],
+      "overrides": [
+        {"date": "2026-01-01", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-01-02", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-01-03", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-15", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-16", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-17", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-18", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-19", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-20", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-21", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-22", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-02-23", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-04-04", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-04-05", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-04-06", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-05-01", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-05-02", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-05-03", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-05-04", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-05-05", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-06-19", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-06-20", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-06-21", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-09-25", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-09-26", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-09-27", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-10-01", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-10-02", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-10-03", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-10-04", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-10-05", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-10-06", "windows": [{"start": "00:00", "end": "24:00"}]},
+        {"date": "2026-10-07", "windows": [{"start": "00:00", "end": "24:00"}]}
+      ],
+      "sourceReferences": ["https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202511/t20251104_4258838.html"]
+    }
   },
-  "effect": {
-    "kind": "unit_rate",
-    "entries": [
-      {
-        "meter": "input-cache-hit",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
-        "per": "1M tokens",
-        "regular": "0.30",
-        "benefit": "0.15"
-      },
-      {
-        "meter": "input-cache-miss",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
-        "per": "1M tokens",
-        "regular": "9.0",
-        "benefit": "4.5"
-      },
-      {
-        "meter": "output",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
-        "per": "1M tokens",
-        "regular": "27.0",
-        "benefit": "13.5"
-      }
-    ]
-  }
+  "effect": {"kind": "unit_rate", "entries": [
+    {"meter": "input-cache-hit", "measure": {"kind": "money", "currency": "CNY"}, "per": "1M tokens", "regular": "0.30", "benefit": "0.15"},
+    {"meter": "input-cache-miss", "measure": {"kind": "money", "currency": "CNY"}, "per": "1M tokens", "regular": "9.0", "benefit": "4.5"},
+    {"meter": "output", "measure": {"kind": "money", "currency": "CNY"}, "per": "1M tokens", "regular": "27.0", "benefit": "13.5"}
+  ]}
 }

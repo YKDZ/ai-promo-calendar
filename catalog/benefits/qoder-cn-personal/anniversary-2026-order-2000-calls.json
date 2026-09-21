@@ -3,56 +3,18 @@
   "schemaVersion": 1,
   "accessChannelId": "qoder-cn-personal",
   "id": "anniversary-2026-order-2000-calls",
-  "title": "周年活动下单已领取的 2000 次 Qwen3.8-Max 调用",
-  "evidenceStatus": "uncertain",
+  "title": "周年活动下单用户领取 2000 次 Qwen3.8-Max 调用",
+  "evidenceStatus": "supported",
   "sourceReferences": ["https://docs.qoder.cn/events/qwen-max"],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "account_type",
-      "values": ["个人用户"]
-    },
-    {
-      "kind": "one_of",
-      "field": "model",
-      "values": ["Qwen3.8-Max"]
-    },
-    {
-      "kind": "text",
-      "description": "仅限个人版，不含 Teams；须已在领取期内通过 Qoder、JetBrains 插件、CLI 或 QoderWake 的用量面板手动领取，当前仍有未用完且未失效的活动次数。"
-    },
-    {
-      "kind": "text",
-      "description": "活动允许在 Qoder、JetBrains 插件、CLI、QoderWake、Cloud Agents、Mobile/Web App 中使用。免费调用次数优先于套餐和资源包积分；本项保留原单位“次”，不换算为 Credits。"
-    },
-    {
-      "kind": "text",
-      "description": "活动期内新下单并手动领取，每人限一次；资格表和活动说明列个人专业版、个人高级版、个人资源包且排除会员卡，FAQ 又列 Pro、Pro+、Ultra、个人资源包。不能确认旗舰版 Ultra 的订单资格。"
-    },
-    {
-      "kind": "text",
-      "description": "官方明确可与符合各自条件的 800 次赠送叠加；不据此推断与其他 Credits 活动的关系。"
-    }
+    {"kind": "one_of", "field": "account_type", "values": ["个人用户"]},
+    {"kind": "one_of", "field": "model", "values": ["Qwen3.8-Max"]},
+    {"kind": "one_of", "field": "billing_mode", "values": ["个人专业版订阅订单", "个人高级版订阅订单", "个人资源包订单"], "uncertainValues": ["个人旗舰版（Ultra）订阅订单"], "uncertaintyReason": "同一官方页的福利一览和活动内容列出已确认的三类订单，常见问题另外列入 Ultra；重读完整页面及计费说明仍无该活动的消歧依据。仅 Ultra 订单资格待核实，不影响已确认订单类别、赠送数量和领取窗口。"},
+    {"kind": "text", "description": "不含 Teams 或会员卡；须在活动期间新下单，再通过最新版本 Qoder、JetBrains 插件、CLI 或 QoderWake 的用量面板手动领取，每人限一次。"},
+    {"kind": "text", "description": "活动次数可在 Qoder、JetBrains 插件、CLI、QoderWake、Cloud Agents、Mobile/Web App 中使用；优先于套餐和资源包积分扣减，用尽后按相应积分规则计费。权益不可转让、不可兑换现金；违规或异常参与可能被取消资格并收回奖励。"}
   ],
-  "timeCondition": {
-    "kind": "unresolved",
-    "publishedText": "领取：2026 年 8 月 3 日 10:00 至 9 月 3 日 23:59（UTC+8）；免费次数于 2026 年 9 月 30 日 23:59（UTC+8）统一截止。",
-    "reason": "领取已截止不等于已领取次数失效；须知道实际领取和剩余次数。官方结束时间只写到分钟，且未明确结束时点包含性，不能补成 23:59:59 或次日午夜。"
-  },
-  "effect": {
-    "kind": "unit_rate",
-    "entries": [
-      {
-        "meter": "本活动额外发放额度",
-        "measure": {
-          "kind": "quota",
-          "unit": "Qwen3.8-Max 免费调用次数"
-        },
-        "per": "每位符合资格且已领取的下单用户",
-        "regular": "0",
-        "benefit": "2000"
-      }
-    ]
-  },
-  "uncertaintyReason": "同一官方活动页的下单资格表、活动说明与 FAQ 对旗舰版 Ultra 是否参与不一致；重读页面及当前计费资料仍未取得该活动的消歧依据。保留已知数量和有效期，但不作为完全确定的订单资格记录。"
+  "timeTrigger": {"kind": "claim"},
+  "timeCondition": {"kind": "absolute", "startsAt": "2026-08-03T10:00:00+08:00", "endsAt": "2026-09-03T23:59:00+08:00", "endInclusive": null, "endPrecision": "minute", "endUncertaintyReason": "领取截止只公布到 UTC+8 的分钟，未说明末尾分钟内的包含边界，不补成下一分钟或末尾秒。"},
+  "entitlementValidityNote": "已领取的免费调用次数统一于 2026 年 9 月 30 日 23:59（UTC+8）截止，未使用完的次数到期作废。来源仅精确到分钟，未明确该末尾分钟内的包含边界；领取停止不等于已领取次数同时失效。",
+  "effect": {"kind": "unit_rate", "entries": [{"meter": "本活动额外发放额度", "measure": {"kind": "quota", "unit": "Qwen3.8-Max 免费调用次数"}, "per": "每位符合资格完成领取的下单用户", "regular": "0", "benefit": "2000"}]}
 }
