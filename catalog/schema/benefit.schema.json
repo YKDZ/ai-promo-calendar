@@ -59,28 +59,60 @@
       "uniqueItems": true,
       "items": { "type": "string", "pattern": "^https?://\\S+$" }
     },
+    "eligibilityField": {
+      "description": "条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型或计费模式。",
+      "enum": [
+        "model",
+        "meter",
+        "plan_tier",
+        "tool",
+        "region",
+        "client",
+        "account_type",
+        "billing_mode"
+      ]
+    },
     "eligibilityCondition": {
-      "description": "one_of／none_of 可由查询者按字段判断；text 保存公开但尚不能由程序判定的领券、身份或名额等条件。",
+      "description": "one_of／none_of 可由查询者按字段判断；one_of 可把有明确冲突的候选值局部标为不确定；text 保存公开但尚不能由程序判定的领券、身份或名额等条件。",
       "oneOf": [
         {
           "type": "object",
           "additionalProperties": false,
           "required": ["kind", "field", "values"],
           "properties": {
-            "kind": { "enum": ["one_of", "none_of"] },
-            "field": {
-              "description": "条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型或计费模式。",
-              "enum": [
-                "model",
-                "meter",
-                "plan_tier",
-                "tool",
-                "region",
-                "client",
-                "account_type",
-                "billing_mode"
-              ]
+            "kind": { "const": "one_of" },
+            "field": { "$ref": "#/$defs/eligibilityField" },
+            "values": {
+              "type": "array",
+              "description": "现有公开资料明确支持的值。",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/text" }
             },
+            "uncertainValues": {
+              "type": "array",
+              "description": "仅列入同一条件中公开资料相互冲突、不能确定是否适用的值；不得与 values 重复。",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/text" }
+            },
+            "uncertaintyReason": {
+              "$ref": "#/$defs/text",
+              "description": "说明 uncertainValues 为何不能确定；局部资格冲突不应污染整项权益的 evidenceStatus。"
+            }
+          },
+          "dependencies": {
+            "uncertainValues": ["uncertaintyReason"],
+            "uncertaintyReason": ["uncertainValues"]
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "field", "values"],
+          "properties": {
+            "kind": { "const": "none_of" },
+            "field": { "$ref": "#/$defs/eligibilityField" },
             "values": {
               "type": "array",
               "minItems": 1,
@@ -166,7 +198,7 @@
       }
     },
     "timeTrigger": {
-      "description": "时间条件约束的是哪类事件；领取或支付窗口不等于到账后权益的使用期。未填写时不能替维护者猜测判定事件。",
+      "description": "时间条件约束的是哪类事件；领取或支付窗口不等于到账后权益的使用期。无法从公开资料确定或不能归入前三类时，用带具体说明的 other，不得猜测。",
       "oneOf": [
         {
           "type": "object",
@@ -182,7 +214,10 @@
           "required": ["kind", "description"],
           "properties": {
             "kind": { "const": "other" },
-            "description": { "$ref": "#/$defs/text" }
+            "description": {
+              "$ref": "#/$defs/text",
+              "description": "说明实际事件，或说明公开资料为何不足以判定事件。"
+            }
           }
         }
       ]
@@ -415,6 +450,10 @@
         "timeCondition": {
           "$ref": "#/$defs/timeCondition",
           "description": "政策触发事件的时间窗口；有已知窗口但某个边界、年份或账号状态不明时保留已知部分，勿把整条规则标为 unresolved。"
+        },
+        "entitlementValidityNote": {
+          "$ref": "#/$defs/text",
+          "description": "仅以自然语言保存取得权益之后的公开有效期规则，例如‘每笔奖励自领取之日起 30 天有效’；不参与时点求值，也不得补充或覆盖时间、触发事件、资格或效果字段。"
         },
         "effect": {
           "$ref": "#/$defs/effect",

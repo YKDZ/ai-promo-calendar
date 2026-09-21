@@ -1,0 +1,80 @@
+name: Prepare Catalog Update
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: 已包含数据修改的 catalog-update/ 分支
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    name: Format and validate catalog data
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Validate target branch name
+        env:
+          TARGET_BRANCH: ${{ inputs.target_branch }}
+        run: |
+          case "$TARGET_BRANCH" in
+            catalog-update/?*) ;;
+            *)
+              echo "目标分支必须以 catalog-update/ 开头，且前缀后不能为空。" >&2
+              exit 1
+              ;;
+          esac
+      - name: Checkout target branch
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ inputs.target_branch }}
+          persist-credentials: true
+          fetch-depth: 0
+      - name: Verify branch base and input scope
+        env:
+          CATALOG_HEAD_REF: ${{ inputs.target_branch }}
+          CATALOG_SCOPE_BASE: origin/main
+          CATALOG_SCOPE_INCLUDE_WORKTREE: "true"
+        run: |
+          if ! git merge-base --is-ancestor origin/main HEAD; then
+            echo "目标分支必须包含最新 main；请从最新 main 重新创建或更新分支。" >&2
+            exit 1
+          fi
+          node catalog/src/pr-scope.ts
+      - name: Set up pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - name: Set up Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version-file: package.json
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Format catalog files
+        run: pnpm --filter @off-peak-calendar/catalog format:write
+      - name: Verify formatted scope
+        env:
+          CATALOG_HEAD_REF: ${{ inputs.target_branch }}
+          CATALOG_SCOPE_BASE: origin/main
+          CATALOG_SCOPE_INCLUDE_WORKTREE: "true"
+        run: node catalog/src/pr-scope.ts
+      - name: Validate catalog data
+        run: |
+          pnpm --filter @off-peak-calendar/catalog format:check
+          pnpm run validate:catalog
+      - name: Commit formatting changes
+        env:
+          TARGET_BRANCH: ${{ inputs.target_branch }}
+        run: |
+          if git diff --quiet; then
+            echo "目录数据无需格式修正。"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- catalog/discovery.json catalog/channels catalog/benefits
+          git commit -m "chore(catalog): format maintenance data"
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"

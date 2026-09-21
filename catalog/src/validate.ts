@@ -165,6 +165,26 @@ function checkBenefit(
     issues,
   );
 
+  benefit.eligibilityConditions.forEach((condition, index) => {
+    if (
+      condition.kind !== "one_of" ||
+      condition.uncertainValues === undefined
+    ) {
+      return;
+    }
+    const supportedValues = new Set(condition.values);
+    condition.uncertainValues.forEach((value, valueIndex) => {
+      if (supportedValues.has(value)) {
+        issue(
+          issues,
+          file,
+          `/eligibilityConditions/${index}/uncertainValues/${valueIndex}`,
+          "同一资格值不能同时标为确定适用和不确定",
+        );
+      }
+    });
+  });
+
   const time = benefit.timeCondition;
   if (time.kind === "absolute") {
     const start = instant(time.startsAt);

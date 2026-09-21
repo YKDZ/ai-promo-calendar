@@ -36,7 +36,7 @@ jobs:
           package-manager-cache: false
       - name: Check changed file scope
         env:
-          PR_HEAD_REF: ${{ github.head_ref }}
+          CATALOG_HEAD_REF: ${{ github.head_ref }}
         run: node catalog/src/pr-scope.ts
 
   check:

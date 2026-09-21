@@ -16,6 +16,11 @@ function isCatalogDataPath(path: string): boolean {
   );
 }
 
+function gitPaths(args: readonly string[]): string[] {
+  const output = execFileSync("git", args, { encoding: "utf8" });
+  return output.split("\0").filter(Boolean);
+}
+
 export function checkCatalogPrScope(
   changedPaths: readonly string[],
   headRef: string,
@@ -41,17 +46,57 @@ if (
   process.argv[1] !== undefined &&
   resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
-  const headRef = process.env.PR_HEAD_REF;
+  const headRef = process.env.CATALOG_HEAD_REF;
   if (headRef === undefined || headRef === "") {
-    throw new Error("缺少 PR_HEAD_REF，无法判断维护分支范围");
+    throw new Error("缺少 CATALOG_HEAD_REF，无法判断目录改动范围");
   }
-  const output = execFileSync(
-    "git",
-    ["diff", "--no-renames", "--name-only", "-z", "HEAD^1", "HEAD"],
-    { encoding: "utf8" },
+  const baseRef = process.env.CATALOG_SCOPE_BASE;
+  const changedPaths = new Set(
+    baseRef === undefined || baseRef === ""
+      ? gitPaths([
+          "diff",
+          "--no-renames",
+          "--name-only",
+          "-z",
+          "HEAD^1",
+          "HEAD",
+        ])
+      : gitPaths([
+          "diff",
+          "--no-renames",
+          "--name-only",
+          "-z",
+          `${baseRef}...HEAD`,
+        ]),
   );
-  const changedPaths = output.split("\0").filter(Boolean);
-  const problems = checkCatalogPrScope(changedPaths, headRef);
+  if (process.env.CATALOG_SCOPE_INCLUDE_WORKTREE === "true") {
+    for (const path of gitPaths([
+      "diff",
+      "--no-renames",
+      "--name-only",
+      "-z",
+    ])) {
+      changedPaths.add(path);
+    }
+    for (const path of gitPaths([
+      "diff",
+      "--cached",
+      "--no-renames",
+      "--name-only",
+      "-z",
+    ])) {
+      changedPaths.add(path);
+    }
+    for (const path of gitPaths([
+      "ls-files",
+      "--others",
+      "--exclude-standard",
+      "-z",
+    ])) {
+      changedPaths.add(path);
+    }
+  }
+  const problems = checkCatalogPrScope([...changedPaths], headRef);
   if (problems.length > 0) {
     for (const problem of problems) {
       process.stderr.write(`${problem}\n`);
