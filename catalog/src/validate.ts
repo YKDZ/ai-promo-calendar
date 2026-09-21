@@ -178,6 +178,22 @@ function checkBenefit(
     if (start !== undefined && end !== undefined && start >= end) {
       issue(issues, file, "/timeCondition", "结束时点必须晚于开始时点");
     }
+    if (time.endInclusive === null) {
+      const sourceClock = time.endsAt.slice(11, 19);
+      const precisionMatches =
+        (time.endPrecision === "day" && sourceClock === "00:00:00") ||
+        (time.endPrecision === "minute" && sourceClock.endsWith(":00")) ||
+        (time.endPrecision === "second" &&
+          /^\d{2}:\d{2}:\d{2}$/.test(sourceClock));
+      if (!precisionMatches || time.endsAt.includes(".")) {
+        issue(
+          issues,
+          file,
+          "/timeCondition/endPrecision",
+          "待核实的结束边界时点须与来源精度一致",
+        );
+      }
+    }
   } else if (time.kind === "recurring") {
     try {
       new Intl.DateTimeFormat("en", { timeZone: time.timeZone });
@@ -198,6 +214,9 @@ function checkBenefit(
       time.validUntil === undefined ? undefined : instant(time.validUntil);
     if (time.validFrom !== undefined && from === undefined) {
       issue(issues, file, "/timeCondition/validFrom", "有效期开始时点无效");
+    }
+    if (time.validFromDate !== undefined && !validDate(time.validFromDate)) {
+      issue(issues, file, "/timeCondition/validFromDate", "开始日期无效");
     }
     if (time.validUntil !== undefined && until === undefined) {
       issue(issues, file, "/timeCondition/validUntil", "有效期结束时点无效");

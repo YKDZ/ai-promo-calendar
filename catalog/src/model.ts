@@ -30,12 +30,26 @@ export type CalendarExceptions = {
   sourceReferences: SourceReference[];
 };
 
+export type TimeTrigger =
+  | { kind: "model_request" | "payment" | "claim" }
+  | { kind: "other"; description: string };
+
 export type TimeCondition =
   | {
       kind: "absolute";
       startsAt: string;
       endsAt: string;
       endInclusive: boolean;
+      endPrecision?: never;
+      endUncertaintyReason?: never;
+    }
+  | {
+      kind: "absolute";
+      startsAt: string;
+      endsAt: string;
+      endInclusive: null;
+      endPrecision: "day" | "minute" | "second";
+      endUncertaintyReason: string;
     }
   | {
       kind: "recurring";
@@ -43,6 +57,7 @@ export type TimeCondition =
       sourceTimeZoneText: string;
       windows: LocalWindow[];
       validFrom?: string;
+      validFromDate?: string;
       validUntil?: string;
       calendarExceptions?: CalendarExceptions;
     }
@@ -83,6 +98,7 @@ export type TimedBenefit = {
   title: string;
   sourceReferences: SourceReference[];
   eligibilityConditions: EligibilityCondition[];
+  timeTrigger?: TimeTrigger;
   timeCondition: TimeCondition;
   effect: Effect;
   combinationRelations?: CombinationRelation[];
