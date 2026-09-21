@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 1,
+  "billingProvider": "Qoder CN",
+  "accessChannel": {
+    "id": "qoder-cn-enterprise",
+    "name": "Qoder CN（全家桶）企业席位与共享 Credits",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://docs.qoder.cn/product-overview/billing-description",
+    "https://docs.qoder.cn/product-overview/credits"
+  ]
+}

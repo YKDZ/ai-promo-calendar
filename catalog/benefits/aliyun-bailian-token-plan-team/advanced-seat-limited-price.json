@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "aliyun-bailian-token-plan-team",
+  "id": "advanced-seat-limited-price",
+  "title": "高级坐席限时订阅价格",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/token-plan-team-overview"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["高级坐席"]
+    },
+    {
+      "kind": "one_of",
+      "field": "region",
+      "values": ["华北2（北京）"]
+    },
+    {
+      "kind": "text",
+      "description": "限时价格覆盖新购、续费、自动续费、加购坐席和升级坐席；仅限 Token Plan 团队版。加购、升级时与现有订阅统一到期，费用依剩余时长折算。"
+    }
+  ],
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "高级坐席原价 698 元/坐席/月，限时 550 元/坐席/月。",
+    "reason": "条款未明确限时价格的起止日期、时刻及时区。"
+  },
+  "effect": {
+    "kind": "unresolved",
+    "publishedText": "原价 ¥698/坐席/月，限时 ¥550/坐席/月；加购或升级按剩余时长折算，实际收费取折算金额与限时价中的较低值。",
+    "reason": "满月标价不能当作所有订单的固定单价；加购、升级还涉及剩余订阅时间及原档位，统一单价或单一倍数不足以确定实际费用。"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 1,
+  "billingProvider": "DeepSeek",
+  "accessChannel": {
+    "id": "deepseek-api",
+    "name": "DeepSeek 自营按量 API",
+    "kind": "metered_api"
+  },
+  "sourceReferences": [
+    "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+    "https://api-docs.deepseek.com/updates/"
+  ]
+}

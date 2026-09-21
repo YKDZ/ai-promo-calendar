@@ -1,0 +1,58 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "qoder-cn-personal",
+  "id": "september-2026-first-advanced-qwen-credits",
+  "title": "高级版首付月订阅加赠 Qwen 专属 Credits",
+  "evidenceStatus": "supported",
+  "sourceReferences": ["https://docs.qoder.cn/events/bogo"],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "account_type",
+      "values": ["个人用户"]
+    },
+    {
+      "kind": "text",
+      "description": "仅限 Qoder CN 个人订阅；团队版、企业标准版、企业专属版及会员卡购买、兑换均不参与。奖励仅用于 Qwen 系列模型，不是通用 Credits。"
+    },
+    {
+      "kind": "text",
+      "description": "以成功支付且符合活动范围的订单为前提；加赠通常数分钟后异步到账，以订单确认页数量为准。符合条件的整单退款会取消未使用加赠，已退款订单仍算曾成功付费；异常注册或交易可能被取消资格。"
+    },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["高级版"]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["个人月付订阅"]
+    },
+    {
+      "kind": "text",
+      "description": "账户此前从未成功付费，与注册时间无关；试用期内首次开通也适用。只记录额外加赠，套餐原有通用 Credits 不作为本项奖励。"
+    }
+  ],
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "2026 年 9 月 1 日 10:00 至 9 月 30 日 24:00（北京时间，UTC+8），以订单支付成功时间判定；加赠自发放时起 30 个自然日内有效。",
+    "reason": "订单参加期限与赠送额度使用期限不同；发放异步且到期依实际发放时间，不能在活动结束时清零仍未到期的奖励，也不猜测结束边界包含性。"
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "本活动额外发放额度",
+        "measure": {
+          "kind": "quota",
+          "unit": "Qwen 专属 Credits"
+        },
+        "per": "符合资格的首次成功付费月订阅订单",
+        "regular": "0",
+        "benefit": "6000"
+      }
+    ]
+  }
+}

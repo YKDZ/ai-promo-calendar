@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 1,
+  "billingProvider": "Qoder CN",
+  "accessChannel": {
+    "id": "qoder-cn-personal",
+    "name": "Qoder CN（全家桶）个人订阅、试用及活动额度",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://docs.qoder.cn/product-overview/billing-description",
+    "https://docs.qoder.cn/product-overview/credits"
+  ]
+}

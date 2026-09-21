@@ -1,0 +1,57 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "qoder-cn-personal",
+  "id": "qwen-3-8-flash-free-september-2026",
+  "title": "Qwen3.8-Flash 九月限时免 Credits",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.qoder.cn/events/flashoffer",
+    "https://docs.qoder.cn/events/100credits"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "account_type",
+      "values": ["个人用户"]
+    },
+    {
+      "kind": "text",
+      "description": "Qoder CN 新老个人用户均可，包括体验版、专业版、高级版、旗舰版、免费账号、试用期及会员卡用户；不适用于团队版、企业标准版、企业专属版订阅。"
+    },
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["Qwen3.8-Flash"]
+    },
+    {
+      "kind": "one_of",
+      "field": "client",
+      "values": [
+        "Qoder CN",
+        "Qoder CN IDE",
+        "Qoder CN JetBrains 插件",
+        "Qoder CN CLI",
+        "QoderWake CN",
+        "Qoder Cloud Agents CN",
+        "Qoder CN 移动端",
+        "Qoder CN 网页版"
+      ]
+    },
+    {
+      "kind": "text",
+      "description": "选择该模型即自动生效，无须领取，Credits 余额为 0 也可使用。官方计费系数由 0.1× 降至 0.0×；不会扣减每日领取的奖励。其他模型按各自规则计费，已领取奖励仍按自身有效期到期。"
+    }
+  ],
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "2026 年 9 月 18 日 10:00 至 9 月 30 日 23:59:59；北京时间（UTC+8）。",
+    "reason": "已知起止时刻与时区，但官方没有明确结束时点本身是否包含；不从 23:59:59 写法推测 endInclusive，亦不把结束后价格预设为原来的系数。"
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "Credits",
+    "value": "0"
+  }
+}
