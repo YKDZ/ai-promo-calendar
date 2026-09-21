@@ -165,8 +165,30 @@
         }
       }
     },
+    "timeTrigger": {
+      "description": "时间条件约束的是哪类事件；领取或支付窗口不等于到账后权益的使用期。未填写时不能替维护者猜测判定事件。",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": {
+            "kind": { "enum": ["model_request", "payment", "claim"] }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "description"],
+          "properties": {
+            "kind": { "const": "other" },
+            "description": { "$ref": "#/$defs/text" }
+          }
+        }
+      ]
+    },
     "timeCondition": {
-      "description": "absolute 用于明确的起止时刻，recurring 用于时区内重复窗口，unresolved 保存不能精确求值的原文。",
+      "description": "保存已知政策窗口，不因局部边界未知而丢弃其余时段。absolute 用于有起止时刻的区间，recurring 用于时区内重复窗口，unresolved 仅用于无法结构化任何可用窗口的原文。",
       "oneOf": [
         {
           "type": "object",
@@ -177,10 +199,44 @@
             "startsAt": { "$ref": "#/$defs/dateTime" },
             "endsAt": { "$ref": "#/$defs/dateTime" },
             "endInclusive": {
-              "type": "boolean",
-              "description": "官方若明确包含结束时刻则为 true；不得从日期写法自行推断。"
+              "type": ["boolean", "null"],
+              "description": "明确包含结束时刻为 true，明确不包含为 false；只有包含性未说明时为 null，此时需记录来源精度和原因，不能让整个区间 unresolved。"
+            },
+            "endPrecision": {
+              "enum": ["day", "minute", "second"],
+              "description": "仅在 endInclusive 为 null 时填写；查询在 endsAt 起的相应日、分钟或秒内应标待核实，不能推断结束瞬间。"
+            },
+            "endUncertaintyReason": {
+              "$ref": "#/$defs/text",
+              "description": "仅在 endInclusive 为 null 时说明为何无法确定结束边界；不得因该局部疑点隐藏整个已知区间。"
             }
-          }
+          },
+          "allOf": [
+            {
+              "if": { "properties": { "endInclusive": { "const": null } } },
+              "then": {
+                "properties": {
+                  "endPrecision": true,
+                  "endUncertaintyReason": true
+                },
+                "required": ["endPrecision", "endUncertaintyReason"]
+              },
+              "else": {
+                "not": {
+                  "anyOf": [
+                    {
+                      "properties": { "endPrecision": true },
+                      "required": ["endPrecision"]
+                    },
+                    {
+                      "properties": { "endUncertaintyReason": true },
+                      "required": ["endUncertaintyReason"]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
         },
         {
           "type": "object",
@@ -202,11 +258,19 @@
               "items": { "$ref": "#/$defs/localWindow" }
             },
             "validFrom": { "$ref": "#/$defs/dateTime" },
+            "validFromDate": {
+              "$ref": "#/$defs/date",
+              "description": "只公布活动开始的当地日期、未公布具体时刻时填写；该日期内待核实，此前不适用，此后可按重复窗口判断。与 validFrom 互斥。"
+            },
             "validUntil": {
               "$ref": "#/$defs/dateTime",
-              "description": "不含该时点的有效期结束边界；官方未公布结束时不填写。"
+              "description": "不含该时点的有效期结束边界；官方未公布结束时不填写，缺省不保证活动永久有效。"
             },
             "calendarExceptions": { "$ref": "#/$defs/calendarExceptions" }
+          },
+          "not": {
+            "properties": { "validFrom": true, "validFromDate": true },
+            "required": ["validFrom", "validFromDate"]
           }
         },
         {
@@ -347,9 +411,10 @@
           "description": "所有条件同时成立才可能适用；仅在来源明确覆盖该渠道所有情形时使用空数组。",
           "items": { "$ref": "#/$defs/eligibilityCondition" }
         },
+        "timeTrigger": { "$ref": "#/$defs/timeTrigger" },
         "timeCondition": {
           "$ref": "#/$defs/timeCondition",
-          "description": "政策可能生效的时间；不能确认边界时使用 unresolved，勿猜测时区或节假日。"
+          "description": "政策触发事件的时间窗口；有已知窗口但某个边界、年份或账号状态不明时保留已知部分，勿把整条规则标为 unresolved。"
         },
         "effect": {
           "$ref": "#/$defs/effect",

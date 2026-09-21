@@ -145,6 +145,76 @@ void test("证据不确定与不可求值是独立维度", () => {
   );
 });
 
+void test("接受日期精度的重复规则与仅结束边界待核实的活动", () => {
+  const files = snapshot();
+  const dateOnlyStart = structuredClone(benefit);
+  if (dateOnlyStart.timeCondition.kind !== "recurring") assert.fail();
+  dateOnlyStart.timeCondition.validFromDate = "2026-06-23";
+  dateOnlyStart.timeTrigger = { kind: "model_request" };
+  files[2] = file("benefits/example-plan/night-credits.json", dateOnlyStart);
+  assert.equal(validateCatalog(files).valid, true);
+
+  const paymentBenefit: TimedBenefit = {
+    ...benefit,
+    timeTrigger: { kind: "payment" },
+    eligibilityConditions: [
+      { kind: "text", description: "已发放奖励的使用期取决于到账时点" },
+    ],
+    timeCondition: {
+      kind: "absolute",
+      startsAt: "2026-09-01T10:00:00+08:00",
+      endsAt: "2026-09-30T23:59:00+08:00",
+      endInclusive: null,
+      endPrecision: "minute",
+      endUncertaintyReason: "官方只写到分钟，未说明结束分钟是否包含",
+    },
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", paymentBenefit);
+  assert.equal(validateCatalog(files).valid, true);
+});
+
+void test("拒绝错误日期、互斥开始边界及不完整的局部不确定", () => {
+  const files = snapshot();
+  const invalidDate = structuredClone(benefit);
+  if (invalidDate.timeCondition.kind !== "recurring") assert.fail();
+  invalidDate.timeCondition.validFromDate = "2026-02-30";
+  files[2] = file("benefits/example-plan/night-credits.json", invalidDate);
+  assert.ok(
+    messages(files).some((message) => message.includes("开始日期无效")),
+  );
+
+  invalidDate.timeCondition.validFromDate = "2026-06-23";
+  invalidDate.timeCondition.validFrom = "2026-06-23T22:00:00+08:00";
+  files[2] = file("benefits/example-plan/night-credits.json", invalidDate);
+  assert.equal(validateCatalog(files).valid, false);
+
+  const invalidBoundary = structuredClone(benefit) as Record<string, unknown>;
+  invalidBoundary.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-09-01T10:00:00+08:00",
+    endsAt: "2026-09-30T23:59:59+08:00",
+    endInclusive: null,
+    endPrecision: "minute",
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", invalidBoundary);
+  assert.ok(
+    messages(files).some((message) => message.includes("endUncertaintyReason")),
+  );
+
+  invalidBoundary.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-09-01T10:00:00+08:00",
+    endsAt: "2026-09-30T23:59:59+08:00",
+    endInclusive: null,
+    endPrecision: "minute",
+    endUncertaintyReason: "来源只写到分钟",
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", invalidBoundary);
+  assert.ok(
+    messages(files).some((message) => message.includes("来源精度一致")),
+  );
+});
+
 void test("拒绝坏 JSON、错误文件位置、缺失渠道和悬空权益关系", () => {
   const files = snapshot();
   files[0] = { path: "discovery.json", content: "{" };
