@@ -2,24 +2,100 @@
   "$schema": "schema/discovery.schema.json",
   "schemaVersion": 1,
   "entries": [
-    {"title":"DeepSeek 自营 API 模型与价格","url":"https://api-docs.deepseek.com/zh-cn/quick_start/pricing/","description":"巡查自营 API 的现行模型、峰谷时段、费率与法定假日例外；历史生效时间仍需核对对应公告。"},
-    {"title":"DeepSeek 更新日志","url":"https://api-docs.deepseek.com/zh-cn/updates/","description":"发现定价及生效时间公告；公告发布时间不自动等于价格生效时间。"},
-    {"title":"阿里云百炼 Token Plan 个人版","url":"https://help.aliyun.com/zh/model-studio/token-plan-personal-overview","description":"巡查个人版套餐的模型、Credits 消耗、时间权益和适用条件；不能套用到普通按量 API 或团队版。"},
-    {"title":"阿里云百炼 Token Plan 团队版","url":"https://help.aliyun.com/zh/model-studio/token-plan-team-overview","description":"独立巡查团队版支持模型和夜间权益；不能沿用个人版的适用模型名单。"},
-    {"title":"Qoder CN 官方文档索引","url":"https://docs.qoder.cn/llms.txt","description":"从文档与活动索引发现 Qoder CN 的新条款；索引本身不证明具体活动，须打开相应活动页。"},
-    {"title":"Qoder CN 计费说明","url":"https://docs.qoder.cn/product-overview/billing-description","description":"核对 Qoder CN 自己的订阅与 Credits 计费渠道；使用 Qwen 模型不等于阿里云百炼直接计费。"},
-    {"title":"DeepSeek 英文价目表","url":"https://api-docs.deepseek.com/quick_start/pricing/","description":"交叉核对官方美元价目表、模型兼容名称及 UTC 峰谷说明；页面暂时不可访问本身不证明政策结束，也不得用汇率推算其他币种。"},
-    {"title":"Qoder CN Credits 与产品线互通","url":"https://docs.qoder.cn/product-overview/credits","description":"复核个人、企业及原灵码产品线的 Credits 边界；模型展示倍率不是每请求固定抵扣量。"},
-    {"title":"Qoder CN Service Account 后付费","url":"https://docs.qoder.cn/enterprise/service-account","description":"独立核对组织服务账号的按量后付费规则、用量限制和账单主体；不将服务账号视为预付成员席位。"},
-    {"title":"Qoder CN Qwen 系列错峰活动","url":"https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount","description":"逐模型检查折扣与生效时间，并分别核对 Service Account 与普通产品的窗口；旧版折扣结束不等于现行活动结束。"},
-    {"title":"Qoder CN Qwen3.8-Flash 免费活动","url":"https://docs.qoder.cn/events/flashoffer","description":"核对个人用户、免费账号及会员卡的指定模型活动；不得推广到企业订阅或未列明客户端。"},
-    {"title":"Qoder CN 每日领取 Credits","url":"https://docs.qoder.cn/events/100credits","description":"区分每日主动领取窗口、适用账号与每笔奖励的相对有效期；不把登录视为自动发放。"},
-    {"title":"Qoder CN 九月订阅加赠","url":"https://docs.qoder.cn/events/bogo","description":"核对首付、续费、升级、退款和 Qwen 专属额度限制；支付活动期与奖励使用期分别处理。"},
-    {"title":"Qoder CN 周年调用与邀请活动","url":"https://docs.qoder.cn/events/qwen-max","description":"分别复核领取截止、已领取次数的使用截止和邀请资格；留意正文与 FAQ 的适用套餐差异。"},
-    {"title":"阿里云百炼个人版权益升级公告","url":"https://www.aliyun.com/notice/118513","description":"交叉核对存量订阅的额度重置赠送及有效期；公告日期不代替实际发放或到期边界。"},
-    {"title":"火山引擎 Agent Plan 官方入口","url":"https://ai.volcengine.com/","description":"从订阅入口继续查看套餐详情和折扣规则；首页限时折扣只能指引调查，须完整核实适用期限及订单条件后才收录权益。"},
-    {"title":"Kimi API 官方平台","url":"https://platform.kimi.com/","description":"从官方模型、计费与文档入口调查新活动；普通单价、缓存价格差异和常规套餐规则不自动构成时段权益。"},
-    {"title":"阿里云百炼 Agent 安全高级防护计费","url":"https://help.aliyun.com/zh/model-studio/security/billing","description":"核对高级防护的限时免费、正式计费项与提前通知机制；默认防护永久免费，不将其误记为限时活动。"},
-    {"title":"阿里云百炼 Managed Agents 内置工具","url":"https://help.aliyun.com/zh/model-studio/managed-agents-builtin-tools","description":"巡查 web_search、web_fetch 等内置工具的独立计费和限时权益；工具页没有给出的活动边界不得从更新日志日期自行补齐。"}
+    {
+      "title": "DeepSeek 自营 API 模型与价格",
+      "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+      "description": "巡查自营 API 的现行模型、峰谷时段、费率与法定假日例外；历史生效时间仍需核对对应公告。"
+    },
+    {
+      "title": "DeepSeek 更新日志",
+      "url": "https://api-docs.deepseek.com/zh-cn/updates/",
+      "description": "发现定价及生效时间公告；公告发布时间不自动等于价格生效时间。"
+    },
+    {
+      "title": "阿里云百炼 Token Plan 个人版",
+      "url": "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
+      "description": "巡查个人版套餐的模型、Credits 消耗、时间权益和适用条件；不能套用到普通按量 API 或团队版。"
+    },
+    {
+      "title": "阿里云百炼 Token Plan 团队版",
+      "url": "https://help.aliyun.com/zh/model-studio/token-plan-team-overview",
+      "description": "独立巡查团队版支持模型和夜间权益；不能沿用个人版的适用模型名单。"
+    },
+    {
+      "title": "Qoder CN 官方文档索引",
+      "url": "https://docs.qoder.cn/llms.txt",
+      "description": "从文档与活动索引发现 Qoder CN 的新条款；索引本身不证明具体活动，须打开相应活动页。"
+    },
+    {
+      "title": "Qoder CN 计费说明",
+      "url": "https://docs.qoder.cn/product-overview/billing-description",
+      "description": "核对 Qoder CN 自己的订阅与 Credits 计费渠道；使用 Qwen 模型不等于阿里云百炼直接计费。"
+    },
+    {
+      "title": "DeepSeek 英文价目表",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "description": "交叉核对官方美元价目表、模型兼容名称及 UTC 峰谷说明；页面暂时不可访问本身不证明政策结束，也不得用汇率推算其他币种。"
+    },
+    {
+      "title": "Qoder CN Credits 与产品线互通",
+      "url": "https://docs.qoder.cn/product-overview/credits",
+      "description": "复核个人、企业及原灵码产品线的 Credits 边界；模型展示倍率不是每请求固定抵扣量。"
+    },
+    {
+      "title": "Qoder CN Service Account 后付费",
+      "url": "https://docs.qoder.cn/enterprise/service-account",
+      "description": "独立核对组织服务账号的按量后付费规则、用量限制和账单主体；不将服务账号视为预付成员席位。"
+    },
+    {
+      "title": "Qoder CN Qwen 系列错峰活动",
+      "url": "https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount",
+      "description": "逐模型检查折扣与生效时间，并分别核对 Service Account 与普通产品的窗口；旧版折扣结束不等于现行活动结束。"
+    },
+    {
+      "title": "Qoder CN Qwen3.8-Flash 免费活动",
+      "url": "https://docs.qoder.cn/events/flashoffer",
+      "description": "核对个人用户、免费账号及会员卡的指定模型活动；不得推广到企业订阅或未列明客户端。"
+    },
+    {
+      "title": "Qoder CN 每日领取 Credits",
+      "url": "https://docs.qoder.cn/events/100credits",
+      "description": "区分每日主动领取窗口、适用账号与每笔奖励的相对有效期；不把登录视为自动发放。"
+    },
+    {
+      "title": "Qoder CN 九月订阅加赠",
+      "url": "https://docs.qoder.cn/events/bogo",
+      "description": "核对首付、续费、升级、退款和 Qwen 专属额度限制；支付活动期与奖励使用期分别处理。"
+    },
+    {
+      "title": "Qoder CN 周年调用与邀请活动",
+      "url": "https://docs.qoder.cn/events/qwen-max",
+      "description": "分别复核领取截止、已领取次数的使用截止和邀请资格；留意正文与 FAQ 的适用套餐差异。"
+    },
+    {
+      "title": "阿里云百炼个人版权益升级公告",
+      "url": "https://www.aliyun.com/notice/118513",
+      "description": "交叉核对存量订阅的额度重置赠送及有效期；公告日期不代替实际发放或到期边界。"
+    },
+    {
+      "title": "火山引擎 Agent Plan 官方入口",
+      "url": "https://ai.volcengine.com/",
+      "description": "从订阅入口继续查看套餐详情和折扣规则；首页限时折扣只能指引调查，须完整核实适用期限及订单条件后才收录权益。"
+    },
+    {
+      "title": "Kimi API 官方平台",
+      "url": "https://platform.kimi.com/",
+      "description": "从官方模型、计费与文档入口调查新活动；普通单价、缓存价格差异和常规套餐规则不自动构成时段权益。"
+    },
+    {
+      "title": "阿里云百炼 Agent 安全高级防护计费",
+      "url": "https://help.aliyun.com/zh/model-studio/security/billing",
+      "description": "核对高级防护的限时免费、正式计费项与提前通知机制；默认防护永久免费，不将其误记为限时活动。"
+    },
+    {
+      "title": "阿里云百炼 Managed Agents 内置工具",
+      "url": "https://help.aliyun.com/zh/model-studio/managed-agents-builtin-tools",
+      "description": "巡查 web_search、web_fetch 等内置工具的独立计费和限时权益；工具页没有给出的活动边界不得从更新日志日期自行补齐。"
+    }
   ]
 }
