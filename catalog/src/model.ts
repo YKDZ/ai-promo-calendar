@@ -1,17 +1,29 @@
 export type SourceReference = string;
 
+type EligibilityField =
+  | "model"
+  | "meter"
+  | "plan_tier"
+  | "tool"
+  | "region"
+  | "client"
+  | "account_type"
+  | "billing_mode";
+
+type OneOfEligibilityCondition = {
+  kind: "one_of";
+  field: EligibilityField;
+  values: string[];
+} & (
+  | { uncertainValues?: never; uncertaintyReason?: never }
+  | { uncertainValues: string[]; uncertaintyReason: string }
+);
+
 export type EligibilityCondition =
+  | OneOfEligibilityCondition
   | {
-      kind: "one_of" | "none_of";
-      field:
-        | "model"
-        | "meter"
-        | "plan_tier"
-        | "tool"
-        | "region"
-        | "client"
-        | "account_type"
-        | "billing_mode";
+      kind: "none_of";
+      field: EligibilityField;
       values: string[];
     }
   | { kind: "text"; description: string };
@@ -100,6 +112,7 @@ export type TimedBenefit = {
   eligibilityConditions: EligibilityCondition[];
   timeTrigger?: TimeTrigger;
   timeCondition: TimeCondition;
+  entitlementValidityNote?: string;
   effect: Effect;
   combinationRelations?: CombinationRelation[];
 } & (

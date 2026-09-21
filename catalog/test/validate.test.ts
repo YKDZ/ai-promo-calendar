@@ -34,6 +34,7 @@ const benefit: TimedBenefit = {
     { kind: "one_of", field: "model", values: ["model-a"] },
     { kind: "text", description: "须先领取活动资格" },
   ],
+  timeTrigger: { kind: "model_request" },
   timeCondition: {
     kind: "recurring",
     timeZone: "Asia/Shanghai",
@@ -157,9 +158,8 @@ void test("接受日期精度的重复规则与仅结束边界待核实的活动
   const paymentBenefit: TimedBenefit = {
     ...benefit,
     timeTrigger: { kind: "payment" },
-    eligibilityConditions: [
-      { kind: "text", description: "已发放奖励的使用期取决于到账时点" },
-    ],
+    eligibilityConditions: [],
+    entitlementValidityNote: "加赠自发放时起 30 个自然日内有效。",
     timeCondition: {
       kind: "absolute",
       startsAt: "2026-09-01T10:00:00+08:00",
@@ -171,6 +171,50 @@ void test("接受日期精度的重复规则与仅结束边界待核实的活动
   };
   files[2] = file("benefits/example-plan/night-credits.json", paymentBenefit);
   assert.equal(validateCatalog(files).valid, true);
+});
+
+void test("把局部资格冲突与整项证据状态分开", () => {
+  const files = snapshot();
+  const locallyUncertain = structuredClone(benefit);
+  locallyUncertain.eligibilityConditions = [
+    {
+      kind: "one_of",
+      field: "plan_tier",
+      values: ["Pro", "Pro+"],
+      uncertainValues: ["Ultra"],
+      uncertaintyReason: "同一官方页面的资格表与 FAQ 对 Ultra 的说法冲突",
+    },
+  ];
+  files[2] = file("benefits/example-plan/night-credits.json", locallyUncertain);
+  assert.equal(validateCatalog(files).valid, true);
+
+  const missingReason = structuredClone(locallyUncertain) as Record<
+    string,
+    unknown
+  >;
+  const conditions = missingReason.eligibilityConditions as Record<
+    string,
+    unknown
+  >[];
+  delete conditions[0]!.uncertaintyReason;
+  files[2] = file("benefits/example-plan/night-credits.json", missingReason);
+  assert.ok(
+    messages(files).some((message) => message.includes("uncertaintyReason")),
+  );
+
+  locallyUncertain.eligibilityConditions = [
+    {
+      kind: "one_of",
+      field: "plan_tier",
+      values: ["Pro", "Ultra"],
+      uncertainValues: ["Ultra"],
+      uncertaintyReason: "官方资料冲突",
+    },
+  ];
+  files[2] = file("benefits/example-plan/night-credits.json", locallyUncertain);
+  assert.ok(
+    messages(files).some((message) => message.includes("不能同时标为")),
+  );
 });
 
 void test("拒绝错误日期、互斥开始边界及不完整的局部不确定", () => {
