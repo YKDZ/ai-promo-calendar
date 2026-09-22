@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "google-gemini-developer-api",
+  "id": "flash-2026-promotional-token-rates",
+  "title": "Gemini 3.6/3.7/3.8 Flash 2026 年 Token 优惠价",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://ai.google.dev/gemini-api/docs/pricing",
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["gemini-3.6-flash", "gemini-3.7-flash", "gemini-3.8-flash"]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["Paid Standard", "Paid Batch", "Paid Flex", "Paid Priority"]
+    },
+    {
+      "kind": "one_of",
+      "field": "meter",
+      "values": [
+        "Input price",
+        "Output price (including thinking tokens)",
+        "Context caching price"
+      ]
+    }
+  ],
+  "timeTrigger": { "kind": "model_request" },
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "Gemini 3.6 Flash、3.7 Flash、3.8 Flash 的 Paid Tier 输入、输出与 context caching 费率均标注 through December 31, 2026；对应更高费率 starting January 1, 2027。",
+    "reason": "官方定价页明确给出切换日期，但未在该条款中给出时区，也未给出当前优惠价的开始时点；不能自行把日期边界补成某一时区的午夜绝对时刻。"
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "price",
+    "unit": "USD Paid Tier token rates",
+    "value": "0.5"
+  }
+}

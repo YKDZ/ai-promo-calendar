@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "独立时段权益记录",
-  "description": "一个文件只记录同一实际计费渠道下的一项可独立判断的时间权益。证据 URL 放在本文件，不继承模型研发方或其他渠道的条款。",
+  "description": "一个文件只记录同一实际计费渠道下的一项可独立求值的时段权益；全部适用情形须共享同一政策触发事件和同一可计算效果范围。证据 URL 放在本文件，不继承模型研发方或其他渠道的条款。",
   "$ref": "#/$defs/timedBenefit",
   "$defs": {
     "id": {
@@ -73,7 +73,7 @@
       ]
     },
     "eligibilityCondition": {
-      "description": "one_of／none_of 可由查询者按字段判断；one_of 可把有明确冲突的候选值局部标为不确定；text 保存公开但尚不能由程序判定的领券、身份或名额等条件。",
+      "description": "每一项都必须是必要资格谓词：该谓词为假时权益不适用。同一字段在一项权益中只出现一次；one_of／none_of 可由查询者按字段判断，one_of 可把有明确冲突的候选值局部标为不确定。只有无法用现有字段枚举、但人仍可判断真假的资格才使用 text。",
       "oneOf": [
         {
           "type": "object",
@@ -123,12 +123,22 @@
         },
         {
           "type": "object",
+          "description": "一条无法枚举的必要资格谓词；一项只写一个谓词。不得保存效果或费率解释、时间、自动生效说明、额度说明、组合关系、来源解释或一般备注；能用 one_of／none_of 表达时不得使用本分支。",
           "additionalProperties": false,
           "required": ["kind", "description"],
           "properties": {
             "kind": { "const": "text" },
-            "description": { "$ref": "#/$defs/text" }
-          }
+            "description": {
+              "$ref": "#/$defs/text",
+              "description": "应能改写成针对一次具体查询的是／否问题；若答案为否，这项权益即不适用。"
+            }
+          },
+          "examples": [
+            {
+              "kind": "text",
+              "description": "账户此前从未成功付费。"
+            }
+          ]
         }
       ]
     },
@@ -198,7 +208,7 @@
       }
     },
     "timeTrigger": {
-      "description": "时间条件约束的是哪类事件；领取或支付窗口不等于到账后权益的使用期。无法从公开资料确定或不能归入前三类时，用带具体说明的 other，不得猜测。",
+      "description": "时间条件约束的是哪类事件，并且必须适用于本文件效果覆盖的所有计费项；不同计费项若按不同事件判价，必须拆成不同权益。领取或支付窗口不等于到账后权益的使用期。无法从公开资料确定或不能归入前三类时，用带具体说明的 other，不得猜测。",
       "oneOf": [
         {
           "type": "object",
@@ -324,10 +334,11 @@
       ]
     },
     "effect": {
-      "description": "unit_rate 保留原单价，multiplier 保留原倍数；若存在真实活动但效果不足以计算，使用 unresolved。",
+      "description": "来源同时公布同一计费项的通常值与优惠值时优先使用 unit_rate；只有一个倍数对本文件全部适用条件和明确计费项都精确成立时才使用 multiplier。宣传折扣名称或展示舍入不能代替实际可计算费率；效果不足以计算时使用 unresolved。",
       "oneOf": [
         {
           "type": "object",
+          "description": "保留官方公布的实际通常费率或额度与优惠后数值；同一 (meter, measure, per) 组合不得重复。多个套餐档位的通常值或优惠值不同时，应拆成独立权益，不得把套餐名塞入 meter 代替资格条件。",
           "additionalProperties": false,
           "required": ["kind", "entries"],
           "properties": {
@@ -358,6 +369,7 @@
         },
         {
           "type": "object",
+          "description": "仅保存可直接用于计算的统一实际倍数。该倍数必须对本文件的所有适用套餐、模型、计费模式和明确计费项成立；官方同时给出不符合该倍数的实际费率时，应改用 unit_rate 或拆分权益。",
           "additionalProperties": false,
           "required": ["kind", "target", "unit", "value"],
           "properties": {
@@ -368,7 +380,15 @@
               "$ref": "#/$defs/decimal",
               "description": "费用／积分倍数低于 1，额度倍数高于 1；0 表示免费但仍需来源明确支持。"
             }
-          }
+          },
+          "examples": [
+            {
+              "kind": "multiplier",
+              "target": "credits",
+              "unit": "模型调用 Credits",
+              "value": "0.5"
+            }
+          ]
         },
         {
           "type": "object",
@@ -401,6 +421,7 @@
     },
     "timedBenefit": {
       "type": "object",
+      "description": "一份文件记录一项可独立求值的时段权益，而不是笼统对应一张营销活动页面。文件内全部适用情形必须共享同一政策触发事件和同一可计算效果范围；套餐档位、计费项或触发事件导致效果不同时拆成不同权益。",
       "additionalProperties": false,
       "required": [
         "$schema",
@@ -444,7 +465,7 @@
         },
         "eligibilityConditions": {
           "type": "array",
-          "description": "所有条件同时成立才可能适用；仅在来源明确覆盖该渠道所有情形时使用空数组。",
+          "description": "所有条件同时成立才可能适用；数组成员只能是必要资格谓词，不是备注。仅在来源明确覆盖该渠道所有情形时使用空数组。",
           "items": { "$ref": "#/$defs/eligibilityCondition" }
         },
         "timeTrigger": { "$ref": "#/$defs/timeTrigger" },
