@@ -164,7 +164,21 @@ function checkBenefit(
     issues,
   );
 
+  const seenEligibilityFields = new Map<string, number>();
   benefit.eligibilityConditions.forEach((condition, index) => {
+    if (condition.kind !== "text") {
+      const duplicateIndex = seenEligibilityFields.get(condition.field);
+      if (duplicateIndex !== undefined) {
+        issue(
+          issues,
+          file,
+          `/eligibilityConditions/${index}/field`,
+          `同一资格字段只能出现一次；请与第 ${duplicateIndex + 1} 项合并`,
+        );
+      }
+      seenEligibilityFields.set(condition.field, index);
+    }
+
     if (
       condition.kind !== "one_of" ||
       condition.uncertainValues === undefined
@@ -275,7 +289,23 @@ function checkBenefit(
 
   const effect = benefit.effect;
   if (effect.kind === "unit_rate") {
+    const seenEntries = new Set<string>();
     effect.entries.forEach((entry, index) => {
+      const measure =
+        entry.measure.kind === "money"
+          ? `money:${entry.measure.currency}`
+          : `${entry.measure.kind}:${entry.measure.unit}`;
+      const entryKey = JSON.stringify([entry.meter, measure, entry.per]);
+      if (seenEntries.has(entryKey)) {
+        issue(
+          issues,
+          file,
+          `/effect/entries/${index}`,
+          "同一计费项、计量单位与计价基准的费率不得重复",
+        );
+      }
+      seenEntries.add(entryKey);
+
       if (
         entry.measure.kind !== "quota" &&
         compareDecimals(entry.regular, "0") <= 0
