@@ -1,0 +1,57 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "tencent-token-plan-personal",
+  "id": "september-2026-hy3-202608-half-price",
+  "title": "九月 Hy3-202608 积分抵扣五折",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://cloud.tencent.com/document/product/1823/133811",
+    "https://cloud.tencent.com/document/product/1823/130060"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
+    { "kind": "one_of", "field": "billing_mode", "values": ["Hy Token Plan"] },
+    { "kind": "one_of", "field": "plan_tier", "values": ["Lite", "Standard", "Pro", "Max"] },
+    { "kind": "one_of", "field": "model", "values": ["hy3-202608"] },
+    {
+      "kind": "text",
+      "description": "活动开始后自动生效，无需申请；hy3、hy3-preview 与 hy3-202608 虽调度同一底层 Hy3，但 Model ID 对应抵扣规则不同，本项只覆盖活动表明确列出的 hy3-202608。除另有说明外，本活动优惠不与其他优惠叠加。"
+    }
+  ],
+  "timeTrigger": { "kind": "model_request" },
+  "timeCondition": {
+    "kind": "absolute",
+    "startsAt": "2026-09-01T00:00:00+08:00",
+    "endsAt": "2026-09-30T23:59:59+08:00",
+    "endInclusive": null,
+    "endPrecision": "second",
+    "endUncertaintyReason": "官方活动时间精确到北京时间的秒，但未明确末尾一秒内的包含边界。"
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "未命中缓存输入",
+        "measure": { "kind": "credits", "unit": "积分" },
+        "per": "1M tokens",
+        "regular": "20",
+        "benefit": "10"
+      },
+      {
+        "meter": "输出",
+        "measure": { "kind": "credits", "unit": "积分" },
+        "per": "1M tokens",
+        "regular": "80",
+        "benefit": "40"
+      },
+      {
+        "meter": "缓存命中输入",
+        "measure": { "kind": "credits", "unit": "积分" },
+        "per": "1M tokens",
+        "regular": "5",
+        "benefit": "2.5"
+      }
+    ]
+  }
+}

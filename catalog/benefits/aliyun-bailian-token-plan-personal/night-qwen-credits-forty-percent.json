@@ -2,8 +2,8 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 1,
   "accessChannelId": "aliyun-bailian-token-plan-personal",
-  "id": "night-credits-half-price",
-  "title": "指定 DeepSeek 模型夜间 Credits 五折",
+  "id": "night-qwen-credits-forty-percent",
+  "title": "指定 Qwen3.8 模型夜间 Credits 四折",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
@@ -13,11 +13,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "deepseek-v4-pro-0813",
-        "deepseek-v4-flash-0731",
-        "deepseek-v4.1-flash"
-      ]
+      "values": ["qwen3.8-max", "qwen3.8-max-preview", "qwen3.8-flash"]
     },
     {
       "kind": "one_of",
@@ -31,11 +27,11 @@
     },
     {
       "kind": "text",
-      "description": "个人版 API Key 仅供订阅所属用户本人在单台设备上使用，不共享；所用额度与调用权限须有效。"
+      "description": "个人版 API Key 仅供订阅所属用户本人在单台设备上使用，不共享；所用额度与调用权限须有效。qwen3.8-max-preview 已下线，但旧 ID 的请求会自动路由至 qwen3.8-max，Credits 抵扣和用量统计按 qwen3.8-max 计算。"
     },
     {
       "kind": "text",
-      "description": "本项只记录当前条款明确列入夜间五折的三个 DeepSeek 模型；Qwen3.8-Max 与 Qwen3.8-Flash 的夜间四折另作独立权益记录。独立计费的 Harness 工具不自动纳入本项模型优惠。"
+      "description": "本项只记录当前条款明确列入夜间四折的 Qwen3.8-Max 与 Qwen3.8-Flash，以及按 Qwen3.8-Max 费率路由的旧 preview ID；独立计费的 Harness 工具不自动纳入本项模型优惠。"
     }
   ],
   "timeTrigger": { "kind": "model_request" },
@@ -51,6 +47,6 @@
     "kind": "multiplier",
     "target": "credits",
     "unit": "Credits",
-    "value": "0.5"
+    "value": "0.4"
   }
 }
