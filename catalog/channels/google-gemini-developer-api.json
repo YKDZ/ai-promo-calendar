@@ -1,0 +1,11 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 1,
+  "billingProvider": "Google",
+  "accessChannel": {
+    "id": "google-gemini-developer-api",
+    "name": "Google Gemini Developer API",
+    "kind": "metered_api"
+  },
+  "sourceReferences": ["https://ai.google.dev/gemini-api/docs/pricing"]
+}
