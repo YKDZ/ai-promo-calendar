@@ -11,8 +11,16 @@
   ],
   "eligibilityConditions": [
     { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
-    { "kind": "one_of", "field": "billing_mode", "values": ["通用 Token Plan"] },
-    { "kind": "one_of", "field": "plan_tier", "values": ["Lite", "Standard", "Pro", "Max"] },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["通用 Token Plan"]
+    },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Lite", "Standard", "Pro", "Max"]
+    },
     { "kind": "one_of", "field": "model", "values": ["kimi-k2.7-code"] },
     {
       "kind": "text",

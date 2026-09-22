@@ -11,9 +11,21 @@
   ],
   "eligibilityConditions": [
     { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
-    { "kind": "one_of", "field": "billing_mode", "values": ["通用 Token Plan"] },
-    { "kind": "one_of", "field": "plan_tier", "values": ["Lite", "Standard", "Pro", "Max"] },
-    { "kind": "one_of", "field": "model", "values": ["minimax-m3", "minimax-m-3-0"] },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["通用 Token Plan"]
+    },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Lite", "Standard", "Pro", "Max"]
+    },
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["minimax-m3", "minimax-m-3-0"]
+    },
     {
       "kind": "text",
       "description": "活动开始后自动生效，无需申请；输入长度不超过 512k 与超过 512k 的两档积分价均按活动表分别保留。除另有说明外，本活动优惠不与其他优惠叠加。"

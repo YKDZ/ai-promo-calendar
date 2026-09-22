@@ -12,7 +12,11 @@
   "eligibilityConditions": [
     { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
     { "kind": "one_of", "field": "billing_mode", "values": ["Hy Token Plan"] },
-    { "kind": "one_of", "field": "plan_tier", "values": ["Lite", "Standard", "Pro", "Max"] },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Lite", "Standard", "Pro", "Max"]
+    },
     { "kind": "one_of", "field": "model", "values": ["hy3-202608"] },
     {
       "kind": "text",
