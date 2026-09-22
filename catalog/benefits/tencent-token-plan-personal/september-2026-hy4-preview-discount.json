@@ -21,11 +21,7 @@
       "field": "plan_tier",
       "values": ["Lite", "Standard", "Pro", "Max"]
     },
-    { "kind": "one_of", "field": "model", "values": ["hy4-preview"] },
-    {
-      "kind": "text",
-      "description": "活动开始后自动生效，无需申请；通用 Token Plan 与 Hy Token Plan 的活动表均列出相同的 Hy4 preview 优惠积分价。除另有说明外，本活动优惠不与其他优惠叠加。"
-    }
+    { "kind": "one_of", "field": "model", "values": ["hy4-preview"] }
   ],
   "timeTrigger": { "kind": "model_request" },
   "timeCondition": {

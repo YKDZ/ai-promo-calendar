@@ -2,8 +2,8 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 1,
   "accessChannelId": "tencent-token-plan-personal",
-  "id": "september-2026-auto-half-price",
-  "title": "九月 Auto 模型积分抵扣五折",
+  "id": "september-2026-auto-lite-promotional-rate",
+  "title": "九月 Auto 模型 Lite 套餐限时积分价",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
@@ -16,16 +16,8 @@
       "field": "billing_mode",
       "values": ["通用 Token Plan"]
     },
-    {
-      "kind": "one_of",
-      "field": "plan_tier",
-      "values": ["Lite", "Standard", "Pro", "Max"]
-    },
-    { "kind": "one_of", "field": "model", "values": ["tc-code-latest"] },
-    {
-      "kind": "text",
-      "description": "活动开始后自动生效，无需申请；只调整活动期间的积分抵扣，不改变套餐额度刷新与其他使用限制。来源将该模型列为刊例价 5 折，并在优惠表中列出 11 积分/百万 tokens 的活动展示价；本记录保留官方明确的相对折扣，不反推各套餐档位的展示舍入规则。"
-    }
+    { "kind": "one_of", "field": "plan_tier", "values": ["Lite"] },
+    { "kind": "one_of", "field": "model", "values": ["tc-code-latest"] }
   ],
   "timeTrigger": { "kind": "model_request" },
   "timeCondition": {
@@ -37,9 +29,29 @@
     "endUncertaintyReason": "官方活动时间精确到北京时间的秒，但未明确末尾一秒内的包含边界。"
   },
   "effect": {
-    "kind": "multiplier",
-    "target": "credits",
-    "unit": "积分抵扣价",
-    "value": "0.5"
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "未命中缓存输入",
+        "measure": { "kind": "credits", "unit": "积分" },
+        "per": "1M tokens",
+        "regular": "22.285",
+        "benefit": "11"
+      },
+      {
+        "meter": "输出",
+        "measure": { "kind": "credits", "unit": "积分" },
+        "per": "1M tokens",
+        "regular": "22.285",
+        "benefit": "11"
+      },
+      {
+        "meter": "缓存命中输入",
+        "measure": { "kind": "credits", "unit": "积分" },
+        "per": "1M tokens",
+        "regular": "22.285",
+        "benefit": "11"
+      }
+    ]
   }
 }

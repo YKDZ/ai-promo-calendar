@@ -25,10 +25,6 @@
       "kind": "one_of",
       "field": "model",
       "values": ["minimax-m3", "minimax-m-3-0"]
-    },
-    {
-      "kind": "text",
-      "description": "活动开始后自动生效，无需申请；输入长度不超过 512k 与超过 512k 的两档积分价均按活动表分别保留。除另有说明外，本活动优惠不与其他优惠叠加。"
     }
   ],
   "timeTrigger": { "kind": "model_request" },

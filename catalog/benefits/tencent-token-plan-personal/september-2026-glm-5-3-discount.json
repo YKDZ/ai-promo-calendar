@@ -21,11 +21,7 @@
       "field": "plan_tier",
       "values": ["Lite", "Standard", "Pro", "Max"]
     },
-    { "kind": "one_of", "field": "model", "values": ["glm-5.3", "glm-5-3"] },
-    {
-      "kind": "text",
-      "description": "活动开始后自动生效，无需申请；只调整指定模型在活动期间的积分抵扣，不改变套餐额度刷新与其他使用限制。除另有说明外，本活动优惠不与其他优惠叠加。"
-    }
+    { "kind": "one_of", "field": "model", "values": ["glm-5.3", "glm-5-3"] }
   ],
   "timeTrigger": { "kind": "model_request" },
   "timeCondition": {

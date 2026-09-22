@@ -2,8 +2,8 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 1,
   "accessChannelId": "tencent-token-plan-personal",
-  "id": "september-2026-kimi-k2-7-code-half-price",
-  "title": "九月 Kimi K2.7 Code 积分抵扣五折",
+  "id": "september-2026-auto-pro-promotional-rate",
+  "title": "九月 Auto 模型 Pro 套餐限时积分价",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
@@ -16,12 +16,8 @@
       "field": "billing_mode",
       "values": ["通用 Token Plan"]
     },
-    {
-      "kind": "one_of",
-      "field": "plan_tier",
-      "values": ["Lite", "Standard", "Pro", "Max"]
-    },
-    { "kind": "one_of", "field": "model", "values": ["kimi-k2.7-code"] }
+    { "kind": "one_of", "field": "plan_tier", "values": ["Pro"] },
+    { "kind": "one_of", "field": "model", "values": ["tc-code-latest"] }
   ],
   "timeTrigger": { "kind": "model_request" },
   "timeCondition": {
@@ -39,22 +35,22 @@
         "meter": "未命中缓存输入",
         "measure": { "kind": "credits", "unit": "积分" },
         "per": "1M tokens",
-        "regular": "130",
-        "benefit": "65"
+        "regular": "18.687",
+        "benefit": "11"
       },
       {
         "meter": "输出",
         "measure": { "kind": "credits", "unit": "积分" },
         "per": "1M tokens",
-        "regular": "540",
-        "benefit": "270"
+        "regular": "18.687",
+        "benefit": "11"
       },
       {
         "meter": "缓存命中输入",
         "measure": { "kind": "credits", "unit": "积分" },
         "per": "1M tokens",
-        "regular": "26",
-        "benefit": "13"
+        "regular": "18.687",
+        "benefit": "11"
       }
     ]
   }

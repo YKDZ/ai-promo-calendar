@@ -17,11 +17,7 @@
       "field": "plan_tier",
       "values": ["Lite", "Standard", "Pro", "Max"]
     },
-    { "kind": "one_of", "field": "model", "values": ["hy3-202608"] },
-    {
-      "kind": "text",
-      "description": "活动开始后自动生效，无需申请；hy3、hy3-preview 与 hy3-202608 虽调度同一底层 Hy3，但 Model ID 对应抵扣规则不同，本项只覆盖活动表明确列出的 hy3-202608。除另有说明外，本活动优惠不与其他优惠叠加。"
-    }
+    { "kind": "one_of", "field": "model", "values": ["hy3-202608"] }
   ],
   "timeTrigger": { "kind": "model_request" },
   "timeCondition": {
