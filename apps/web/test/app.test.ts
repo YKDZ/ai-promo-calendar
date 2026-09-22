@@ -1,14 +1,15 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+
 import { createPinia, setActivePinia } from "pinia";
 
 import { useCounterStore } from "#/stores/counter";
 
-describe("counter store", () => {
-  it("increments the count", () => {
-    setActivePinia(createPinia());
-    const counter = useCounterStore();
+void test("counter store increments the count", () => {
+  setActivePinia(createPinia());
+  const counter = useCounterStore();
 
-    counter.increment();
+  counter.increment();
 
-    expect(counter.count).toBe(1);
-  });
+  assert.equal(counter.count, 1);
 });
