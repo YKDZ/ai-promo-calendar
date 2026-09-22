@@ -10,7 +10,7 @@
  */
 export type SourceReferences = [string, ...string[]];
 /**
- * one_of／none_of 可由查询者按字段判断；one_of 可把有明确冲突的候选值局部标为不确定；text 保存公开但尚不能由程序判定的领券、身份或名额等条件。
+ * 每一项都必须是必要资格谓词：该谓词为假时权益不适用。同一字段在一项权益中只出现一次；one_of／none_of 可由查询者按字段判断，one_of 可把有明确冲突的候选值局部标为不确定。只有无法用现有字段枚举、但人仍可判断真假的资格才使用 text。
  *
  * This interface was referenced by `TimedBenefit`'s JSON-Schema
  * via the `definition` "eligibilityCondition".
@@ -46,7 +46,10 @@ export type EligibilityCondition =
     }
   | {
       kind: "text";
-      description: Text;
+      /**
+       * 应能改写成针对一次具体查询的是／否问题；若答案为否，这项权益即不适用。
+       */
+      description: string;
     };
 /**
  * 条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型或计费模式。
@@ -62,7 +65,7 @@ export type EligibilityField =
  */
 export type Text = string;
 /**
- * 时间条件约束的是哪类事件；领取或支付窗口不等于到账后权益的使用期。无法从公开资料确定或不能归入前三类时，用带具体说明的 other，不得猜测。
+ * 时间条件约束的是哪类事件，并且必须适用于本文件效果覆盖的所有计费项；不同计费项若按不同事件判价，必须拆成不同权益。领取或支付窗口不等于到账后权益的使用期。无法从公开资料确定或不能归入前三类时，用带具体说明的 other，不得猜测。
  *
  * This interface was referenced by `TimedBenefit`'s JSON-Schema
  * via the `definition` "timeTrigger".
@@ -196,7 +199,7 @@ export type TimeCondition =
       reason: string;
     };
 /**
- * unit_rate 保留原单价，multiplier 保留原倍数；若存在真实活动但效果不足以计算，使用 unresolved。
+ * 来源同时公布同一计费项的通常值与优惠值时优先使用 unit_rate；只有一个倍数对本文件全部适用条件和明确计费项都精确成立时才使用 multiplier。宣传折扣名称或展示舍入不能代替实际可计算费率；效果不足以计算时使用 unresolved。
  *
  * This interface was referenced by `TimedBenefit`'s JSON-Schema
  * via the `definition` "effect".
@@ -252,7 +255,7 @@ export type Effect =
     };
 
 /**
- * 一个文件只记录同一实际计费渠道下的一项可独立判断的时间权益。证据 URL 放在本文件，不继承模型研发方或其他渠道的条款。
+ * 一份文件记录一项可独立求值的时段权益，而不是笼统对应一张营销活动页面。文件内全部适用情形必须共享同一政策触发事件和同一可计算效果范围；套餐档位、计费项或触发事件导致效果不同时拆成不同权益。
  */
 export interface TimedBenefit {
   $schema: "../../schema/benefit.schema.json";
@@ -279,7 +282,7 @@ export interface TimedBenefit {
   uncertaintyReason?: string;
   sourceReferences: SourceReferences;
   /**
-   * 所有条件同时成立才可能适用；仅在来源明确覆盖该渠道所有情形时使用空数组。
+   * 所有条件同时成立才可能适用；数组成员只能是必要资格谓词，不是备注。仅在来源明确覆盖该渠道所有情形时使用空数组。
    */
   eligibilityConditions: EligibilityCondition[];
   timeTrigger: TimeTrigger;

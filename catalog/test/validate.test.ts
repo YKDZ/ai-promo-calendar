@@ -239,6 +239,39 @@ void test("把局部资格冲突与整项证据状态分开", () => {
   );
 });
 
+void test("拒绝重复资格字段和重复单位费率", () => {
+  const files = snapshot();
+  const ambiguous = structuredClone(benefit);
+  ambiguous.eligibilityConditions = [
+    { kind: "one_of", field: "model", values: ["model-a"] },
+    { kind: "none_of", field: "model", values: ["model-b"] },
+  ];
+  ambiguous.effect = {
+    kind: "unit_rate",
+    entries: [
+      {
+        meter: "input",
+        measure: { kind: "money", currency: "CNY" },
+        per: "1M tokens",
+        regular: "2",
+        benefit: "1",
+      },
+      {
+        meter: "input",
+        measure: { kind: "money", currency: "CNY" },
+        per: "1M tokens",
+        regular: "2",
+        benefit: "1",
+      },
+    ],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", ambiguous);
+
+  const found = messages(files);
+  assert.ok(found.some((message) => message.includes("资格字段只能出现一次")));
+  assert.ok(found.some((message) => message.includes("费率不得重复")));
+});
+
 void test("拒绝错误日期、互斥开始边界及不完整的局部不确定", () => {
   const files = snapshot();
   const invalidDate = structuredClone(benefit);
