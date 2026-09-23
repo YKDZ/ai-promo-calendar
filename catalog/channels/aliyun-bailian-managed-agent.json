@@ -1,6 +1,6 @@
 {
   "$schema": "../schema/channel.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "billingProvider": "阿里云百炼",
   "accessChannel": {
     "id": "aliyun-bailian-managed-agent",

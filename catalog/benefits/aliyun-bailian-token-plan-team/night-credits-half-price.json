@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "accessChannelId": "aliyun-bailian-token-plan-team",
   "id": "night-credits-half-price",
-  "title": "指定模型夜间 Credits 五折",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-team-overview",
@@ -24,23 +23,24 @@
       "field": "plan_tier",
       "values": ["标准坐席", "高级坐席", "尊享坐席"]
     },
-    { "kind": "one_of", "field": "region", "values": ["华北2（北京）"] },
     {
-      "kind": "text",
-      "description": "仅限兼容的 AI 编程和智能体工具中的交互式使用；不用于自动化脚本、应用后端或非交互批量任务。Claude Code、Qwen Code、Qoder、Qoder CN、OpenClaw 等为兼容示例，不是封闭工具清单。"
-    },
-    {
-      "kind": "text",
-      "description": "团队管理员已向成员分配席位；该席位的独立 API Key 仅限成员本人，不共享；套餐及共享用量包用尽时不能继续调用。"
+      "kind": "one_of",
+      "field": "region",
+      "values": ["华北2（北京）"]
     }
   ],
-  "timeTrigger": { "kind": "model_request" },
+  "timeTrigger": {
+    "kind": "model_request"
+  },
   "timeCondition": {
     "kind": "recurring",
     "timeZone": "Etc/GMT-8",
-    "sourceTimeZoneText": "UTC+8",
     "windows": [
-      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "22:00", "end": "08:00" }
+      {
+        "weekdays": [1, 2, 3, 4, 5, 6, 7],
+        "start": "22:00",
+        "end": "08:00"
+      }
     ]
   },
   "effect": {

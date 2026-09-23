@@ -1,21 +1,24 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "accessChannelId": "qoder-cn-personal",
   "id": "qwen-3-8-flash-free-september-2026",
-  "title": "Qwen3.8-Flash 九月限时免 Credits",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.qoder.cn/events/flashoffer",
     "https://docs.qoder.cn/events/100credits"
   ],
   "eligibilityConditions": [
-    { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
     {
-      "kind": "text",
-      "description": "Qoder CN 新老个人用户均可，包括体验版、专业版、高级版、旗舰版、免费账号、试用期及会员卡用户；不适用于团队版、企业标准版、企业专属版订阅。"
+      "kind": "one_of",
+      "field": "account_type",
+      "values": ["个人用户"]
     },
-    { "kind": "one_of", "field": "model", "values": ["Qwen3.8-Flash"] },
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["Qwen3.8-Flash"]
+    },
     {
       "kind": "one_of",
       "field": "client",
@@ -29,20 +32,17 @@
         "Qoder CN 移动端",
         "Qoder CN 网页版"
       ]
-    },
-    {
-      "kind": "text",
-      "description": "选择指定模型即自动生效，无须领取，Credits 余额为 0 也可使用。活动不会扣减每日领取奖励；其他模型按各自规则计费。标准参考系数为 0.1x，活动结束后的系数以届时公布的计费规则为准。"
     }
   ],
-  "timeTrigger": { "kind": "model_request" },
+  "timeTrigger": {
+    "kind": "model_request"
+  },
   "timeCondition": {
     "kind": "absolute",
     "startsAt": "2026-09-18T10:00:00+08:00",
     "endsAt": "2026-09-30T23:59:59+08:00",
     "endInclusive": null,
-    "endPrecision": "second",
-    "endUncertaintyReason": "官方给出北京时间且精确到秒，但未明确末尾一秒内的包含边界；仅该局部边界待核实。"
+    "endPrecision": "second"
   },
   "effect": {
     "kind": "multiplier",

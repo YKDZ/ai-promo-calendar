@@ -1,6 +1,6 @@
 {
   "$schema": "../schema/channel.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "billingProvider": "腾讯云 TokenHub",
   "accessChannel": {
     "id": "tencent-token-plan-personal",
@@ -13,7 +13,6 @@
   ],
   "billingDecisionInstant": {
     "kind": "request_started",
-    "description": "限时积分活动明确说明，跨活动周期的调用请求按请求发起时间的积分价抵扣。",
     "sourceReferences": [
       "https://cloud.tencent.com/document/product/1823/133811"
     ]

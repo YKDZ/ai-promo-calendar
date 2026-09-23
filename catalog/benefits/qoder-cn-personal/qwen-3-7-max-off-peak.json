@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "accessChannelId": "qoder-cn-personal",
   "id": "qwen-3-7-max-off-peak",
-  "title": "Qwen3.7-Max 错峰 Credits 折扣",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount",
@@ -11,15 +10,15 @@
     "https://docs.qoder.cn/product-overview/billing-description"
   ],
   "eligibilityConditions": [
-    { "kind": "one_of", "field": "model", "values": ["Qwen3.7-Max"] },
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["Qwen3.7-Max"]
+    },
     {
       "kind": "one_of",
       "field": "plan_tier",
       "values": ["Pro Trial", "专业版", "高级版", "旗舰版"]
-    },
-    {
-      "kind": "text",
-      "description": "仅限 Qoder CN（全家桶）个人渠道；社区版须处于有效 Pro Trial，且有可用 Credits。非试用社区版不适用。"
     },
     {
       "kind": "one_of",
@@ -32,23 +31,20 @@
         "QoderWake CN",
         "Qoder CN Cloud Agents"
       ]
-    },
-    {
-      "kind": "text",
-      "description": "使用列明产品的最新版本；优惠自动生效，无须领取。消耗仍计入可用 Credits，并非加赠额度。"
-    },
-    {
-      "kind": "text",
-      "description": "活动表的标准参考倍率为 0.5x，错峰参考倍率为 0.1x；参考倍率不是每请求固定 Credits，实际基础消耗由真实请求决定。"
     }
   ],
-  "timeTrigger": { "kind": "model_request" },
+  "timeTrigger": {
+    "kind": "model_request"
+  },
   "timeCondition": {
     "kind": "recurring",
     "timeZone": "Asia/Shanghai",
-    "sourceTimeZoneText": "北京时间",
     "windows": [
-      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "22:00", "end": "08:00" }
+      {
+        "weekdays": [1, 2, 3, 4, 5, 6, 7],
+        "start": "22:00",
+        "end": "08:00"
+      }
     ],
     "validFromDate": "2026-06-23"
   },

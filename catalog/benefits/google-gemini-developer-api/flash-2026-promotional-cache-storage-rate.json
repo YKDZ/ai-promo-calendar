@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "accessChannelId": "google-gemini-developer-api",
   "id": "flash-2026-promotional-cache-storage-rate",
-  "title": "Gemini 3.6/3.7/3.8 Flash 2026 年缓存存储优惠价",
   "evidenceStatus": "supported",
   "sourceReferences": ["https://ai.google.dev/gemini-api/docs/pricing"],
   "eligibilityConditions": [
@@ -24,13 +23,17 @@
     }
   ],
   "timeTrigger": {
-    "kind": "other",
-    "description": "缓存持续占用期间按小时计费；官方定价页没有说明跨价格切换日期时以哪个瞬间选择费率。"
+    "kind": "metered_usage"
   },
   "timeCondition": {
     "kind": "unresolved",
-    "publishedText": "Gemini 3.6 Flash、3.7 Flash、3.8 Flash 的 Paid Tier context-cache storage 费率均标注 through December 31, 2026；对应更高费率 starting January 1, 2027。",
-    "reason": "官方定价页明确给出切换日期，但未在该条款中给出时区，也未给出当前优惠价的开始时点；不能自行把日期边界补成某一时区的午夜绝对时刻。"
+    "knownBoundaries": [
+      {
+        "role": "end",
+        "date": "2027-01-01",
+        "timeZone": null
+      }
+    ]
   },
   "effect": {
     "kind": "multiplier",

@@ -1,41 +1,37 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "accessChannelId": "aliyun-bailian-token-plan-personal",
   "id": "august-2026-quota-reset-grant",
-  "title": "存量个人订阅获赠一次 7 天限额重置",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
     "https://www.aliyun.com/notice/118513"
   ],
-  "eligibilityConditions": [
-    {
-      "kind": "text",
-      "description": "仅限 2026 年 8 月 5 日前已订阅 Token Plan 个人版的用户；不因此向团队版或之后新订阅用户授予本次赠送。"
-    },
-    {
-      "kind": "text",
-      "description": "使用重置时须持有尚未消耗的赠送次数；执行后当前 7 天窗口内的已消耗 Credits 归零并重新累计，不表示获赠同量可提现 Credits。"
-    }
-  ],
+  "eligibilityConditions": [],
   "timeTrigger": {
-    "kind": "other",
-    "description": "平台向符合资格的存量订阅发放重置次数；概述没有说明可用于判定发放的具体账户事件，不能改记成新订单支付或用户领取。"
+    "kind": "unknown"
   },
   "timeCondition": {
     "kind": "unresolved",
-    "publishedText": "该次存量用户权益从 2026 年 8 月 5 日起发放。",
-    "reason": "仅公布发放开始日期，未给时区、发放时刻或可独立判断的重复窗口；关联升级公告正文重试仍未完整取得。"
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-08-05",
+        "timeZone": null
+      }
+    ]
   },
-  "entitlementValidityNote": "官方要求在赠送权益有效期内按需使用，但概述未公布统一截止或取得后的相对有效期；不能把重置的 7 天用量窗口当成该赠送权益的有效期，也不推断赠送已失效。",
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
         "meter": "本活动额外发放额度",
-        "measure": { "kind": "quota", "unit": "7 天额度重置次数" },
-        "per": "符合资格的个人版订阅用户（本次赠送）",
+        "measure": {
+          "kind": "quota",
+          "unit": "7 天额度重置次数"
+        },
+        "per": "订阅用户",
         "regular": "0",
         "benefit": "1"
       }
