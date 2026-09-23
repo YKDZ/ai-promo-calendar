@@ -1,16 +1,19 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "accessChannelId": "tencent-token-plan-personal",
   "id": "september-2026-kimi-k2-7-code-half-price",
-  "title": "九月 Kimi K2.7 Code 积分抵扣五折",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
     "https://cloud.tencent.com/document/product/1823/130060"
   ],
   "eligibilityConditions": [
-    { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
+    {
+      "kind": "one_of",
+      "field": "account_type",
+      "values": ["个人用户"]
+    },
     {
       "kind": "one_of",
       "field": "billing_mode",
@@ -21,37 +24,51 @@
       "field": "plan_tier",
       "values": ["Lite", "Standard", "Pro", "Max"]
     },
-    { "kind": "one_of", "field": "model", "values": ["kimi-k2.7-code"] }
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["kimi-k2.7-code"]
+    }
   ],
-  "timeTrigger": { "kind": "model_request" },
+  "timeTrigger": {
+    "kind": "model_request"
+  },
   "timeCondition": {
     "kind": "absolute",
     "startsAt": "2026-09-01T00:00:00+08:00",
     "endsAt": "2026-09-30T23:59:59+08:00",
     "endInclusive": null,
-    "endPrecision": "second",
-    "endUncertaintyReason": "官方活动时间精确到北京时间的秒，但未明确末尾一秒内的包含边界。"
+    "endPrecision": "second"
   },
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
         "meter": "未命中缓存输入",
-        "measure": { "kind": "credits", "unit": "积分" },
+        "measure": {
+          "kind": "credits",
+          "unit": "积分"
+        },
         "per": "1M tokens",
         "regular": "130",
         "benefit": "65"
       },
       {
         "meter": "输出",
-        "measure": { "kind": "credits", "unit": "积分" },
+        "measure": {
+          "kind": "credits",
+          "unit": "积分"
+        },
         "per": "1M tokens",
         "regular": "540",
         "benefit": "270"
       },
       {
         "meter": "缓存命中输入",
-        "measure": { "kind": "credits", "unit": "积分" },
+        "measure": {
+          "kind": "credits",
+          "unit": "积分"
+        },
         "per": "1M tokens",
         "regular": "26",
         "benefit": "13"

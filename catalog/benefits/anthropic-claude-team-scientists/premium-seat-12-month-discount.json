@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "anthropic-claude-team-scientists",
+  "id": "premium-seat-12-month-discount",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://claude.com/programs/team-plan-for-scientists",
+    "https://support.claude.com/en/articles/16634237-claude-team-plan-for-scientists"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "plan_tier", "values": ["Premium"] },
+    { "kind": "one_of", "field": "billing_mode", "values": ["monthly"] }
+  ],
+  "timeTrigger": { "kind": "subscription_order" },
+  "timeCondition": { "kind": "unresolved" },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Premium seat monthly subscription",
+        "measure": { "kind": "money", "currency": "USD" },
+        "per": "user·month",
+        "benefit": "15"
+      }
+    ]
+  }
+}

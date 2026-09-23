@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "openai-chatgpt-codex",
+  "id": "student-2500-codex-credits",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://help.openai.com/en/articles/20001147",
+    "https://developers.openai.com/community/students"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Free", "Go", "Plus", "Pro"]
+    }
+  ],
+  "timeTrigger": { "kind": "claim" },
+  "timeCondition": { "kind": "unresolved" },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Codex 学生 Credits",
+        "measure": { "kind": "quota", "unit": "ChatGPT Credits for Codex" },
+        "per": "学生",
+        "regular": "0",
+        "benefit": "2500"
+      }
+    ]
+  }
+}

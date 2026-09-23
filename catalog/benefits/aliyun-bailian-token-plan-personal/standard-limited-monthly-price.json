@@ -1,36 +1,39 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "accessChannelId": "aliyun-bailian-token-plan-personal",
   "id": "standard-limited-monthly-price",
-  "title": "Standard 套餐限时月度标价",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview"
   ],
   "eligibilityConditions": [
-    { "kind": "one_of", "field": "plan_tier", "values": ["Standard"] },
-    { "kind": "one_of", "field": "region", "values": ["华北2（北京）"] },
     {
-      "kind": "text",
-      "description": "仅记录 Token Plan 个人版对应套餐的月度订阅标价；不是普通按量 API、团队席位或用量包价格。不推断未说明的续费、升级或优惠叠加规则。"
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Standard"]
+    },
+    {
+      "kind": "one_of",
+      "field": "region",
+      "values": ["华北2（北京）"]
     }
   ],
   "timeTrigger": {
-    "kind": "other",
-    "description": "个人版套餐订阅订单的计价；公开条款未明确用订单创建、支付或其他时刻判定限时价格。"
+    "kind": "subscription_order"
   },
   "timeCondition": {
-    "kind": "unresolved",
-    "publishedText": "套餐档位与定价表将本项月度价格标为限时价格。",
-    "reason": "未公布活动起止日期、时刻或时区，不能结构化订单计价的政策窗口。"
+    "kind": "unresolved"
   },
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
         "meter": "Standard 套餐订阅",
-        "measure": { "kind": "money", "currency": "CNY" },
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
         "per": "月",
         "regular": "180",
         "benefit": "139"
