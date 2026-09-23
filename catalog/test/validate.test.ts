@@ -125,6 +125,190 @@ void test("接受独立权益、跨午夜窗口与零权益渠道", () => {
   assert.equal(validateCatalog(files).valid, true);
 });
 
+void test("兼容旧目录时也接受无叙述字段的新版权益", () => {
+  const files = snapshot();
+  const next = record(structuredClone(benefit));
+  next.schemaVersion = 2;
+  delete next.title;
+  next.eligibilityConditions = [
+    { kind: "one_of", field: "model", values: ["model-a"] },
+  ];
+  next.timeCondition = {
+    kind: "recurring",
+    timeZone: "Asia/Shanghai",
+    windows: [
+      { weekdays: [1, 2, 3, 4, 5, 6, 7], start: "22:00", end: "08:00" },
+    ],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+
+  assert.equal(validateCatalog(files).valid, true);
+});
+
+void test("新版渠道保留判定时刻来源而不保存解释句", () => {
+  const files = snapshot();
+  const next = record(structuredClone(channel));
+  next.schemaVersion = 2;
+  const decision = record(next.billingDecisionInstant);
+  delete decision.description;
+  files[1] = file("channels/example-plan.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  decision.description = "以服务端接收请求时刻判价";
+  files[1] = file("channels/example-plan.json", next);
+  assert.equal(validateCatalog(files).valid, false);
+});
+
+void test("优惠单价已知而通常价未知时保留优惠值", () => {
+  const files = snapshot();
+  const next = record(structuredClone(benefit));
+  next.schemaVersion = 2;
+  delete next.title;
+  next.eligibilityConditions = [];
+  next.timeCondition = { kind: "unresolved" };
+  next.effect = {
+    kind: "unit_rate",
+    entries: [
+      {
+        meter: "输入",
+        measure: { kind: "money", currency: "CNY" },
+        per: "百万 tokens",
+        benefit: "1",
+      },
+    ],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+
+  const result = validateCatalog(files);
+  assert.equal(result.valid, true);
+  if (!result.valid) assert.fail();
+  assert.equal(result.catalog.benefits[0]?.effect.kind, "unit_rate");
+});
+
+void test("保留无时区的已知政策日期并拒绝无效日期", () => {
+  const files = snapshot();
+  const next = record(structuredClone(benefit));
+  next.schemaVersion = 2;
+  delete next.title;
+  next.eligibilityConditions = [];
+  next.timeTrigger = { kind: "subscription_order" };
+  next.timeCondition = {
+    kind: "unresolved",
+    knownBoundaries: [{ role: "start", date: "2026-08-05", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  next.timeCondition = {
+    kind: "unresolved",
+    knownBoundaries: [{ role: "start", date: "2026-02-30", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.ok(
+    messages(files).some((message) => message.includes("边界日期无效")),
+  );
+
+  next.timeCondition = {
+    kind: "unresolved",
+    knownBoundaries: [
+      { role: "start", date: "2026-08-05", timeZone: null },
+      { role: "start", date: "2026-08-06", timeZone: null },
+    ],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.ok(
+    messages(files).some((message) => message.includes("边界角色重复")),
+  );
+
+  next.timeCondition = {
+    kind: "unresolved",
+    knownBoundaries: [
+      { role: "start", date: "2026-09-01", timeZone: null },
+      { role: "end", date: "2026-08-31", timeZone: null },
+    ],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.ok(
+    messages(files).some((message) => message.includes("结束日期早于开始")),
+  );
+});
+
+void test("已知窗口与无时区结束日期可以同时保存", () => {
+  const files = snapshot();
+  const next = record(structuredClone(benefit));
+  next.schemaVersion = 2;
+  delete next.title;
+  next.eligibilityConditions = [];
+  next.timeCondition = {
+    kind: "recurring",
+    timeZone: "Asia/Shanghai",
+    windows: [
+      { weekdays: [1, 2, 3, 4, 5, 6, 7], start: "22:00", end: "08:00" },
+    ],
+    knownBoundaries: [{ role: "end", date: "2026-12-31", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  next.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-09-01T10:00:00+08:00",
+    knownBoundaries: [{ role: "end", date: "2026-12-31", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  record(next.timeCondition).knownBoundaries = [
+    { role: "end", date: "2026-02-30", timeZone: null },
+  ];
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.ok(
+    messages(files).some((message) => message.includes("边界日期无效")),
+  );
+
+  next.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-09-01T10:00:00+08:00",
+    knownBoundaries: [{ role: "start", date: "2026-09-01", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.ok(
+    messages(files).some((message) => message.includes("开始边界不得重复")),
+  );
+});
+
+void test("新版记录保留局部不确定而无需解释句", () => {
+  const files = snapshot();
+  const next = record(structuredClone(benefit));
+  next.schemaVersion = 2;
+  delete next.title;
+  next.evidenceStatus = "uncertain";
+  next.eligibilityConditions = [
+    {
+      kind: "one_of",
+      field: "plan_tier",
+      values: ["Pro"],
+      uncertainValues: ["Ultra"],
+    },
+  ];
+  next.timeTrigger = { kind: "claim" };
+  next.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-09-01T10:00:00+08:00",
+    endsAt: "2026-09-30T23:59:00+08:00",
+    endInclusive: null,
+    endPrecision: "minute",
+  };
+  next.effect = { kind: "unresolved" };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  const condition = record(next.timeCondition);
+  delete condition.endPrecision;
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, false);
+});
+
 void test("证据不确定与不可求值是独立维度", () => {
   const files = snapshot();
   const uncertain: TimedBenefit = {
