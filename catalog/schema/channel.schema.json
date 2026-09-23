@@ -1,69 +1,48 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "独立计费渠道记录",
-  "description": "一个文件对应一个实际承担计费规则的使用渠道，即使该渠道当前没有时段权益也可保留。模型研发方与计费方可能不同。版本 1 仅用于本次迁移兼容。",
-  "oneOf": [
-    { "$ref": "#/$defs/legacyChannel" },
-    { "$ref": "#/$defs/structuredChannel" }
+  "description": "一个实际负责计费或额度扣减的使用渠道；与模型研发方、其他套餐或独立代理渠道分别记录。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "billingProvider",
+    "accessChannel",
+    "sourceReferences"
   ],
+  "properties": {
+    "$schema": {
+      "const": "../schema/channel.schema.json"
+    },
+    "schemaVersion": {
+      "const": 2
+    },
+    "billingProvider": {
+      "$ref": "#/$defs/billingProvider"
+    },
+    "accessChannel": {
+      "$ref": "#/$defs/accessChannel"
+    },
+    "sourceReferences": {
+      "$ref": "#/$defs/sourceReferences"
+    },
+    "billingDecisionInstant": {
+      "type": "object",
+      "description": "仅在计费方明确说明以请求的何时刻判定费率时填写；事件类别和政策窗口本身不推定判定时刻，其他机制应先扩展契约。",
+      "additionalProperties": false,
+      "required": ["kind", "sourceReferences"],
+      "properties": {
+        "kind": {
+          "enum": ["request_started", "server_received"]
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/sourceReferences"
+        }
+      }
+    }
+  },
   "$defs": {
-    "legacyChannel": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "$schema",
-        "schemaVersion",
-        "billingProvider",
-        "accessChannel",
-        "sourceReferences"
-      ],
-      "properties": {
-        "$schema": { "const": "../schema/channel.schema.json" },
-        "schemaVersion": { "const": 1 },
-        "billingProvider": { "$ref": "#/$defs/billingProvider" },
-        "accessChannel": { "$ref": "#/$defs/accessChannel" },
-        "sourceReferences": { "$ref": "#/$defs/sourceReferences" },
-        "billingDecisionInstant": {
-          "type": "object",
-          "description": "仅在计费方明确说明以何时刻判定请求费率时填写；政策窗口不推定最终账单时刻。",
-          "additionalProperties": false,
-          "required": ["kind", "description", "sourceReferences"],
-          "properties": {
-            "kind": { "enum": ["request_started", "server_received", "other"] },
-            "description": { "$ref": "#/$defs/text" },
-            "sourceReferences": { "$ref": "#/$defs/sourceReferences" }
-          }
-        }
-      }
-    },
-    "structuredChannel": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "$schema",
-        "schemaVersion",
-        "billingProvider",
-        "accessChannel",
-        "sourceReferences"
-      ],
-      "properties": {
-        "$schema": { "const": "../schema/channel.schema.json" },
-        "schemaVersion": { "const": 2 },
-        "billingProvider": { "$ref": "#/$defs/billingProvider" },
-        "accessChannel": { "$ref": "#/$defs/accessChannel" },
-        "sourceReferences": { "$ref": "#/$defs/sourceReferences" },
-        "billingDecisionInstant": {
-          "type": "object",
-          "description": "仅在计费方明确说明以请求的何时刻判定费率时填写；事件类别和政策窗口本身不推定判定时刻，其他机制应先扩展契约。",
-          "additionalProperties": false,
-          "required": ["kind", "sourceReferences"],
-          "properties": {
-            "kind": { "enum": ["request_started", "server_received"] },
-            "sourceReferences": { "$ref": "#/$defs/sourceReferences" }
-          }
-        }
-      }
-    },
     "billingProvider": {
       "type": "string",
       "pattern": "\\S",
@@ -79,21 +58,32 @@
           "$ref": "#/$defs/id",
           "description": "稳定渠道 ID，必须与文件名以及权益文件的 accessChannelId 一致。"
         },
-        "name": { "$ref": "#/$defs/text" },
+        "name": {
+          "$ref": "#/$defs/text"
+        },
         "kind": {
           "enum": ["metered_api", "plan", "other"],
           "description": "metered_api 为按量 API；plan 为订阅或额度套餐；other 仅用于确实不同的计费方式。"
         }
       }
     },
-    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-    "text": { "type": "string", "pattern": "\\S" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "text": {
+      "type": "string",
+      "pattern": "\\S"
+    },
     "sourceReferences": {
       "type": "array",
       "description": "直接支持渠道身份、计费主体和适用范围的公开 URL，不等于该渠道每项权益的证据。",
       "minItems": 1,
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^https?://\\S+$" }
+      "items": {
+        "type": "string",
+        "pattern": "^https?://\\S+$"
+      }
     }
   }
 }
