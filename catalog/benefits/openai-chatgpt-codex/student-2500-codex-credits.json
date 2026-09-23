@@ -1,0 +1,53 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "openai-chatgpt-codex",
+  "id": "student-2500-codex-credits",
+  "title": "大学生 Codex 2,500 ChatGPT Credits",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://help.openai.com/en/articles/20001147",
+    "https://developers.openai.com/community/students"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Free", "Go", "Plus", "Pro"]
+    },
+    {
+      "kind": "text",
+      "description": "领取时须为当前就读于美国或加拿大可授予学位大学、并居住在美国或加拿大的学生。"
+    },
+    {
+      "kind": "text",
+      "description": "须成功完成 OpenAI 指定的学生资格验证。"
+    },
+    {
+      "kind": "text",
+      "description": "每名学生此前未领取过本项学生 Credits offer；本活动每名学生限一次。"
+    }
+  ],
+  "timeTrigger": { "kind": "claim" },
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "本项学生 Codex Credits offer 当前开放领取；成功完成学生资格验证后，Credits 自动加入关联的个人 ChatGPT workspace。",
+    "reason": "官方当前条款没有公布 offer 的统一开始日期、结束日期、时刻或时区，不能构造 absolute 或 recurring 政策窗口。"
+  },
+  "entitlementValidityNote": "发放后的 2,500 ChatGPT Credits 仅用于扩展 Codex 使用，不是 API Credits；自 grant date 起 12 个月有效，未使用余额到期后失效。",
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "本活动额外发放额度",
+        "measure": {
+          "kind": "quota",
+          "unit": "ChatGPT Credits for Codex"
+        },
+        "per": "每名成功验证并完成领取的符合资格学生，每人一次",
+        "regular": "0",
+        "benefit": "2500"
+      }
+    ]
+  }
+}
