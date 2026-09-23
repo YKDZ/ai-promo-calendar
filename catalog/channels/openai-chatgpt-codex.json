@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 1,
+  "billingProvider": "OpenAI",
+  "accessChannel": {
+    "id": "openai-chatgpt-codex",
+    "name": "ChatGPT 计划内 Codex 使用额度",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan",
+    "https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "anthropic-claude-team-scientists",
+  "id": "premium-seat-12-month-discount",
+  "title": "Claude Team 科学家计划 Premium 席位 12 个月月付优惠",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://claude.com/programs/team-plan-for-scientists",
+    "https://support.claude.com/en/articles/16634237-claude-team-plan-for-scientists"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Premium"]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["monthly"]
+    },
+    {
+      "kind": "text",
+      "description": "所在研究组须由认可大学或非营利研究机构、从事自然科学、数学、计算机科学、工程或相关领域的 PI 或同等负责人完成 Anthropic 科学家计划资格验证并获批；营利公司、CRO 与 industry R&D 团队不适用。"
+    },
+    {
+      "kind": "text",
+      "description": "须在名额仍可用时完成验证，且注册时由 Anthropic 最终确认获得本促销价格；不能仅凭机构类型推定一定获批。"
+    }
+  ],
+  "timeTrigger": {
+    "kind": "payment"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "经验证的研究组完成 sign-up 后，Premium 席位促销价格自 sign-up 起适用 12 个月；计划名额有限，Anthropic 未公布统一的全球结束日期。",
+    "reason": "价格窗口以各研究组的 sign-up 时点为相对起点，而现有契约只能结构化全局 absolute 或 recurring 窗口；不能把 2026 年 8 月 27 日公告日期虚构成每个账户的 12 个月起点。"
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Premium seat monthly subscription",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "user·month",
+        "regular": "100",
+        "benefit": "15"
+      }
+    ]
+  }
+}

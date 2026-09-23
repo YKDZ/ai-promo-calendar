@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 1,
+  "billingProvider": "Anthropic",
+  "accessChannel": {
+    "id": "anthropic-claude-team-scientists",
+    "name": "Claude Team 科学家计划",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://claude.com/programs/team-plan-for-scientists",
+    "https://support.claude.com/en/articles/16634237-claude-team-plan-for-scientists"
+  ]
+}

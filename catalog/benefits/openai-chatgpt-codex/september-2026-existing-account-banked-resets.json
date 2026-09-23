@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 1,
+  "accessChannelId": "openai-chatgpt-codex",
+  "id": "september-2026-existing-account-banked-resets",
+  "title": "现有 Plus、Pro 与 Business 账户九月两次 Codex banked reset",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Plus", "Pro", "Business standard seat", "Business premium seat"]
+    },
+    {
+      "kind": "text",
+      "description": "须为活动发放时已经存在且处于 good standing 的账户，并实际符合 OpenAI 对该 offer 的资格判定；官方说明实际资格还可能因套餐、地区与可用性而异，账户中未显示 reset 时不能仅凭套餐名称认定有资格。"
+    }
+  ],
+  "timeTrigger": {
+    "kind": "other",
+    "description": "OpenAI 向符合活动资格的现有账户发放 banked Codex usage-limit reset；这不是模型请求、订单支付或用户领取窗口。"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "publishedText": "符合资格的现有 Plus、Pro 与 Business 用户（含 standard、premium seats）在 2026 年 9 月 3 日和 9 月 4 日各收到一次 banked reset。",
+    "reason": "官方只公布两次发放日期，没有公布统一发放时刻或日期所采用的时区，并明确 delivery timing 可随 offer、plan、workspace 与 region 变化；不能据此构造统一绝对区间。"
+  },
+  "entitlementValidityNote": "每个 banked reset 会保存在账户中，直到成功使用或达到该账户／offer 显示的到期时点；到期规则随 offer、plan、workspace 与 region 而异，官方没有给出这两次发放统一适用的到期日。",
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "本活动额外发放额度",
+        "measure": {
+          "kind": "quota",
+          "unit": "Codex full usage-limit reset"
+        },
+        "per": "符合资格的现有账户，两次发放合计",
+        "regular": "0",
+        "benefit": "2"
+      }
+    ]
+  }
+}
