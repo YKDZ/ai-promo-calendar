@@ -233,6 +233,50 @@ void test("保留无时区的已知政策日期并拒绝无效日期", () => {
   );
 });
 
+void test("已知窗口与无时区结束日期可以同时保存", () => {
+  const files = snapshot();
+  const next = record(structuredClone(benefit));
+  next.schemaVersion = 2;
+  delete next.title;
+  next.eligibilityConditions = [];
+  next.timeCondition = {
+    kind: "recurring",
+    timeZone: "Asia/Shanghai",
+    windows: [
+      { weekdays: [1, 2, 3, 4, 5, 6, 7], start: "22:00", end: "08:00" },
+    ],
+    knownBoundaries: [{ role: "end", date: "2026-12-31", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  next.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-09-01T10:00:00+08:00",
+    knownBoundaries: [{ role: "end", date: "2026-12-31", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  record(next.timeCondition).knownBoundaries = [
+    { role: "end", date: "2026-02-30", timeZone: null },
+  ];
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.ok(
+    messages(files).some((message) => message.includes("边界日期无效")),
+  );
+
+  next.timeCondition = {
+    kind: "absolute",
+    startsAt: "2026-09-01T10:00:00+08:00",
+    knownBoundaries: [{ role: "start", date: "2026-09-01", timeZone: null }],
+  };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.ok(
+    messages(files).some((message) => message.includes("开始边界不得重复")),
+  );
+});
+
 void test("新版记录保留局部不确定而无需解释句", () => {
   const files = snapshot();
   const next = record(structuredClone(benefit));

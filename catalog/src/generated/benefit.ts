@@ -138,8 +138,34 @@ export type V2EligibilityField =
   "model" | "meter" | "plan_tier" | "tool" | "region" | "client" | "account_type" | "billing_mode";
 export type V2Text = string;
 export type V2DateTime = string;
-export type V2StartTime = string;
+/**
+ * 来源已公布但时区未可靠确定的政策开始或结束日期；不是精确 UTC 时点。不得与同角色的精确边界并存，也不得记录个人取得后的有效期。
+ *
+ * @minItems 1
+ * @maxItems 2
+ */
+export type V2KnownBoundaries =
+  | [
+      {
+        role: "start" | "end";
+        date: V2Date;
+        timeZone: null;
+      }
+    ]
+  | [
+      {
+        role: "start" | "end";
+        date: V2Date;
+        timeZone: null;
+      },
+      {
+        role: "start" | "end";
+        date: V2Date;
+        timeZone: null;
+      }
+    ];
 export type V2Date = string;
+export type V2StartTime = string;
 export type V2EndTime = string;
 /**
  * 发布该日历例外的官方资料 URL，与权益本身的出处分开。
@@ -401,12 +427,13 @@ export interface V2TimedBenefit {
   timeCondition:
     | {
         kind: "absolute";
-        startsAt: V2DateTime;
-        endsAt: V2DateTime;
+        startsAt?: V2DateTime;
+        endsAt?: V2DateTime;
+        knownBoundaries?: V2KnownBoundaries;
         /**
-         * 明确包含结束时刻为 true，明确不包含为 false；只有包含性未说明时为 null，并记录来源精度，不能让整个区间 unresolved。
+         * 仅当 endsAt 已知时填写：明确包含结束时刻为 true，明确不包含为 false；包含性未说明时为 null，并记录来源精度。
          */
-        endInclusive: boolean | null;
+        endInclusive?: boolean | null;
         /**
          * 仅在 endInclusive 为 null 时填写；查询在 endsAt 起的相应日、分钟或秒内应标待核实，不能推断结束瞬间。
          */
@@ -431,36 +458,12 @@ export interface V2TimedBenefit {
          * 不含该时点的有效期结束边界；官方未公布结束时不填写，缺省不保证活动永久有效。
          */
         validUntil?: string;
+        knownBoundaries?: V2KnownBoundaries;
         calendarExceptions?: V2CalendarExceptions;
       }
     | {
         kind: "unresolved";
-        /**
-         * 仅保存来源已公布的政策开始或结束日期，但时区未可靠确定的局部事实；不是精确 UTC 时点。不得把个人取得后的有效期写入此处。
-         *
-         * @minItems 1
-         * @maxItems 2
-         */
-        knownBoundaries?:
-          | [
-              {
-                role: "start" | "end";
-                date: V2Date;
-                timeZone: null;
-              }
-            ]
-          | [
-              {
-                role: "start" | "end";
-                date: V2Date;
-                timeZone: null;
-              },
-              {
-                role: "start" | "end";
-                date: V2Date;
-                timeZone: null;
-              }
-            ];
+        knownBoundaries?: V2KnownBoundaries;
       };
   /**
    * 同一使用渠道内相对通常规则的变化，保持官方原有货币、积分或额度单位。

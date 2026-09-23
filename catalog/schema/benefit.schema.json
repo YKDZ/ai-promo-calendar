@@ -872,12 +872,12 @@
       }
     },
     "v2TimeCondition": {
-      "description": "保存已知政策窗口，不因局部边界未知而丢弃其余时段。absolute 用于有起止时刻的区间，recurring 用于时区内重复窗口；无法结构化可用窗口时用 unresolved，并可保留已公布但缺时区的日期边界。",
+      "description": "保存已知政策窗口，不因局部边界未知而丢弃其余时段。absolute 至少有一个精确时点，recurring 保留时区内重复窗口；任何分支都可保存已公布但缺时区的日期边界。没有可用窗口时才用 unresolved。",
       "oneOf": [
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["kind", "startsAt", "endsAt", "endInclusive"],
+          "required": ["kind"],
           "properties": {
             "kind": {
               "const": "absolute"
@@ -888,9 +888,12 @@
             "endsAt": {
               "$ref": "#/$defs/v2DateTime"
             },
+            "knownBoundaries": {
+              "$ref": "#/$defs/v2KnownBoundaries"
+            },
             "endInclusive": {
               "type": ["boolean", "null"],
-              "description": "明确包含结束时刻为 true，明确不包含为 false；只有包含性未说明时为 null，并记录来源精度，不能让整个区间 unresolved。"
+              "description": "仅当 endsAt 已知时填写：明确包含结束时刻为 true，明确不包含为 false；包含性未说明时为 null，并记录来源精度。"
             },
             "endPrecision": {
               "enum": ["day", "minute", "second"],
@@ -900,11 +903,28 @@
           "allOf": [
             {
               "if": {
+                "required": ["endsAt"],
+                "properties": { "endsAt": true }
+              },
+              "then": {
+                "required": ["endInclusive"],
+                "properties": { "endInclusive": true }
+              },
+              "else": {
+                "properties": {
+                  "endInclusive": false,
+                  "endPrecision": false
+                }
+              }
+            },
+            {
+              "if": {
                 "properties": {
                   "endInclusive": {
                     "const": null
                   }
-                }
+                },
+                "required": ["endInclusive"]
               },
               "then": {
                 "properties": {
@@ -950,6 +970,9 @@
               "$ref": "#/$defs/v2DateTime",
               "description": "不含该时点的有效期结束边界；官方未公布结束时不填写，缺省不保证活动永久有效。"
             },
+            "knownBoundaries": {
+              "$ref": "#/$defs/v2KnownBoundaries"
+            },
             "calendarExceptions": {
               "$ref": "#/$defs/v2CalendarExceptions"
             }
@@ -971,30 +994,33 @@
               "const": "unresolved"
             },
             "knownBoundaries": {
-              "type": "array",
-              "description": "仅保存来源已公布的政策开始或结束日期，但时区未可靠确定的局部事实；不是精确 UTC 时点。不得把个人取得后的有效期写入此处。",
-              "minItems": 1,
-              "maxItems": 2,
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["role", "date", "timeZone"],
-                "properties": {
-                  "role": {
-                    "enum": ["start", "end"]
-                  },
-                  "date": {
-                    "$ref": "#/$defs/v2Date"
-                  },
-                  "timeZone": {
-                    "const": null
-                  }
-                }
-              }
+              "$ref": "#/$defs/v2KnownBoundaries"
             }
           }
         }
       ]
+    },
+    "v2KnownBoundaries": {
+      "type": "array",
+      "description": "来源已公布但时区未可靠确定的政策开始或结束日期；不是精确 UTC 时点。不得与同角色的精确边界并存，也不得记录个人取得后的有效期。",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "date", "timeZone"],
+        "properties": {
+          "role": {
+            "enum": ["start", "end"]
+          },
+          "date": {
+            "$ref": "#/$defs/v2Date"
+          },
+          "timeZone": {
+            "const": null
+          }
+        }
+      }
     },
     "v2Effect": {
       "description": "优惠费率可靠时优先使用 unit_rate；通常值可缺省，但不能据此推算节省额或折扣倍数。只有一个实际倍数对本文件全部情形都精确成立时才用 multiplier。宣传标价不等于所有订单实付时保持 unresolved，不能伪装为固定费率。",

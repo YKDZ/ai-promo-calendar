@@ -200,18 +200,22 @@ function checkBenefit(
 
   const time = benefit.timeCondition;
   if (time.kind === "absolute") {
-    const start = instant(time.startsAt);
-    const end = instant(time.endsAt);
-    if (start === undefined) {
+    if (time.startsAt === undefined && time.endsAt === undefined) {
+      issue(issues, file, "/timeCondition", "绝对区间至少需要一个精确时点");
+    }
+    const start =
+      time.startsAt === undefined ? undefined : instant(time.startsAt);
+    const end = time.endsAt === undefined ? undefined : instant(time.endsAt);
+    if (time.startsAt !== undefined && start === undefined) {
       issue(issues, file, "/timeCondition/startsAt", "开始时点无效");
     }
-    if (end === undefined) {
+    if (time.endsAt !== undefined && end === undefined) {
       issue(issues, file, "/timeCondition/endsAt", "结束时点无效");
     }
     if (start !== undefined && end !== undefined && start >= end) {
       issue(issues, file, "/timeCondition", "结束时点必须晚于开始时点");
     }
-    if (time.endInclusive === null) {
+    if (time.endInclusive === null && time.endsAt !== undefined) {
       const sourceClock = time.endsAt.slice(11, 19);
       const precisionMatches =
         (time.endPrecision === "day" && sourceClock === "00:00:00") ||
@@ -285,7 +289,9 @@ function checkBenefit(
         });
       });
     }
-  } else if ("knownBoundaries" in time && time.knownBoundaries !== undefined) {
+  }
+
+  if ("knownBoundaries" in time && time.knownBoundaries !== undefined) {
     const seenRoles = new Set<string>();
     time.knownBoundaries.forEach((boundary, index) => {
       if (seenRoles.has(boundary.role)) {
@@ -325,6 +331,21 @@ function checkBenefit(
         "/timeCondition/knownBoundaries",
         "结束日期早于开始日期",
       );
+    }
+    if (
+      startDate !== undefined &&
+      ((time.kind === "absolute" && time.startsAt !== undefined) ||
+        (time.kind === "recurring" &&
+          (time.validFrom !== undefined || time.validFromDate !== undefined)))
+    ) {
+      issue(issues, file, "/timeCondition/knownBoundaries", "开始边界不得重复");
+    }
+    if (
+      endDate !== undefined &&
+      ((time.kind === "absolute" && time.endsAt !== undefined) ||
+        (time.kind === "recurring" && time.validUntil !== undefined))
+    ) {
+      issue(issues, file, "/timeCondition/knownBoundaries", "结束边界不得重复");
     }
   }
 
