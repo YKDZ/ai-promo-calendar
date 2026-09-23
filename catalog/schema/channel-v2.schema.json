@@ -13,7 +13,7 @@
   ],
   "properties": {
     "$schema": { "const": "../schema/channel.schema.json" },
-    "schemaVersion": { "enum": [1, 2] },
+    "schemaVersion": { "const": 2 },
     "billingProvider": {
       "$ref": "#/$defs/text",
       "description": "对本使用渠道的费用或额度规则负责的主体名称，不一定是所用模型的研发方；此处不另造无可核对目标的服务商 ID。"
@@ -41,44 +41,15 @@
     },
     "billingDecisionInstant": {
       "type": "object",
-      "description": "仅在计费方明确说明以何时刻判定请求费率时填写；政策窗口不推定最终账单时刻。",
+      "description": "仅在计费方明确说明以请求的何时刻判定费率时填写；事件类别和政策窗口本身不推定判定时刻，其他机制应先扩展契约。",
       "additionalProperties": false,
       "required": ["kind", "sourceReferences"],
       "properties": {
-        "kind": { "enum": ["request_started", "server_received", "other"] },
-        "description": { "$ref": "#/$defs/text" },
+        "kind": { "enum": ["request_started", "server_received"] },
         "sourceReferences": { "$ref": "#/$defs/sourceReferences" }
       }
     }
   },
-  "allOf": [
-    {
-      "if": { "properties": { "schemaVersion": { "const": 2 } } },
-      "then": {
-        "properties": {
-          "billingDecisionInstant": {
-            "type": "object",
-            "properties": {
-              "kind": { "enum": ["request_started", "server_received"] },
-              "description": false
-            }
-          }
-        }
-      }
-    },
-    {
-      "if": { "properties": { "schemaVersion": { "const": 1 } } },
-      "then": {
-        "properties": {
-          "billingDecisionInstant": {
-            "type": "object",
-            "properties": { "description": { "$ref": "#/$defs/text" } },
-            "required": ["description"]
-          }
-        }
-      }
-    }
-  ],
   "$defs": {
     "id": {
       "type": "string",

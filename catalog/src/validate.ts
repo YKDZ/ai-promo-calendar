@@ -285,6 +285,47 @@ function checkBenefit(
         });
       });
     }
+  } else if ("knownBoundaries" in time && time.knownBoundaries !== undefined) {
+    const seenRoles = new Set<string>();
+    time.knownBoundaries.forEach((boundary, index) => {
+      if (seenRoles.has(boundary.role)) {
+        issue(
+          issues,
+          file,
+          `/timeCondition/knownBoundaries/${index}/role`,
+          "边界角色重复",
+        );
+      }
+      seenRoles.add(boundary.role);
+      if (!validDate(boundary.date)) {
+        issue(
+          issues,
+          file,
+          `/timeCondition/knownBoundaries/${index}/date`,
+          "边界日期无效",
+        );
+      }
+    });
+    const startDate = time.knownBoundaries.find(
+      (boundary) => boundary.role === "start",
+    )?.date;
+    const endDate = time.knownBoundaries.find(
+      (boundary) => boundary.role === "end",
+    )?.date;
+    if (
+      startDate !== undefined &&
+      endDate !== undefined &&
+      validDate(startDate) &&
+      validDate(endDate) &&
+      endDate < startDate
+    ) {
+      issue(
+        issues,
+        file,
+        "/timeCondition/knownBoundaries",
+        "结束日期早于开始日期",
+      );
+    }
   }
 
   const effect = benefit.effect;
@@ -305,6 +346,8 @@ function checkBenefit(
         );
       }
       seenEntries.add(entryKey);
+
+      if (entry.regular === undefined) return;
 
       if (
         entry.measure.kind !== "quota" &&

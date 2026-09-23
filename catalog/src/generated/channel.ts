@@ -32,7 +32,7 @@ export type Id = string;
  */
 export interface ChannelRecord {
   $schema: "../schema/channel.schema.json";
-  schemaVersion: 1;
+  schemaVersion: 1 | 2;
   /**
    * 对本使用渠道的费用或额度规则负责的主体名称，不一定是所用模型的研发方；此处不另造无可核对目标的服务商 ID。
    */
@@ -57,7 +57,7 @@ export interface ChannelRecord {
    */
   billingDecisionInstant?: {
     kind: "request_started" | "server_received" | "other";
-    description: Text;
+    description?: Text;
     sourceReferences: SourceReferences1;
   };
 }

@@ -2,13 +2,23 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "独立时段权益记录",
   "description": "一个文件只记录同一实际计费渠道下的一项可独立求值的时段权益；全部适用情形须共享同一政策触发事件和同一可计算效果范围。证据 URL 放在本文件，不继承模型研发方或其他渠道的条款。",
-  "$ref": "#/$defs/timedBenefit",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/timedBenefit"
+    },
+    {
+      "$ref": "#/$defs/v2TimedBenefit"
+    }
+  ],
   "$defs": {
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
     },
-    "text": { "type": "string", "pattern": "\\S" },
+    "text": {
+      "type": "string",
+      "pattern": "\\S"
+    },
     "dateTime": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
@@ -37,8 +47,13 @@
           "additionalProperties": false,
           "required": ["kind", "currency"],
           "properties": {
-            "kind": { "const": "money" },
-            "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+            "kind": {
+              "const": "money"
+            },
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            }
           }
         },
         {
@@ -46,8 +61,12 @@
           "additionalProperties": false,
           "required": ["kind", "unit"],
           "properties": {
-            "kind": { "enum": ["credits", "quota"] },
-            "unit": { "$ref": "#/$defs/text" }
+            "kind": {
+              "enum": ["credits", "quota"]
+            },
+            "unit": {
+              "$ref": "#/$defs/text"
+            }
           }
         }
       ]
@@ -57,7 +76,10 @@
       "description": "至少一个可直接追溯的 HTTP(S) URL；Schema 只检查形式，不判断网页权威性或内容。",
       "minItems": 1,
       "uniqueItems": true,
-      "items": { "type": "string", "pattern": "^https?://\\S+$" }
+      "items": {
+        "type": "string",
+        "pattern": "^https?://\\S+$"
+      }
     },
     "eligibilityField": {
       "description": "条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型或计费模式。",
@@ -80,21 +102,29 @@
           "additionalProperties": false,
           "required": ["kind", "field", "values"],
           "properties": {
-            "kind": { "const": "one_of" },
-            "field": { "$ref": "#/$defs/eligibilityField" },
+            "kind": {
+              "const": "one_of"
+            },
+            "field": {
+              "$ref": "#/$defs/eligibilityField"
+            },
             "values": {
               "type": "array",
               "description": "现有公开资料明确支持的值。",
               "minItems": 1,
               "uniqueItems": true,
-              "items": { "$ref": "#/$defs/text" }
+              "items": {
+                "$ref": "#/$defs/text"
+              }
             },
             "uncertainValues": {
               "type": "array",
               "description": "仅列入同一条件中公开资料相互冲突、不能确定是否适用的值；不得与 values 重复。",
               "minItems": 1,
               "uniqueItems": true,
-              "items": { "$ref": "#/$defs/text" }
+              "items": {
+                "$ref": "#/$defs/text"
+              }
             },
             "uncertaintyReason": {
               "$ref": "#/$defs/text",
@@ -111,13 +141,19 @@
           "additionalProperties": false,
           "required": ["kind", "field", "values"],
           "properties": {
-            "kind": { "const": "none_of" },
-            "field": { "$ref": "#/$defs/eligibilityField" },
+            "kind": {
+              "const": "none_of"
+            },
+            "field": {
+              "$ref": "#/$defs/eligibilityField"
+            },
             "values": {
               "type": "array",
               "minItems": 1,
               "uniqueItems": true,
-              "items": { "$ref": "#/$defs/text" }
+              "items": {
+                "$ref": "#/$defs/text"
+              }
             }
           }
         },
@@ -127,7 +163,9 @@
           "additionalProperties": false,
           "required": ["kind", "description"],
           "properties": {
-            "kind": { "const": "text" },
+            "kind": {
+              "const": "text"
+            },
             "description": {
               "$ref": "#/$defs/text",
               "description": "应能改写成针对一次具体查询的是／否问题；若答案为否，这项权益即不适用。"
@@ -154,9 +192,15 @@
           "minItems": 1,
           "maxItems": 7,
           "uniqueItems": true,
-          "items": { "type": "integer", "minimum": 1, "maximum": 7 }
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          }
         },
-        "start": { "$ref": "#/$defs/startTime" },
+        "start": {
+          "$ref": "#/$defs/startTime"
+        },
         "end": {
           "$ref": "#/$defs/endTime",
           "description": "24:00 仅用于时段结束；全天用 00:00–24:00。"
@@ -168,8 +212,12 @@
       "additionalProperties": false,
       "required": ["start", "end"],
       "properties": {
-        "start": { "$ref": "#/$defs/startTime" },
-        "end": { "$ref": "#/$defs/endTime" }
+        "start": {
+          "$ref": "#/$defs/startTime"
+        },
+        "end": {
+          "$ref": "#/$defs/endTime"
+        }
       }
     },
     "calendarExceptions": {
@@ -183,7 +231,10 @@
           "description": "已据官方日历核实例外的年份；未列年份保持待核实。",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "type": "integer", "minimum": 2000 }
+          "items": {
+            "type": "integer",
+            "minimum": 2000
+          }
         },
         "overrides": {
           "type": "array",
@@ -193,10 +244,14 @@
             "additionalProperties": false,
             "required": ["date", "windows"],
             "properties": {
-              "date": { "$ref": "#/$defs/date" },
+              "date": {
+                "$ref": "#/$defs/date"
+              },
               "windows": {
                 "type": "array",
-                "items": { "$ref": "#/$defs/dateWindow" }
+                "items": {
+                  "$ref": "#/$defs/dateWindow"
+                }
               }
             }
           }
@@ -215,7 +270,9 @@
           "additionalProperties": false,
           "required": ["kind"],
           "properties": {
-            "kind": { "enum": ["model_request", "payment", "claim"] }
+            "kind": {
+              "enum": ["model_request", "payment", "claim"]
+            }
           }
         },
         {
@@ -223,7 +280,9 @@
           "additionalProperties": false,
           "required": ["kind", "description"],
           "properties": {
-            "kind": { "const": "other" },
+            "kind": {
+              "const": "other"
+            },
             "description": {
               "$ref": "#/$defs/text",
               "description": "说明实际事件，或说明公开资料为何不足以判定事件。"
@@ -240,9 +299,15 @@
           "additionalProperties": false,
           "required": ["kind", "startsAt", "endsAt", "endInclusive"],
           "properties": {
-            "kind": { "const": "absolute" },
-            "startsAt": { "$ref": "#/$defs/dateTime" },
-            "endsAt": { "$ref": "#/$defs/dateTime" },
+            "kind": {
+              "const": "absolute"
+            },
+            "startsAt": {
+              "$ref": "#/$defs/dateTime"
+            },
+            "endsAt": {
+              "$ref": "#/$defs/dateTime"
+            },
             "endInclusive": {
               "type": ["boolean", "null"],
               "description": "明确包含结束时刻为 true，明确不包含为 false；只有包含性未说明时为 null，此时需记录来源精度和原因，不能让整个区间 unresolved。"
@@ -258,7 +323,13 @@
           },
           "allOf": [
             {
-              "if": { "properties": { "endInclusive": { "const": null } } },
+              "if": {
+                "properties": {
+                  "endInclusive": {
+                    "const": null
+                  }
+                }
+              },
               "then": {
                 "properties": {
                   "endPrecision": true,
@@ -270,11 +341,15 @@
                 "not": {
                   "anyOf": [
                     {
-                      "properties": { "endPrecision": true },
+                      "properties": {
+                        "endPrecision": true
+                      },
                       "required": ["endPrecision"]
                     },
                     {
-                      "properties": { "endUncertaintyReason": true },
+                      "properties": {
+                        "endUncertaintyReason": true
+                      },
                       "required": ["endUncertaintyReason"]
                     }
                   ]
@@ -288,7 +363,9 @@
           "additionalProperties": false,
           "required": ["kind", "timeZone", "sourceTimeZoneText", "windows"],
           "properties": {
-            "kind": { "const": "recurring" },
+            "kind": {
+              "const": "recurring"
+            },
             "timeZone": {
               "$ref": "#/$defs/text",
               "description": "仅在有出处时填可识别的 IANA 时区，如 Asia/Shanghai。"
@@ -300,9 +377,13 @@
             "windows": {
               "type": "array",
               "minItems": 1,
-              "items": { "$ref": "#/$defs/localWindow" }
+              "items": {
+                "$ref": "#/$defs/localWindow"
+              }
             },
-            "validFrom": { "$ref": "#/$defs/dateTime" },
+            "validFrom": {
+              "$ref": "#/$defs/dateTime"
+            },
             "validFromDate": {
               "$ref": "#/$defs/date",
               "description": "只公布活动开始的当地日期、未公布具体时刻时填写；该日期内待核实，此前不适用，此后可按重复窗口判断。与 validFrom 互斥。"
@@ -311,10 +392,15 @@
               "$ref": "#/$defs/dateTime",
               "description": "不含该时点的有效期结束边界；官方未公布结束时不填写，缺省不保证活动永久有效。"
             },
-            "calendarExceptions": { "$ref": "#/$defs/calendarExceptions" }
+            "calendarExceptions": {
+              "$ref": "#/$defs/calendarExceptions"
+            }
           },
           "not": {
-            "properties": { "validFrom": true, "validFromDate": true },
+            "properties": {
+              "validFrom": true,
+              "validFromDate": true
+            },
             "required": ["validFrom", "validFromDate"]
           }
         },
@@ -323,8 +409,12 @@
           "additionalProperties": false,
           "required": ["kind", "publishedText", "reason"],
           "properties": {
-            "kind": { "const": "unresolved" },
-            "publishedText": { "$ref": "#/$defs/text" },
+            "kind": {
+              "const": "unresolved"
+            },
+            "publishedText": {
+              "$ref": "#/$defs/text"
+            },
             "reason": {
               "$ref": "#/$defs/text",
               "description": "说明缺少哪项公开事实，不能把 unresolved 当作确定时段。"
@@ -342,7 +432,9 @@
           "additionalProperties": false,
           "required": ["kind", "entries"],
           "properties": {
-            "kind": { "const": "unit_rate" },
+            "kind": {
+              "const": "unit_rate"
+            },
             "entries": {
               "type": "array",
               "minItems": 1,
@@ -351,9 +443,15 @@
                 "additionalProperties": false,
                 "required": ["meter", "measure", "per", "regular", "benefit"],
                 "properties": {
-                  "meter": { "$ref": "#/$defs/text" },
-                  "measure": { "$ref": "#/$defs/measure" },
-                  "per": { "$ref": "#/$defs/text" },
+                  "meter": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "measure": {
+                    "$ref": "#/$defs/measure"
+                  },
+                  "per": {
+                    "$ref": "#/$defs/text"
+                  },
                   "regular": {
                     "$ref": "#/$defs/decimal",
                     "description": "同渠道、同计费项及同单位的通常费率或额度；通常额度可为 0。"
@@ -373,9 +471,15 @@
           "additionalProperties": false,
           "required": ["kind", "target", "unit", "value"],
           "properties": {
-            "kind": { "const": "multiplier" },
-            "target": { "enum": ["price", "credits", "quota"] },
-            "unit": { "$ref": "#/$defs/text" },
+            "kind": {
+              "const": "multiplier"
+            },
+            "target": {
+              "enum": ["price", "credits", "quota"]
+            },
+            "unit": {
+              "$ref": "#/$defs/text"
+            },
             "value": {
               "$ref": "#/$defs/decimal",
               "description": "费用／积分倍数低于 1，额度倍数高于 1；0 表示免费但仍需来源明确支持。"
@@ -395,9 +499,15 @@
           "additionalProperties": false,
           "required": ["kind", "publishedText", "reason"],
           "properties": {
-            "kind": { "const": "unresolved" },
-            "publishedText": { "$ref": "#/$defs/text" },
-            "reason": { "$ref": "#/$defs/text" }
+            "kind": {
+              "const": "unresolved"
+            },
+            "publishedText": {
+              "$ref": "#/$defs/text"
+            },
+            "reason": {
+              "$ref": "#/$defs/text"
+            }
           }
         }
       ]
@@ -416,7 +526,9 @@
           "$ref": "#/$defs/id",
           "description": "关系另一端在同一计费渠道内的权益 ID。"
         },
-        "sourceReferences": { "$ref": "#/$defs/sourceReferences" }
+        "sourceReferences": {
+          "$ref": "#/$defs/sourceReferences"
+        }
       }
     },
     "timedBenefit": {
@@ -437,8 +549,12 @@
         "effect"
       ],
       "properties": {
-        "$schema": { "const": "../../schema/benefit.schema.json" },
-        "schemaVersion": { "const": 1 },
+        "$schema": {
+          "const": "../../schema/benefit.schema.json"
+        },
+        "schemaVersion": {
+          "const": 1
+        },
         "accessChannelId": {
           "$ref": "#/$defs/id",
           "description": "实际负责计费的使用渠道 ID，必须与所在目录及渠道记录一致；模型品牌不是计费渠道。"
@@ -466,9 +582,13 @@
         "eligibilityConditions": {
           "type": "array",
           "description": "所有条件同时成立才可能适用；数组成员只能是必要资格谓词，不是备注。仅在来源明确覆盖该渠道所有情形时使用空数组。",
-          "items": { "$ref": "#/$defs/eligibilityCondition" }
+          "items": {
+            "$ref": "#/$defs/eligibilityCondition"
+          }
         },
-        "timeTrigger": { "$ref": "#/$defs/timeTrigger" },
+        "timeTrigger": {
+          "$ref": "#/$defs/timeTrigger"
+        },
         "timeCondition": {
           "$ref": "#/$defs/timeCondition",
           "description": "政策触发事件的时间窗口；有已知窗口但某个边界、年份或账号状态不明时保留已知部分，勿把整条规则标为 unresolved。"
@@ -484,17 +604,565 @@
         "combinationRelations": {
           "type": "array",
           "description": "仅记录官方明确说明的同渠道权益组合关系；缺省不表示自动叠加。",
-          "items": { "$ref": "#/$defs/combinationRelation" }
+          "items": {
+            "$ref": "#/$defs/combinationRelation"
+          }
         }
       },
-      "if": { "properties": { "evidenceStatus": { "const": "uncertain" } } },
+      "if": {
+        "properties": {
+          "evidenceStatus": {
+            "const": "uncertain"
+          }
+        }
+      },
       "then": {
         "properties": {
-          "uncertaintyReason": { "$ref": "#/$defs/text" }
+          "uncertaintyReason": {
+            "$ref": "#/$defs/text"
+          }
         },
         "required": ["uncertaintyReason"]
       },
-      "else": { "not": { "required": ["uncertaintyReason"] } }
+      "else": {
+        "not": {
+          "required": ["uncertaintyReason"]
+        }
+      }
+    },
+    "v2Id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "v2Text": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "v2DateTime": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "v2Date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "v2StartTime": {
+      "type": "string",
+      "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+    },
+    "v2EndTime": {
+      "type": "string",
+      "pattern": "^(?:(?:[01]\\d|2[0-3]):[0-5]\\d|24:00)$"
+    },
+    "v2Decimal": {
+      "type": "string",
+      "description": "非负十进制数使用字符串，避免浮点舍入；数值方向由目录核验器再检查。",
+      "pattern": "^(?:0|[1-9]\\d*)(?:\\.\\d+)?$"
+    },
+    "v2Measure": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "currency"],
+          "properties": {
+            "kind": {
+              "const": "money"
+            },
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "unit"],
+          "properties": {
+            "kind": {
+              "enum": ["credits", "quota"]
+            },
+            "unit": {
+              "$ref": "#/$defs/v2Text"
+            }
+          }
+        }
+      ]
+    },
+    "v2SourceReferences": {
+      "type": "array",
+      "description": "至少一个可直接追溯的 HTTP(S) URL；Schema 只检查形式，不判断网页权威性或内容。",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^https?://\\S+$"
+      }
+    },
+    "v2EligibilityField": {
+      "description": "条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型或计费模式。",
+      "enum": [
+        "model",
+        "meter",
+        "plan_tier",
+        "tool",
+        "region",
+        "client",
+        "account_type",
+        "billing_mode"
+      ]
+    },
+    "v2EligibilityCondition": {
+      "description": "每一项都是针对公共查询维度的必要条件，而不是原文全部资格的复刻；所有已记录条件匹配或条件为空，也不证明某账户最终适用。同一字段在一项权益中只出现一次，one_of 可局部保留来源冲突的候选值。账户历史、实际发放、效果解释和一般说明不得写入此处。",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "field", "values"],
+          "properties": {
+            "kind": {
+              "const": "one_of"
+            },
+            "field": {
+              "$ref": "#/$defs/v2EligibilityField"
+            },
+            "values": {
+              "type": "array",
+              "description": "现有公开资料明确支持的值。",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/v2Text"
+              }
+            },
+            "uncertainValues": {
+              "type": "array",
+              "description": "仅列入同一条件中公开资料相互冲突、不能确定是否适用的值；不得与 values 重复。",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/v2Text"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "field", "values"],
+          "properties": {
+            "kind": {
+              "const": "none_of"
+            },
+            "field": {
+              "$ref": "#/$defs/v2EligibilityField"
+            },
+            "values": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/v2Text"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "v2LocalWindow": {
+      "type": "object",
+      "description": "重复时段按开始日归属；跨午夜结束时间可以早于开始时间。",
+      "additionalProperties": false,
+      "required": ["weekdays", "start", "end"],
+      "properties": {
+        "weekdays": {
+          "type": "array",
+          "description": "ISO 星期数，周一为 1、周日为 7；跨午夜时取开始日期的星期。",
+          "minItems": 1,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          }
+        },
+        "start": {
+          "$ref": "#/$defs/v2StartTime"
+        },
+        "end": {
+          "$ref": "#/$defs/v2EndTime",
+          "description": "24:00 仅用于时段结束；全天用 00:00–24:00。"
+        }
+      }
+    },
+    "v2DateWindow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/v2StartTime"
+        },
+        "end": {
+          "$ref": "#/$defs/v2EndTime"
+        }
+      }
+    },
+    "v2CalendarExceptions": {
+      "type": "object",
+      "description": "只有已公布的日历例外才能写入；coveredYears 外不能假定不存在节假日或特别窗口。",
+      "additionalProperties": false,
+      "required": ["coveredYears", "overrides", "sourceReferences"],
+      "properties": {
+        "coveredYears": {
+          "type": "array",
+          "description": "已据官方日历核实例外的年份；未列年份保持待核实。",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 2000
+          }
+        },
+        "overrides": {
+          "type": "array",
+          "description": "指定日期的窗口替换通常窗口；空窗口表示该日没有这项权益。",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["date", "windows"],
+            "properties": {
+              "date": {
+                "$ref": "#/$defs/v2Date"
+              },
+              "windows": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/v2DateWindow"
+                }
+              }
+            }
+          }
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/v2SourceReferences",
+          "description": "发布该日历例外的官方资料 URL，与权益本身的出处分开。"
+        }
+      }
+    },
+    "v2TimeTrigger": {
+      "type": "object",
+      "description": "时间条件约束的事件类别，不等于用于判价的精确瞬间。已知类别应明确记录；订阅下单不等于付款时刻。来源未说明事件类别时用 unknown，不从标题猜测；不同计费项若对应不同事件，应拆成不同权益。",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "model_request",
+            "payment",
+            "claim",
+            "tool_call",
+            "metered_usage",
+            "subscription_order",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "v2TimeCondition": {
+      "description": "保存已知政策窗口，不因局部边界未知而丢弃其余时段。absolute 用于有起止时刻的区间，recurring 用于时区内重复窗口；无法结构化可用窗口时用 unresolved，并可保留已公布但缺时区的日期边界。",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "startsAt", "endsAt", "endInclusive"],
+          "properties": {
+            "kind": {
+              "const": "absolute"
+            },
+            "startsAt": {
+              "$ref": "#/$defs/v2DateTime"
+            },
+            "endsAt": {
+              "$ref": "#/$defs/v2DateTime"
+            },
+            "endInclusive": {
+              "type": ["boolean", "null"],
+              "description": "明确包含结束时刻为 true，明确不包含为 false；只有包含性未说明时为 null，并记录来源精度，不能让整个区间 unresolved。"
+            },
+            "endPrecision": {
+              "enum": ["day", "minute", "second"],
+              "description": "仅在 endInclusive 为 null 时填写；查询在 endsAt 起的相应日、分钟或秒内应标待核实，不能推断结束瞬间。"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "endInclusive": {
+                    "const": null
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "endPrecision": true
+                },
+                "required": ["endPrecision"]
+              },
+              "else": {
+                "properties": {
+                  "endPrecision": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "timeZone", "windows"],
+          "properties": {
+            "kind": {
+              "const": "recurring"
+            },
+            "timeZone": {
+              "$ref": "#/$defs/v2Text",
+              "description": "仅在有出处时填可识别的 IANA 时区，如 Asia/Shanghai。"
+            },
+            "windows": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/v2LocalWindow"
+              }
+            },
+            "validFrom": {
+              "$ref": "#/$defs/v2DateTime"
+            },
+            "validFromDate": {
+              "$ref": "#/$defs/v2Date",
+              "description": "只公布活动开始的当地日期、未公布具体时刻时填写；该日期内待核实，此前不适用，此后可按重复窗口判断。与 validFrom 互斥。"
+            },
+            "validUntil": {
+              "$ref": "#/$defs/v2DateTime",
+              "description": "不含该时点的有效期结束边界；官方未公布结束时不填写，缺省不保证活动永久有效。"
+            },
+            "calendarExceptions": {
+              "$ref": "#/$defs/v2CalendarExceptions"
+            }
+          },
+          "not": {
+            "properties": {
+              "validFrom": true,
+              "validFromDate": true
+            },
+            "required": ["validFrom", "validFromDate"]
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": {
+            "kind": {
+              "const": "unresolved"
+            },
+            "knownBoundaries": {
+              "type": "array",
+              "description": "仅保存来源已公布的政策开始或结束日期，但时区未可靠确定的局部事实；不是精确 UTC 时点。不得把个人取得后的有效期写入此处。",
+              "minItems": 1,
+              "maxItems": 2,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["role", "date", "timeZone"],
+                "properties": {
+                  "role": {
+                    "enum": ["start", "end"]
+                  },
+                  "date": {
+                    "$ref": "#/$defs/v2Date"
+                  },
+                  "timeZone": {
+                    "const": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "v2Effect": {
+      "description": "优惠费率可靠时优先使用 unit_rate；通常值可缺省，但不能据此推算节省额或折扣倍数。只有一个实际倍数对本文件全部情形都精确成立时才用 multiplier。宣传标价不等于所有订单实付时保持 unresolved，不能伪装为固定费率。",
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "保留官方公布的实际优惠费率或额度，通常值仅在可靠时填写；同一 (meter, measure, per) 组合不得重复。多个档位的实际优惠值不同时应拆成独立权益，不得把档位塞入 meter。",
+          "additionalProperties": false,
+          "required": ["kind", "entries"],
+          "properties": {
+            "kind": {
+              "const": "unit_rate"
+            },
+            "entries": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["meter", "measure", "per", "benefit"],
+                "properties": {
+                  "meter": {
+                    "$ref": "#/$defs/v2Text"
+                  },
+                  "measure": {
+                    "$ref": "#/$defs/v2Measure"
+                  },
+                  "per": {
+                    "$ref": "#/$defs/v2Text"
+                  },
+                  "regular": {
+                    "$ref": "#/$defs/v2Decimal",
+                    "description": "同渠道、同计费项及同单位的通常费率或额度；通常额度可为 0。"
+                  },
+                  "benefit": {
+                    "$ref": "#/$defs/v2Decimal",
+                    "description": "相同时点的实际优惠费率或额度；若有通常值，费用／积分须更低，额度须更高。"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "description": "仅保存可直接用于计算的统一实际倍数。该倍数必须对本文件的所有适用套餐、模型、计费模式和明确计费项成立；官方同时给出不符合该倍数的实际费率时，应改用 unit_rate 或拆分权益。",
+          "additionalProperties": false,
+          "required": ["kind", "target", "unit", "value"],
+          "properties": {
+            "kind": {
+              "const": "multiplier"
+            },
+            "target": {
+              "enum": ["price", "credits", "quota"]
+            },
+            "unit": {
+              "$ref": "#/$defs/v2Text"
+            },
+            "value": {
+              "$ref": "#/$defs/v2Decimal",
+              "description": "费用／积分倍数低于 1，额度倍数高于 1；0 表示免费但仍需来源明确支持。"
+            }
+          },
+          "examples": [
+            {
+              "kind": "multiplier",
+              "target": "credits",
+              "unit": "模型调用 Credits",
+              "value": "0.5"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": {
+            "kind": {
+              "const": "unresolved"
+            }
+          }
+        }
+      ]
+    },
+    "v2CombinationRelation": {
+      "type": "object",
+      "description": "仅引用同一计费渠道的另一项权益，且关系本身也需要直接出处。",
+      "additionalProperties": false,
+      "required": ["relation", "otherBenefitId", "sourceReferences"],
+      "properties": {
+        "relation": {
+          "enum": ["exclusive", "stackable", "overrides"],
+          "description": "exclusive 为互斥，stackable 为可叠加，overrides 表示本文件权益覆盖所引用的另一权益。"
+        },
+        "otherBenefitId": {
+          "$ref": "#/$defs/v2Id",
+          "description": "关系另一端在同一计费渠道内的权益 ID。"
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/v2SourceReferences"
+        }
+      }
+    },
+    "v2TimedBenefit": {
+      "type": "object",
+      "description": "一份文件记录同一计费渠道下的一项独立时段权益，而不是笼统对应一张营销活动页面。全部适用情形共享同一政策触发事件和效果范围；套餐档位、计费项或事件导致实际效果不同时拆成不同权益。",
+      "additionalProperties": false,
+      "required": [
+        "$schema",
+        "schemaVersion",
+        "accessChannelId",
+        "id",
+        "evidenceStatus",
+        "sourceReferences",
+        "eligibilityConditions",
+        "timeTrigger",
+        "timeCondition",
+        "effect"
+      ],
+      "properties": {
+        "$schema": {
+          "const": "../../schema/benefit.schema.json"
+        },
+        "schemaVersion": {
+          "const": 2
+        },
+        "accessChannelId": {
+          "$ref": "#/$defs/v2Id",
+          "description": "实际负责计费的使用渠道 ID，必须与所在目录及渠道记录一致；模型品牌不是计费渠道。"
+        },
+        "id": {
+          "$ref": "#/$defs/v2Id",
+          "description": "同一渠道内稳定的权益 ID，必须与文件名一致。"
+        },
+        "evidenceStatus": {
+          "enum": ["supported", "uncertain"],
+          "description": "supported 表示当前采纳的公开资料支持本记录；uncertain 表示来源失联或冲突，不能当作确定生效。它不是任务分派状态。"
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/v2SourceReferences",
+          "description": "直接支撑本项权益的计费方公开条款 URL；发现入口或第三方转述不能自动代替它。"
+        },
+        "eligibilityConditions": {
+          "type": "array",
+          "description": "数组成员只是已结构化的必要条件；全部匹配或空数组都不证明某个账户最终享有权益。账户历史与实际发放情况不在目录中判定。",
+          "items": {
+            "$ref": "#/$defs/v2EligibilityCondition"
+          }
+        },
+        "timeTrigger": {
+          "$ref": "#/$defs/v2TimeTrigger"
+        },
+        "timeCondition": {
+          "$ref": "#/$defs/v2TimeCondition",
+          "description": "政策触发事件的时间窗口；有已知窗口但某个边界、年份或账号状态不明时保留已知部分，勿把整条规则标为 unresolved。"
+        },
+        "effect": {
+          "$ref": "#/$defs/v2Effect",
+          "description": "同一使用渠道内相对通常规则的变化，保持官方原有货币、积分或额度单位。"
+        },
+        "combinationRelations": {
+          "type": "array",
+          "description": "仅记录官方明确说明的同渠道权益组合关系；缺省不表示自动叠加。",
+          "items": {
+            "$ref": "#/$defs/v2CombinationRelation"
+          }
+        }
+      }
     }
   }
 }
