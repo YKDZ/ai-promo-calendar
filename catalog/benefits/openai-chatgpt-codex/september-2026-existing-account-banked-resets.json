@@ -12,7 +12,12 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Plus", "Pro", "Business standard seat", "Business premium seat"]
+      "values": [
+        "Plus",
+        "Pro",
+        "Business standard seat",
+        "Business premium seat"
+      ]
     },
     {
       "kind": "text",
