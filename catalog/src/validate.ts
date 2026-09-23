@@ -166,18 +166,16 @@ function checkBenefit(
 
   const seenEligibilityFields = new Map<string, number>();
   benefit.eligibilityConditions.forEach((condition, index) => {
-    if (condition.kind !== "text") {
-      const duplicateIndex = seenEligibilityFields.get(condition.field);
-      if (duplicateIndex !== undefined) {
-        issue(
-          issues,
-          file,
-          `/eligibilityConditions/${index}/field`,
-          `同一资格字段只能出现一次；请与第 ${duplicateIndex + 1} 项合并`,
-        );
-      }
-      seenEligibilityFields.set(condition.field, index);
+    const duplicateIndex = seenEligibilityFields.get(condition.field);
+    if (duplicateIndex !== undefined) {
+      issue(
+        issues,
+        file,
+        `/eligibilityConditions/${index}/field`,
+        `同一资格字段只能出现一次；请与第 ${duplicateIndex + 1} 项合并`,
+      );
     }
+    seenEligibilityFields.set(condition.field, index);
 
     if (
       condition.kind !== "one_of" ||
@@ -291,7 +289,15 @@ function checkBenefit(
     }
   }
 
-  if ("knownBoundaries" in time && time.knownBoundaries !== undefined) {
+  // 日期内的小时和时区未知；两日宽限只排除全球任何时区都无法成立的倒置区间。
+  const dateUncertainty = 2 * 24 * 60 * 60 * 1000;
+  const knownStartDate = time.knownBoundaries?.find(
+    (boundary) => boundary.role === "start",
+  )?.date;
+  const knownEndDate = time.knownBoundaries?.find(
+    (boundary) => boundary.role === "end",
+  )?.date;
+  if (time.knownBoundaries !== undefined) {
     const seenRoles = new Set<string>();
     time.knownBoundaries.forEach((boundary, index) => {
       if (seenRoles.has(boundary.role)) {
@@ -312,18 +318,13 @@ function checkBenefit(
         );
       }
     });
-    const startDate = time.knownBoundaries.find(
-      (boundary) => boundary.role === "start",
-    )?.date;
-    const endDate = time.knownBoundaries.find(
-      (boundary) => boundary.role === "end",
-    )?.date;
     if (
-      startDate !== undefined &&
-      endDate !== undefined &&
-      validDate(startDate) &&
-      validDate(endDate) &&
-      endDate < startDate
+      knownStartDate !== undefined &&
+      knownEndDate !== undefined &&
+      validDate(knownStartDate) &&
+      validDate(knownEndDate) &&
+      Date.parse(`${knownEndDate}T00:00:00Z`) + dateUncertainty <
+        Date.parse(`${knownStartDate}T00:00:00Z`)
     ) {
       issue(
         issues,
@@ -333,7 +334,7 @@ function checkBenefit(
       );
     }
     if (
-      startDate !== undefined &&
+      knownStartDate !== undefined &&
       ((time.kind === "absolute" && time.startsAt !== undefined) ||
         (time.kind === "recurring" &&
           (time.validFrom !== undefined || time.validFromDate !== undefined)))
@@ -341,12 +342,59 @@ function checkBenefit(
       issue(issues, file, "/timeCondition/knownBoundaries", "开始边界不得重复");
     }
     if (
-      endDate !== undefined &&
+      knownEndDate !== undefined &&
       ((time.kind === "absolute" && time.endsAt !== undefined) ||
         (time.kind === "recurring" && time.validUntil !== undefined))
     ) {
       issue(issues, file, "/timeCondition/knownBoundaries", "结束边界不得重复");
     }
+  }
+
+  const startDate =
+    time.kind === "recurring"
+      ? (time.validFromDate ?? knownStartDate)
+      : knownStartDate;
+  const exactStart =
+    time.kind === "absolute"
+      ? time.startsAt
+      : time.kind === "recurring"
+        ? time.validFrom
+        : undefined;
+  const exactEnd =
+    time.kind === "absolute"
+      ? time.endsAt
+      : time.kind === "recurring"
+        ? time.validUntil
+        : undefined;
+  const startInstant =
+    exactStart === undefined ? undefined : instant(exactStart);
+  const endInstant = exactEnd === undefined ? undefined : instant(exactEnd);
+  if (
+    startDate !== undefined &&
+    validDate(startDate) &&
+    endInstant !== undefined &&
+    endInstant <= Date.parse(`${startDate}T00:00:00Z`) - dateUncertainty
+  ) {
+    issue(issues, file, "/timeCondition", "结束时点早于已知开始日期");
+  }
+  if (
+    knownEndDate !== undefined &&
+    validDate(knownEndDate) &&
+    startInstant !== undefined &&
+    startInstant >= Date.parse(`${knownEndDate}T00:00:00Z`) + dateUncertainty
+  ) {
+    issue(issues, file, "/timeCondition", "开始时点晚于已知结束日期");
+  }
+  if (
+    time.kind === "recurring" &&
+    time.validFromDate !== undefined &&
+    validDate(time.validFromDate) &&
+    knownEndDate !== undefined &&
+    validDate(knownEndDate) &&
+    Date.parse(`${knownEndDate}T00:00:00Z`) + dateUncertainty <
+      Date.parse(`${time.validFromDate}T00:00:00Z`)
+  ) {
+    issue(issues, file, "/timeCondition", "结束日期早于开始日期");
   }
 
   const effect = benefit.effect;
