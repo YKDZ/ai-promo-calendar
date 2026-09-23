@@ -13,6 +13,11 @@
       "kind": "one_of",
       "field": "account_type",
       "values": ["个人用户"]
+    },
+    {
+      "kind": "one_of",
+      "field": "client",
+      "values": ["Qoder CN 桌面端"]
     }
   ],
   "timeTrigger": {

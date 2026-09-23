@@ -13,6 +13,11 @@
       "kind": "one_of",
       "field": "plan_tier",
       "values": ["Free", "Go", "Plus", "Pro"]
+    },
+    {
+      "kind": "one_of",
+      "field": "account_type",
+      "values": ["大学生"]
     }
   ],
   "timeTrigger": { "kind": "claim" },
