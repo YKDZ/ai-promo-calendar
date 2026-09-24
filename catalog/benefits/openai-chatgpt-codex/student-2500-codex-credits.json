@@ -6,8 +6,7 @@
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.openai.com/en/articles/20001147",
-    "https://developers.openai.com/community/students",
-    "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+    "https://developers.openai.com/community/students"
   ],
   "eligibilityConditions": [
     {
@@ -22,16 +21,7 @@
     }
   ],
   "timeTrigger": { "kind": "claim" },
-  "timeCondition": {
-    "kind": "unresolved",
-    "knownBoundaries": [
-      {
-        "role": "start",
-        "date": "2026-03-20",
-        "timeZone": null
-      }
-    ]
-  },
+  "timeCondition": { "kind": "unresolved" },
   "effect": {
     "kind": "unit_rate",
     "entries": [
