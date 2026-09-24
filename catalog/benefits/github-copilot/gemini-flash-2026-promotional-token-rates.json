@@ -1,0 +1,68 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "github-copilot",
+  "id": "gemini-flash-2026-promotional-token-rates",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing",
+    "https://docs.github.com/en/copilot/reference/ai-models/supported-models"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["Gemini 3.6 Flash", "Gemini 3.7 Flash", "Gemini 3.8 Flash"]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["usage-based GitHub AI Credits"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "end",
+        "date": "2026-12-31",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Input",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "benefit": "0.75"
+      },
+      {
+        "meter": "Cached input",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "benefit": "0.075"
+      },
+      {
+        "meter": "Output",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "benefit": "3.75"
+      }
+    ]
+  }
+}
