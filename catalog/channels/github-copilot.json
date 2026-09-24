@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "GitHub",
+  "accessChannel": {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://docs.github.com/en/copilot/get-started/plans",
+    "https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing"
+  ]
+}
