@@ -19,7 +19,14 @@
     "kind": "tool_call"
   },
   "timeCondition": {
-    "kind": "unresolved"
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-09-18",
+        "timeZone": null
+      }
+    ]
   },
   "effect": {
     "kind": "multiplier",
