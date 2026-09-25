@@ -1,1 +1,34 @@
-{"$schema":"../../schema/benefit.schema.json","schemaVersion":2,"accessChannelId":"anthropic-claude-team-scientists","id":"premium-seat-annual-12-month-discount","evidenceStatus":"supported","sourceReferences":["https://claude.com/programs/team-plan-for-scientists","https://support.claude.com/en/articles/16634237-claude-team-plan-for-scientists","https://www.anthropic.com/news/expanding-support-for-scientists"],"eligibilityConditions":[{"kind":"one_of","field":"plan_tier","values":["Premium"]},{"kind":"one_of","field":"billing_mode","values":["annual"]}],"timeTrigger":{"kind":"subscription_order"},"timeCondition":{"kind":"unresolved","knownBoundaries":[{"role":"start","date":"2026-08-27","timeZone":null}]},"effect":{"kind":"unit_rate","entries":[{"meter":"Premium seat annual subscription","measure":{"kind":"money","currency":"USD"},"per":"user·year","benefit":"180"}]}}
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "anthropic-claude-team-scientists",
+  "id": "premium-seat-annual-12-month-discount",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://claude.com/programs/team-plan-for-scientists",
+    "https://support.claude.com/en/articles/16634237-claude-team-plan-for-scientists",
+    "https://www.anthropic.com/news/expanding-support-for-scientists"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "plan_tier", "values": ["Premium"] },
+    { "kind": "one_of", "field": "billing_mode", "values": ["annual"] }
+  ],
+  "timeTrigger": { "kind": "subscription_order" },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      { "role": "start", "date": "2026-08-27", "timeZone": null }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Premium seat annual subscription",
+        "measure": { "kind": "money", "currency": "USD" },
+        "per": "user·year",
+        "benefit": "180"
+      }
+    ]
+  }
+}

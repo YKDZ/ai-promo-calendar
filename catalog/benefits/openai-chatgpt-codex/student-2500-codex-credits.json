@@ -12,27 +12,17 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Free",
-        "Go",
-        "Plus",
-        "Pro"
-      ]
+      "values": ["Free", "Go", "Plus", "Pro"]
     },
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": [
-        "大学生"
-      ]
+      "values": ["大学生"]
     },
     {
       "kind": "one_of",
       "field": "region",
-      "values": [
-        "美国",
-        "加拿大"
-      ]
+      "values": ["美国", "加拿大"]
     }
   ],
   "timeTrigger": {
