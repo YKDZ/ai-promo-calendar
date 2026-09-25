@@ -12,18 +12,12 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Medium"
-      ]
+      "values": ["Medium"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "新购",
-        "续费",
-        "升配"
-      ]
+      "values": ["新购", "续费", "升配"]
     }
   ],
   "timeTrigger": {

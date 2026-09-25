@@ -13,9 +13,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "kimi-k2.8-preview"
-      ]
+      "values": ["kimi-k2.8-preview"]
     }
   ],
   "timeTrigger": {

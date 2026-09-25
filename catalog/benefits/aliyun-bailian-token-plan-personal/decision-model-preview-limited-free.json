@@ -12,26 +12,17 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "decision-model-preview"
-      ]
+      "values": ["decision-model-preview"]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Lite",
-        "Essential",
-        "Standard",
-        "Pro"
-      ]
+      "values": ["Lite", "Essential", "Standard", "Pro"]
     },
     {
       "kind": "one_of",
       "field": "region",
-      "values": [
-        "华北2（北京）"
-      ]
+      "values": ["华北2（北京）"]
     }
   ],
   "timeTrigger": {

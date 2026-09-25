@@ -11,31 +11,22 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "doubao-seedance-2.0-mini"
-      ]
+      "values": ["doubao-seedance-2.0-mini"]
     },
     {
       "kind": "one_of",
       "field": "meter",
-      "values": [
-        "480P 输出视频 token 用量",
-        "720P 输出视频 token 用量"
-      ]
+      "values": ["480P 输出视频 token 用量", "720P 输出视频 token 用量"]
     },
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": [
-        "企业用户"
-      ]
+      "values": ["企业用户"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "按量后付费"
-      ]
+      "values": ["按量后付费"]
     }
   ],
   "timeTrigger": {
