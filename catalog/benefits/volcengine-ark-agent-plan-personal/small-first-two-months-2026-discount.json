@@ -1,0 +1,56 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "volcengine-ark-agent-plan-personal",
+  "id": "small-first-two-months-2026-discount",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-universal-promotion?lang=zh",
+    "https://www.volcengine.com/activity/agentplan"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Small"]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["新购", "续费"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "subscription_order"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-06-08",
+        "timeZone": null
+      },
+      {
+        "role": "end",
+        "date": "2026-11-08",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Agent Plan Small 套餐订阅",
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
+        "per": "月",
+        "regular": "40",
+        "benefit": "9.9"
+      }
+    ]
+  }
+}

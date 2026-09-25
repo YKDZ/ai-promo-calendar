@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "volcengine-ark-agent-plan-personal",
+  "id": "deepseek-v4-1-flash-2026-model-discount",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
+    "https://www.volcengine.com/activity/agentplan"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["deepseek-v4.1-flash"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-09-15",
+        "timeZone": null
+      },
+      {
+        "role": "end",
+        "date": "2026-10-30",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "模型抵扣系数",
+    "value": "0.5"
+  }
+}

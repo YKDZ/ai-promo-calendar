@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "火山引擎",
+  "accessChannel": {
+    "id": "volcengine-ark-coding-plan-personal",
+    "name": "火山方舟 Coding Plan 个人版",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-get-started?lang=zh",
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-feature-release?lang=zh"
+  ]
+}

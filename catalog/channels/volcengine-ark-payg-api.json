@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "火山引擎",
+  "accessChannel": {
+    "id": "volcengine-ark-payg-api",
+    "name": "火山方舟按量后付费模型 API",
+    "kind": "metered_api"
+  },
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/seedance-2-0-mini-fast-limited-time-discount?lang=zh"
+  ]
+}
