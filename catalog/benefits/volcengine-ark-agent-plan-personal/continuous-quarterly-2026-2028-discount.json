@@ -1,0 +1,53 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "volcengine-ark-agent-plan-personal",
+  "id": "continuous-quarterly-2026-2028-discount",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": [
+        "Small",
+        "Medium",
+        "Large",
+        "Max"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": [
+        "连续包季开通"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "subscription_order"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-05-19",
+        "timeZone": null
+      },
+      {
+        "role": "end",
+        "date": "2028-05-19",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "price",
+    "unit": "首个连续包季订阅周期价格",
+    "value": "0.97"
+  }
+}

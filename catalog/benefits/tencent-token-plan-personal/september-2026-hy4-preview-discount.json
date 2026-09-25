@@ -12,22 +12,34 @@
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": ["个人用户"]
+      "values": [
+        "个人用户"
+      ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["通用 Token Plan", "Hy Token Plan"]
+      "values": [
+        "通用 Token Plan",
+        "Hy Token Plan"
+      ]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Lite", "Standard", "Pro", "Max"]
+      "values": [
+        "Lite",
+        "Standard",
+        "Pro",
+        "Max"
+      ]
     },
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["hy4-preview"]
+      "values": [
+        "hy4-preview"
+      ]
     }
   ],
   "timeTrigger": {
@@ -35,8 +47,8 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T00:00:00+08:00",
-    "endsAt": "2026-09-30T23:59:59+08:00",
+    "startsAt": "2026-09-25T00:00:00+08:00",
+    "endsAt": "2026-10-08T12:00:00+08:00",
     "endInclusive": null,
     "endPrecision": "second"
   },
@@ -51,7 +63,7 @@
         },
         "per": "1M tokens",
         "regular": "120",
-        "benefit": "100"
+        "benefit": "60"
       },
       {
         "meter": "输出",
@@ -61,7 +73,7 @@
         },
         "per": "1M tokens",
         "regular": "360",
-        "benefit": "200"
+        "benefit": "180"
       },
       {
         "meter": "缓存命中输入",
@@ -71,7 +83,7 @@
         },
         "per": "1M tokens",
         "regular": "6",
-        "benefit": "4"
+        "benefit": "3"
       }
     ]
   }

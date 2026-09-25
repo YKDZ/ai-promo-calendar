@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "volcengine-ark-coding-plan-personal",
+  "id": "kimi-k2-8-preview-2026-model-discount",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-feature-release?lang=zh",
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-get-started?lang=zh"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": [
+        "kimi-k2.8-preview"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "end",
+        "date": "2026-09-30",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "unresolved"
+  }
+}

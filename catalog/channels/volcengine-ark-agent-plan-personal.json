@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "火山引擎",
+  "accessChannel": {
+    "id": "volcengine-ark-agent-plan-personal",
+    "name": "火山方舟 Agent Plan 个人版",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://www.volcengine.com/activity/agentplan",
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-universal-promotion?lang=zh",
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh"
+  ]
+}

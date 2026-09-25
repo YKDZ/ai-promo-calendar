@@ -216,6 +216,26 @@
       "title": "Google 开发者工具官方新闻",
       "url": "https://blog.google/innovation-and-ai/technology/developers-tools/",
       "description": "发现 Gemini CLI、Gemini Code Assist 与相关编码产品的额度和套餐变化；永久提额只有在官方明确限期时才形成时间权益。"
+    },
+    {
+      "title": "火山方舟 Agent Plan Small/Medium 普惠折扣",
+      "url": "https://docs.volcengine.com/docs/ark/agent-plan-personal-universal-promotion?lang=zh",
+      "description": "核对 Small、Medium 首两个月的活动期限、折扣月价以及新购、续费、升配共享资格；不要把账号已使用的优惠月数推成公共时间条件。"
+    },
+    {
+      "title": "火山方舟 Agent Plan 连续包季/包年折扣",
+      "url": "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh",
+      "description": "核对连续包季、包年首个订阅周期的活动折扣与期限；后续自动续费价格以扣款日规则为准。"
+    },
+    {
+      "title": "火山方舟 Agent/Coding Plan 指定模型限时折扣",
+      "url": "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
+      "description": "逐产品、逐模型核对抵扣系数、活动起止与模型实际可用日期；若发布记录与活动页的开始日期冲突，只保留能够一致确认的边界。"
+    },
+    {
+      "title": "火山方舟 Seedance 2.0 fast/mini 后付费限时折扣",
+      "url": "https://docs.volcengine.com/docs/ark/seedance-2-0-mini-fast-limited-time-discount?lang=zh",
+      "description": "核对企业用户按量后付费视频 token 折扣、分辨率范围、活动时段及每模型累计折后 token 上限。"
     }
   ]
 }

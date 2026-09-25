@@ -1,0 +1,57 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "volcengine-ark-payg-api",
+  "id": "seedance-2-0-fast-2026-limited-discount",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/seedance-2-0-mini-fast-limited-time-discount?lang=zh"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": [
+        "doubao-seedance-2.0-fast"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "meter",
+      "values": [
+        "480P 输出视频 token 用量",
+        "720P 输出视频 token 用量"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "account_type",
+      "values": [
+        "企业用户"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": [
+        "按量后付费"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "metered_usage"
+  },
+  "timeCondition": {
+    "kind": "absolute",
+    "startsAt": "2026-08-07T14:00:00+08:00",
+    "endsAt": "2026-10-07T14:00:00+08:00",
+    "endInclusive": null,
+    "endPrecision": "second"
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "price",
+    "unit": "按量后付费 token 费用",
+    "value": "0.75"
+  }
+}
