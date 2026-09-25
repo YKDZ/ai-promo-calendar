@@ -35,8 +35,8 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-25T00:00:00+08:00",
-    "endsAt": "2026-10-08T12:00:00+08:00",
+    "startsAt": "2026-09-01T00:00:00+08:00",
+    "endsAt": "2026-09-30T23:59:59+08:00",
     "endInclusive": null,
     "endPrecision": "second"
   },
@@ -51,7 +51,7 @@
         },
         "per": "1M tokens",
         "regular": "120",
-        "benefit": "60"
+        "benefit": "100"
       },
       {
         "meter": "输出",
@@ -61,7 +61,7 @@
         },
         "per": "1M tokens",
         "regular": "360",
-        "benefit": "180"
+        "benefit": "200"
       },
       {
         "meter": "缓存命中输入",
@@ -71,7 +71,7 @@
         },
         "per": "1M tokens",
         "regular": "6",
-        "benefit": "3"
+        "benefit": "4"
       }
     ]
   }

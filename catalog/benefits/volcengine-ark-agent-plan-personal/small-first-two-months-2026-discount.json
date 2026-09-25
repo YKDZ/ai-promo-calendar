@@ -17,7 +17,7 @@
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["新购", "续费", "升配"]
+      "values": ["新购", "续费"]
     }
   ],
   "timeTrigger": {
