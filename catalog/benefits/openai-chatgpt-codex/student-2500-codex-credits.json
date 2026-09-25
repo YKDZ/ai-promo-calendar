@@ -12,22 +12,44 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Free", "Go", "Plus", "Pro"]
+      "values": [
+        "Free",
+        "Go",
+        "Plus",
+        "Pro"
+      ]
     },
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": ["大学生"]
+      "values": [
+        "大学生"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "region",
+      "values": [
+        "美国",
+        "加拿大"
+      ]
     }
   ],
-  "timeTrigger": { "kind": "claim" },
-  "timeCondition": { "kind": "unresolved" },
+  "timeTrigger": {
+    "kind": "claim"
+  },
+  "timeCondition": {
+    "kind": "unresolved"
+  },
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
         "meter": "Codex 学生 Credits",
-        "measure": { "kind": "quota", "unit": "ChatGPT Credits for Codex" },
+        "measure": {
+          "kind": "quota",
+          "unit": "ChatGPT Credits for Codex"
+        },
         "per": "学生",
         "regular": "0",
         "benefit": "2500"

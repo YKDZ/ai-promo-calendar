@@ -12,17 +12,27 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["qwen3.8-max", "qwen3.8-max-preview", "qwen3.8-flash"]
+      "values": [
+        "qwen3.8-max",
+        "qwen3.8-flash"
+      ]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Lite", "Essential", "Standard", "Pro"]
+      "values": [
+        "Lite",
+        "Essential",
+        "Standard",
+        "Pro"
+      ]
     },
     {
       "kind": "one_of",
       "field": "region",
-      "values": ["华北2（北京）"]
+      "values": [
+        "华北2（北京）"
+      ]
     }
   ],
   "timeTrigger": {
@@ -33,7 +43,15 @@
     "timeZone": "Etc/GMT-8",
     "windows": [
       {
-        "weekdays": [1, 2, 3, 4, 5, 6, 7],
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
         "start": "22:00",
         "end": "08:00"
       }

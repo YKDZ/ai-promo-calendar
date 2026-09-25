@@ -3,7 +3,7 @@
   "schemaVersion": 2,
   "accessChannelId": "tencent-token-plan-personal",
   "id": "september-2026-hy4-preview-discount",
-  "evidenceStatus": "supported",
+  "evidenceStatus": "uncertain",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
     "https://cloud.tencent.com/document/product/1823/130060"
@@ -12,22 +12,34 @@
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": ["个人用户"]
+      "values": [
+        "个人用户"
+      ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["通用 Token Plan", "Hy Token Plan"]
+      "values": [
+        "通用 Token Plan",
+        "Hy Token Plan"
+      ]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Lite", "Standard", "Pro", "Max"]
+      "values": [
+        "Lite",
+        "Standard",
+        "Pro",
+        "Max"
+      ]
     },
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["hy4-preview"]
+      "values": [
+        "hy4-preview"
+      ]
     }
   ],
   "timeTrigger": {
