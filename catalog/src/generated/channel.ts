@@ -40,7 +40,7 @@ export interface ChannelRecord {
   accessChannel: AccessChannel;
   sourceReferences: SourceReferences;
   /**
-   * 仅在计费方明确说明以请求的何时刻判定费率时填写；事件类别和政策窗口本身不推定判定时刻，其他机制应先扩展契约。
+   * 仅在计费方明确说明渠道通用地以请求的何时刻判定费率时填写；单项权益的触发事件和政策窗口不推定整个渠道的判定时刻，其他机制应先扩展契约。
    */
   billingDecisionInstant?: {
     kind: "request_started" | "server_received";

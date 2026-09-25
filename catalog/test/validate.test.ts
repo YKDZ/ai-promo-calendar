@@ -317,6 +317,22 @@ void test("事件类别可知而精确判价时刻未知", () => {
   assert.equal(result.catalog.benefits[0]?.timeTrigger.kind, "payment");
 });
 
+void test("出账事件只属于该项权益，不要求整个渠道采用该判价规则", () => {
+  const files = snapshot();
+  const nextChannel = structuredClone(channel);
+  delete nextChannel.billingDecisionInstant;
+  files[1] = file("channels/example-plan.json", nextChannel);
+
+  const nextBenefit = structuredClone(benefit);
+  nextBenefit.timeTrigger = { kind: "billing_posted" };
+  files[2] = file("benefits/example-plan/night-credits.json", nextBenefit);
+
+  const result = validateCatalog(files);
+  assert.equal(result.valid, true);
+  if (!result.valid) assert.fail();
+  assert.equal(result.catalog.benefits[0]?.timeTrigger.kind, "billing_posted");
+});
+
 void test("仅有优惠费率可保存；已知通常价时拒绝反向或重复费率", () => {
   const files = snapshot();
   const next = structuredClone(benefit);
