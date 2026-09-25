@@ -367,13 +367,21 @@ export interface TimedBenefit {
   combinationRelations?: CombinationRelation[];
 }
 /**
- * 时间条件约束的事件类别，不等于用于判价的精确瞬间。已知类别应明确记录；订阅下单不等于付款时刻。来源未说明事件类别时用 unknown，不从权益 ID 或营销文案猜测；不同计费项若对应不同事件，应拆成不同权益。
+ * 时间条件约束的事件类别，不等于用于判价的精确瞬间。已知类别应明确记录；billing_posted 仅表示来源明确以出账事件的发生时间判断该项权益，不推广为渠道通用规则，也不等于用量发生时间；订阅下单不等于付款时刻。来源未说明事件类别时用 unknown，不从权益 ID 或营销文案猜测；不同计费项若对应不同事件，应拆成不同权益。
  *
  * This interface was referenced by `TimedBenefit`'s JSON-Schema
  * via the `definition` "timeTrigger".
  */
 export interface TimeTrigger {
-  kind: "model_request" | "payment" | "claim" | "tool_call" | "metered_usage" | "subscription_order" | "unknown";
+  kind:
+    | "model_request"
+    | "payment"
+    | "claim"
+    | "tool_call"
+    | "metered_usage"
+    | "billing_posted"
+    | "subscription_order"
+    | "unknown";
 }
 /**
  * 重复时段按开始日归属；跨午夜结束时间可以早于开始时间。
