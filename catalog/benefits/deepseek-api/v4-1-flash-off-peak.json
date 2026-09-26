@@ -13,11 +13,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "deepseek-flash",
-        "deepseek-v4-flash",
-        "deepseek-v4-flash-vision-exp"
-      ]
+      "values": ["deepseek-flash"]
     }
   ],
   "timeTrigger": {
