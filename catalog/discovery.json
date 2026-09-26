@@ -88,26 +88,6 @@
       "description": "从官方模型、计费与文档入口调查新活动；普通单价、缓存价格差异和常规套餐规则不自动构成时段权益。"
     },
     {
-      "title": "阿里云百炼 Agent 安全高级防护计费",
-      "url": "https://help.aliyun.com/zh/model-studio/security/billing",
-      "description": "核对高级防护的限时免费、正式计费项与提前通知机制；默认防护永久免费，不将其误记为限时活动。"
-    },
-    {
-      "title": "阿里云百炼 Managed Agents 内置工具",
-      "url": "https://help.aliyun.com/zh/model-studio/managed-agents-builtin-tools",
-      "description": "巡查 web_search、web_fetch 等内置工具的独立计费和限时权益；工具页没有给出的活动边界不得从更新日志日期自行补齐。"
-    },
-    {
-      "title": "阿里云百炼 Managed Agents 计费与赠送额度",
-      "url": "https://help.aliyun.com/zh/model-studio/managed-agents-billing",
-      "description": "分别核对商业化政策版本、会话运行时赠送和取得后的相对有效期；模型和工具独立计费，不推定所有账户已获发额度。"
-    },
-    {
-      "title": "阿里云百炼 Token Plan 个人版 Harness 权益",
-      "url": "https://help.aliyun.com/zh/model-studio/token-plan-harness-benefits",
-      "description": "调查 Standard 与 Pro 附赠工具额度及独立后付费折扣；常规订阅周期权益不自动当作限时促销，不与模型 Credits 或团队版混算。"
-    },
-    {
       "title": "智谱 GLM Coding Plan 套餐概览",
       "url": "https://docs.bigmodel.cn/cn/coding-plan/overview",
       "description": "复核 Coding Plan 的模型、适用工具、套餐额度与峰谷积分抵扣；套餐规则不得外推到普通按量 API 或未列明的产品环境。"
@@ -233,9 +213,9 @@
       "description": "逐产品、逐模型核对抵扣系数、活动起止与模型实际可用日期；若发布记录与活动页的开始日期冲突，只保留能够一致确认的边界。"
     },
     {
-      "title": "火山方舟 Seedance 2.0 fast/mini 后付费限时折扣",
-      "url": "https://docs.volcengine.com/docs/ark/seedance-2-0-mini-fast-limited-time-discount?lang=zh",
-      "description": "核对企业用户按量后付费视频 token 折扣、分辨率范围、活动时段及每模型累计折后 token 上限。"
+      "title": "火山方舟在线推理（常规）",
+      "url": "https://docs.volcengine.com/docs/ark/online-inference-standard?lang=zh",
+      "description": "从按量后付费模型推理的官方说明发现语言模型的限时价格或额度；专用媒体生成模型的优惠不收录。"
     }
   ]
 }
