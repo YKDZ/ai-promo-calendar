@@ -2,18 +2,14 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "tencent-token-plan-personal",
-  "id": "september-2026-hy4-preview-discount",
-  "evidenceStatus": "uncertain",
+  "id": "hy4-preview-2026-september-october-half-price",
+  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
     "https://cloud.tencent.com/document/product/1823/130060"
   ],
   "eligibilityConditions": [
-    {
-      "kind": "one_of",
-      "field": "account_type",
-      "values": ["个人用户"]
-    },
+    { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
     {
       "kind": "one_of",
       "field": "billing_mode",
@@ -24,19 +20,13 @@
       "field": "plan_tier",
       "values": ["Lite", "Standard", "Pro", "Max"]
     },
-    {
-      "kind": "one_of",
-      "field": "model",
-      "values": ["hy4-preview"]
-    }
+    { "kind": "one_of", "field": "model", "values": ["hy4-preview"] }
   ],
-  "timeTrigger": {
-    "kind": "model_request"
-  },
+  "timeTrigger": { "kind": "model_request" },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T00:00:00+08:00",
-    "endsAt": "2026-09-30T23:59:59+08:00",
+    "startsAt": "2026-09-25T00:00:00+08:00",
+    "endsAt": "2026-10-08T12:00:00+08:00",
     "endInclusive": null,
     "endPrecision": "second"
   },
@@ -45,33 +35,24 @@
     "entries": [
       {
         "meter": "未命中缓存输入",
-        "measure": {
-          "kind": "credits",
-          "unit": "积分"
-        },
+        "measure": { "kind": "credits", "unit": "积分" },
         "per": "1M tokens",
         "regular": "120",
-        "benefit": "100"
+        "benefit": "60"
       },
       {
         "meter": "输出",
-        "measure": {
-          "kind": "credits",
-          "unit": "积分"
-        },
+        "measure": { "kind": "credits", "unit": "积分" },
         "per": "1M tokens",
         "regular": "360",
-        "benefit": "200"
+        "benefit": "180"
       },
       {
         "meter": "缓存命中输入",
-        "measure": {
-          "kind": "credits",
-          "unit": "积分"
-        },
+        "measure": { "kind": "credits", "unit": "积分" },
         "per": "1M tokens",
         "regular": "6",
-        "benefit": "4"
+        "benefit": "3"
       }
     ]
   }

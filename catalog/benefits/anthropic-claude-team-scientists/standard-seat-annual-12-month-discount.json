@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "anthropic-claude-team-scientists",
-  "id": "standard-seat-12-month-free",
+  "id": "standard-seat-annual-12-month-discount",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://claude.com/programs/team-plan-for-scientists",
@@ -11,27 +11,22 @@
   ],
   "eligibilityConditions": [
     { "kind": "one_of", "field": "plan_tier", "values": ["Standard"] },
-    { "kind": "one_of", "field": "billing_mode", "values": ["monthly"] }
+    { "kind": "one_of", "field": "billing_mode", "values": ["annual"] }
   ],
   "timeTrigger": { "kind": "subscription_order" },
   "timeCondition": {
     "kind": "unresolved",
     "knownBoundaries": [
-      {
-        "role": "start",
-        "date": "2026-08-27",
-        "timeZone": null
-      }
+      { "role": "start", "date": "2026-08-27", "timeZone": null }
     ]
   },
   "effect": {
     "kind": "unit_rate",
     "entries": [
       {
-        "meter": "Standard seat monthly subscription",
+        "meter": "Standard seat annual subscription",
         "measure": { "kind": "money", "currency": "USD" },
-        "per": "user·month",
-        "regular": "20",
+        "per": "user·year",
         "benefit": "0"
       }
     ]
