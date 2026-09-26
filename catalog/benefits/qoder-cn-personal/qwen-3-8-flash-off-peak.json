@@ -1,1 +1,47 @@
-{"$schema":"../../schema/benefit.schema.json","schemaVersion":2,"accessChannelId":"qoder-cn-personal","id":"qwen-3-8-flash-off-peak","evidenceStatus":"supported","sourceReferences":["https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount","https://docs.qoder.cn/product-overview/credits","https://docs.qoder.cn/product-overview/billing-description"],"eligibilityConditions":[{"kind":"one_of","field":"model","values":["Qwen3.8-Flash"]},{"kind":"one_of","field":"plan_tier","values":["Pro Trial","专业版","高级版","旗舰版"]},{"kind":"one_of","field":"client","values":["Qoder CN","Qoder CN IDE","Qoder CN CLI","Qoder CN Mobile","QoderWake CN","Qoder CN Cloud Agents"]}],"timeTrigger":{"kind":"model_request"},"timeCondition":{"kind":"recurring","timeZone":"Asia/Shanghai","windows":[{"weekdays":[1,2,3,4,5,6,7],"start":"22:00","end":"08:00"}],"validFrom":"2026-09-04T22:00:00+08:00"},"effect":{"kind":"multiplier","target":"credits","unit":"Credits","value":"0.4"}}
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "qoder-cn-personal",
+  "id": "qwen-3-8-flash-off-peak",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount",
+    "https://docs.qoder.cn/product-overview/credits",
+    "https://docs.qoder.cn/product-overview/billing-description"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "model", "values": ["Qwen3.8-Flash"] },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Pro Trial", "专业版", "高级版", "旗舰版"]
+    },
+    {
+      "kind": "one_of",
+      "field": "client",
+      "values": [
+        "Qoder CN",
+        "Qoder CN IDE",
+        "Qoder CN CLI",
+        "Qoder CN Mobile",
+        "QoderWake CN",
+        "Qoder CN Cloud Agents"
+      ]
+    }
+  ],
+  "timeTrigger": { "kind": "model_request" },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "windows": [
+      { "weekdays": [1, 2, 3, 4, 5, 6, 7], "start": "22:00", "end": "08:00" }
+    ],
+    "validFrom": "2026-09-04T22:00:00+08:00"
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "Credits",
+    "value": "0.4"
+  }
+}
