@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "aliyun-bailian-agent-security",
+  "id": "advanced-protection-limited-free",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/security/billing"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "tool",
+      "values": ["Agent 安全高级防护"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "metered_usage"
+  },
+  "timeCondition": {
+    "kind": "unresolved"
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Agent 防御席位费",
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
+        "per": "席位·小时",
+        "benefit": "0"
+      },
+      {
+        "meter": "超额 Credits 用量",
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
+        "per": "Credit",
+        "benefit": "0"
+      }
+    ]
+  }
+}

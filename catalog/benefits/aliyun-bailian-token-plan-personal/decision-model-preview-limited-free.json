@@ -2,17 +2,17 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "aliyun-bailian-token-plan-personal",
-  "id": "night-qwen-credits-forty-percent",
+  "id": "decision-model-preview-limited-free",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
-    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview"
+    "https://help.aliyun.com/zh/model-studio/token-plan-decision-model"
   ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["qwen3.8-max", "qwen3.8-max-preview", "qwen3.8-flash"]
+      "values": ["decision-model-preview"]
     },
     {
       "kind": "one_of",
@@ -29,20 +29,12 @@
     "kind": "model_request"
   },
   "timeCondition": {
-    "kind": "recurring",
-    "timeZone": "Etc/GMT-8",
-    "windows": [
-      {
-        "weekdays": [1, 2, 3, 4, 5, 6, 7],
-        "start": "22:00",
-        "end": "08:00"
-      }
-    ]
+    "kind": "unresolved"
   },
   "effect": {
     "kind": "multiplier",
     "target": "credits",
     "unit": "Credits",
-    "value": "0.4"
+    "value": "0"
   }
 }

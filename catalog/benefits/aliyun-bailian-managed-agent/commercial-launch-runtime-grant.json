@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "aliyun-bailian-managed-agent",
+  "id": "commercial-launch-runtime-grant",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/managed-agents-billing"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "meter",
+      "values": ["会话运行时费"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "unknown"
+  },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Etc/GMT-8",
+    "windows": [
+      {
+        "weekdays": [1, 2, 3, 4, 5, 6, 7],
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ],
+    "validFrom": "2026-08-17T09:00:00+08:00"
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "赠送会话运行时额度",
+        "measure": {
+          "kind": "quota",
+          "unit": "小时运行时"
+        },
+        "per": "次赠送",
+        "regular": "0",
+        "benefit": "10"
+      }
+    ]
+  }
+}

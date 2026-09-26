@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "阿里云百炼",
+  "accessChannel": {
+    "id": "aliyun-bailian-agent-security",
+    "name": "阿里云百炼 Agent 安全高级防护",
+    "kind": "other"
+  },
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/security/billing"
+  ]
+}

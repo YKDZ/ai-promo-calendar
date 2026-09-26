@@ -31,6 +31,7 @@
         "meter": "Premium seat monthly subscription",
         "measure": { "kind": "money", "currency": "USD" },
         "per": "user·month",
+        "regular": "100",
         "benefit": "15"
       }
     ]
