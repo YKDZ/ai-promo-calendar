@@ -11,9 +11,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "Auto 模式"
-      ]
+      "values": ["Auto 模式"]
     }
   ],
   "timeTrigger": {
