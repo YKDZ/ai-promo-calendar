@@ -1,1 +1,28 @@
-{"$schema":"../../schema/benefit.schema.json","schemaVersion":2,"accessChannelId":"baidu-qianfan-token-plan-enterprise","id":"light-limited-monthly-price","evidenceStatus":"supported","sourceReferences":["https://cloud.baidu.com/product/qianfan_home/token_plan.html"],"eligibilityConditions":[{"kind":"one_of","field":"plan_tier","values":["企业轻享版"]},{"kind":"one_of","field":"billing_mode","values":["按月"]}],"timeTrigger":{"kind":"subscription_order"},"timeCondition":{"kind":"unresolved"},"effect":{"kind":"unit_rate","entries":[{"meter":"企业轻享版套餐订阅","measure":{"kind":"money","currency":"CNY"},"per":"月","regular":"198","benefit":"149"}]}}
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "baidu-qianfan-token-plan-enterprise",
+  "id": "light-limited-monthly-price",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://cloud.baidu.com/product/qianfan_home/token_plan.html"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "plan_tier", "values": ["企业轻享版"] },
+    { "kind": "one_of", "field": "billing_mode", "values": ["按月"] }
+  ],
+  "timeTrigger": { "kind": "subscription_order" },
+  "timeCondition": { "kind": "unresolved" },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "企业轻享版套餐订阅",
+        "measure": { "kind": "money", "currency": "CNY" },
+        "per": "月",
+        "regular": "198",
+        "benefit": "149"
+      }
+    ]
+  }
+}

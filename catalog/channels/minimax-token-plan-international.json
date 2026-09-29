@@ -1,1 +1,14 @@
-{"$schema":"../schema/channel.schema.json","schemaVersion":2,"billingProvider":"Nanonoble Pte. Ltd. (MiniMax)","accessChannel":{"id":"minimax-token-plan-international","name":"MiniMax Token Plan 国际版","kind":"plan"},"sourceReferences":["https://platform.minimax.io/subscribe/token-plan","https://platform.minimax.io/protocol/paid-agreement"]}
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "Nanonoble Pte. Ltd. (MiniMax)",
+  "accessChannel": {
+    "id": "minimax-token-plan-international",
+    "name": "MiniMax Token Plan 国际版",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://platform.minimax.io/subscribe/token-plan",
+    "https://platform.minimax.io/protocol/paid-agreement"
+  ]
+}

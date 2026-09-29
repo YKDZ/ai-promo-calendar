@@ -1,1 +1,29 @@
-{"$schema":"../../schema/benefit.schema.json","schemaVersion":2,"accessChannelId":"minimax-token-plan-international","id":"ultra-annual-promotional-price","evidenceStatus":"supported","sourceReferences":["https://platform.minimax.io/subscribe/token-plan","https://platform.minimax.io/protocol/paid-agreement"],"eligibilityConditions":[{"kind":"one_of","field":"plan_tier","values":["Ultra"]},{"kind":"one_of","field":"billing_mode","values":["annual"]}],"timeTrigger":{"kind":"subscription_order"},"timeCondition":{"kind":"unresolved"},"effect":{"kind":"unit_rate","entries":[{"meter":"Ultra annual subscription","measure":{"kind":"money","currency":"USD"},"per":"year","regular":"1440","benefit":"1200"}]}}
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "minimax-token-plan-international",
+  "id": "ultra-annual-promotional-price",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://platform.minimax.io/subscribe/token-plan",
+    "https://platform.minimax.io/protocol/paid-agreement"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "plan_tier", "values": ["Ultra"] },
+    { "kind": "one_of", "field": "billing_mode", "values": ["annual"] }
+  ],
+  "timeTrigger": { "kind": "subscription_order" },
+  "timeCondition": { "kind": "unresolved" },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Ultra annual subscription",
+        "measure": { "kind": "money", "currency": "USD" },
+        "per": "year",
+        "regular": "1440",
+        "benefit": "1200"
+      }
+    ]
+  }
+}
