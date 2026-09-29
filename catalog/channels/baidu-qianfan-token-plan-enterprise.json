@@ -1,0 +1,1 @@
+{"$schema":"../schema/channel.schema.json","schemaVersion":2,"billingProvider":"百度智能云千帆","accessChannel":{"id":"baidu-qianfan-token-plan-enterprise","name":"百度千帆 Token Plan 企业版","kind":"plan"},"sourceReferences":["https://cloud.baidu.com/product/qianfan_home/token_plan.html"]}
