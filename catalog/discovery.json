@@ -1,1 +1,241 @@
-{"$schema":"schema/discovery.schema.json","schemaVersion":1,"entries":[{"title":"DeepSeek 自营 API 模型与价格","url":"https://api-docs.deepseek.com/zh-cn/quick_start/pricing/","description":"巡查自营 API 的现行模型、峰谷时段、费率与法定假日例外；历史生效时间仍需核对对应公告。"},{"title":"DeepSeek 更新日志","url":"https://api-docs.deepseek.com/zh-cn/updates/","description":"发现定价及生效时间公告；公告发布时间不自动等于价格生效时间。"},{"title":"阿里云百炼 Token Plan 个人版","url":"https://help.aliyun.com/zh/model-studio/token-plan-personal-overview","description":"巡查个人版套餐的模型、Credits 消耗、时间权益和适用条件；不能套用到普通按量 API 或团队版。"},{"title":"阿里云百炼 Token Plan 团队版","url":"https://help.aliyun.com/zh/model-studio/token-plan-team-overview","description":"独立巡查团队版支持模型和夜间权益；不能沿用个人版的适用模型名单。"},{"title":"Qoder CN 官方文档索引","url":"https://docs.qoder.cn/llms.txt","description":"从文档与活动索引发现 Qoder CN 的新条款；索引本身不证明具体活动，须打开相应活动页。"},{"title":"Qoder CN 计费说明","url":"https://docs.qoder.cn/product-overview/billing-description","description":"核对 Qoder CN 自己的订阅与 Credits 计费渠道；使用 Qwen 模型不等于阿里云百炼直接计费。"},{"title":"DeepSeek 英文价目表","url":"https://api-docs.deepseek.com/quick_start/pricing/","description":"交叉核对官方美元价目表、模型兼容名称及 UTC 峰谷说明；页面暂时不可访问本身不证明政策结束，也不得用汇率推算其他币种。"},{"title":"Qoder CN Credits 与产品线互通","url":"https://docs.qoder.cn/product-overview/credits","description":"复核个人、企业及原灵码产品线的 Credits 边界；模型展示倍率不是每请求固定抵扣量。"},{"title":"Qoder CN Service Account 后付费","url":"https://docs.qoder.cn/enterprise/service-account","description":"独立核对组织服务账号的按量后付费规则、用量限制和账单主体；不将服务账号视为预付成员席位。"},{"title":"Qoder CN Qwen 系列错峰活动","url":"https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount","description":"逐模型检查折扣与生效时间，并分别核对 Service Account 与普通产品的窗口；旧版折扣结束不等于现行活动结束。"},{"title":"Qoder CN Qwen3.8-Flash 免费活动","url":"https://docs.qoder.cn/events/flashoffer","description":"核对个人用户、免费账号及会员卡的指定模型活动；不得推广到企业订阅或未列明客户端。"},{"title":"Qoder CN 每日领取 Credits","url":"https://docs.qoder.cn/events/100credits","description":"区分每日主动领取窗口、适用账号与每笔奖励的相对有效期；不把登录视为自动发放。"},{"title":"Qoder CN 九月订阅加赠","url":"https://docs.qoder.cn/events/bogo","description":"核对首付、续费、升级、退款和 Qwen 专属额度限制；支付活动期与奖励使用期分别处理。"},{"title":"Qoder CN 周年调用与邀请活动","url":"https://docs.qoder.cn/events/qwen-max","description":"分别复核领取截止、已领取次数的使用截止和邀请资格；留意正文与 FAQ 的适用套餐差异。"},{"title":"阿里云百炼个人版权益升级公告","url":"https://www.aliyun.com/notice/118513","description":"交叉核对存量订阅的额度重置赠送及有效期；公告日期不代替实际发放或到期边界。"},{"title":"火山引擎 Agent Plan 官方入口","url":"https://ai.volcengine.com/","description":"从订阅入口继续查看套餐详情和折扣规则；首页限时折扣只能指引调查，须完整核实适用期限及订单条件后才收录权益。"},{"title":"Kimi API 官方平台","url":"https://platform.kimi.com/","description":"从官方模型、计费与文档入口调查新活动；普通单价、缓存价格差异和常规套餐规则不自动构成时段权益。"},{"title":"智谱 GLM Coding Plan 套餐概览","url":"https://docs.bigmodel.cn/cn/coding-plan/overview","description":"复核 Coding Plan 的模型、适用工具、套餐额度与峰谷积分抵扣；套餐规则不得外推到普通按量 API 或未列明的产品环境。"},{"title":"智谱开放文档索引","url":"https://docs.bigmodel.cn/llms.txt","description":"从官方机器可读索引发现 Coding Plan、API、权益与活动页面；索引条目和页面更新时间本身不证明优惠生效。"},{"title":"MiniMax Token Plan","url":"https://platform.minimax.cn/subscribe/token-plan","description":"巡查套餐档位、模型、额度窗口、价格优惠与上下线通知；固定刷新周期和高峰限流不自动构成时间优惠。"},{"title":"MiniMax 官方新闻","url":"https://www.minimax.cn/news","description":"发现官方发布的模型限时免费、套餐和计费变化；新闻发布时间不等于活动边界，历史公告不得当作现行权益。"},{"title":"腾讯云 Token Plan 活动页","url":"https://cloud.tencent.com/act/pro/tokenplan","description":"发现 Token Plan 个人版的限时积分折扣、活动期限和适用对象；必须继续打开规则正文核对模型名单与请求判价条件。"},{"title":"腾讯云 Token Plan 个人版积分规则","url":"https://cloud.tencent.com/document/product/1823/133811","description":"复核个人版积分抵扣、峰谷价格和多项限时活动；个人版资格及窗口不得套用到企业版、直连 API 或其他渠道。"},{"title":"腾讯云 Token Plan 企业版专业套餐","url":"https://cloud.tencent.com/document/product/1823/130659","description":"独立复核企业版模型、峰谷判价时刻和限时积分价；已结束活动应作为历史边界，不得继续报为现行优惠。"},{"title":"火山引擎方舟 Agent Plan 活动页","url":"https://www.volcengine.com/activity/agentplan","description":"复核 Agent Plan 套餐、限时折扣、邀请资格与规则链接；营销标签、邀请优惠和套餐常规权益必须分别核实。"},{"title":"百度千帆大模型平台文档","url":"https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html","description":"从官方文档入口巡查模型计费、Coding Plan、产品公告与新用户限时额度；免费层和普通价格变化不自动构成时间优惠。"},{"title":"百度千帆大模型特惠专场","url":"https://cloud.baidu.com/campaign/event/qianfan/index.html","description":"发现千帆新客优惠、限时资源包与活动规则；购买或领取期限不得代替到账后资源的使用期限。"},{"title":"OpenAI Codex 官方帮助集合","url":"https://help.openai.com/en/collections/14937394-codex","description":"发现 Codex 套餐额度、临时扩容、一次性重置与推荐奖励规则；账户定向 offer 不得外推给所有用户。"},{"title":"OpenAI Codex 套餐使用说明","url":"https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan","description":"复核各 ChatGPT 套餐的 Codex 资格、当前限额与限时权益；ChatGPT 套餐额度不得与 OpenAI API 计费混为同一渠道。"},{"title":"OpenAI 产品发布索引","url":"https://openai.com/news/product-releases/","description":"发现官方公布的 Codex 临时开放、套餐额度翻倍和限期 API Credits；历史发布稿必须结合当前规则核实是否仍生效。"},{"title":"Anthropic 官方新闻","url":"https://www.anthropic.com/news","description":"发现 Claude 与 Claude Code 的套餐额度、峰时限制、临时模型权益和 API 变化；取消旧限制的公告不得反向登记为现行优惠。"},{"title":"Claude 官方定价","url":"https://claude.com/pricing","description":"复核 Claude 套餐、Claude Platform 价格和按日或滚动窗口权益；常规 Batch 价格与额度刷新不自动构成促销。"},{"title":"xAI 官方新闻","url":"https://x.ai/news","description":"发现 xAI API 的临时 Credits、模型开放和计费公告；已结束的公开测试优惠不得写成现行权益，API 与 Grok 消费套餐须分渠道。"},{"title":"Cursor 官方博客","url":"https://cursor.com/blog","description":"发现 Cursor 作为独立计费渠道的模型倍率、临时额度提升与套餐变更；博客保留的历史活动必须核对截止日。"},{"title":"OpenRouter 官方折扣模型集合","url":"https://openrouter.ai/collections/discounted-models","description":"发现 OpenRouter 渠道的模型促销折扣；动态集合不能单独证明起止边界，也不得归为底层模型厂商直连价格。"},{"title":"GitHub Copilot 官方更新日志","url":"https://github.blog/changelog/label/copilot/","description":"发现 Copilot 套餐、AI Credits、模型计费切换及其生效日期；永久计费迁移不自动视为限期优惠。"},{"title":"GitHub Copilot 模型与价格","url":"https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing","description":"复核 GitHub 这一独立计费渠道的模型价格、促销期限与套餐差异；不得套用为模型厂商直连 API 价格。"},{"title":"Gemini Developer API 定价","url":"https://ai.google.dev/gemini-api/docs/pricing","description":"复核 Gemini API 明确标注截止日期的促销价和恢复价；免费层、Batch 与 Flex 的常规差价不单独视为时间优惠。"},{"title":"Google 开发者工具官方新闻","url":"https://blog.google/innovation-and-ai/technology/developers-tools/","description":"发现 Gemini CLI、Gemini Code Assist 与相关编码产品的额度和套餐变化；永久提额只有在官方明确限期时才形成时间权益。"},{"title":"火山方舟 Agent Plan Small/Medium 普惠折扣","url":"https://docs.volcengine.com/docs/ark/agent-plan-personal-universal-promotion?lang=zh","description":"核对 Small、Medium 首两个月的活动期限、折扣月价以及新购、续费、升配共享资格；不要把账号已使用的优惠月数推成公共时间条件。"},{"title":"火山方舟 Agent Plan 连续包季/包年折扣","url":"https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh","description":"核对连续包季、包年首个订阅周期的活动折扣与期限；后续自动续费价格以扣款日规则为准。"},{"title":"火山方舟 Agent/Coding Plan 指定模型限时折扣","url":"https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh","description":"逐产品、逐模型核对抵扣系数、活动起止与模型实际可用日期；若发布记录与活动页的开始日期冲突，只保留能够一致确认的边界。"},{"title":"火山方舟在线推理（常规）","url":"https://docs.volcengine.com/docs/ark/online-inference-standard?lang=zh","description":"从按量后付费模型推理的官方说明发现语言模型的限时价格或额度；专用媒体生成模型的优惠不收录。"},{"title":"百度千帆 Token Plan 个人版","url":"https://cloud.baidu.com/product/codingplan.html","description":"复核个人版当前月度首购价、续费活动及全时段梯度折扣；首购、续费历史与每日限量等账户或库存条件由官方原文承担，梯度折扣仅在取得完整窗口和精确模型费率后结构化。"},{"title":"百度千帆 Token Plan 企业版","url":"https://cloud.baidu.com/product/qianfan_home/token_plan.html","description":"复核企业版按月套餐的当前限时价格、积分加赠与夜间权益；夜间“2折起”需取得完整模型名单和精确抵扣规则后再结构化。"},{"title":"MiniMax Token Plan 国际版","url":"https://platform.minimax.io/subscribe/token-plan","description":"复核国际版 Token Plan 的年度与月度套餐价格、模型与共享额度；与 minimax.cn 渠道及普通按量 API 分开核对。"},{"title":"百度千帆 Token 福利包","url":"https://cloud.baidu.com/product/qianfan_home/token.html","description":"复核面向 AI 模型与 Skills 的预付费月包首单价格和 Credits 规格；个人首购历史由官方原文承担，月包自身 1 个月有效期不冒充公共政策窗口。"}]}
+{
+  "$schema": "schema/discovery.schema.json",
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "title": "DeepSeek 自营 API 模型与价格",
+      "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+      "description": "巡查自营 API 的现行模型、峰谷时段、费率与法定假日例外；历史生效时间仍需核对对应公告。"
+    },
+    {
+      "title": "DeepSeek 更新日志",
+      "url": "https://api-docs.deepseek.com/zh-cn/updates/",
+      "description": "发现定价及生效时间公告；公告发布时间不自动等于价格生效时间。"
+    },
+    {
+      "title": "阿里云百炼 Token Plan 个人版",
+      "url": "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
+      "description": "巡查个人版套餐的模型、Credits 消耗、时间权益和适用条件；不能套用到普通按量 API 或团队版。"
+    },
+    {
+      "title": "阿里云百炼 Token Plan 团队版",
+      "url": "https://help.aliyun.com/zh/model-studio/token-plan-team-overview",
+      "description": "独立巡查团队版支持模型和夜间权益；不能沿用个人版的适用模型名单。"
+    },
+    {
+      "title": "Qoder CN 官方文档索引",
+      "url": "https://docs.qoder.cn/llms.txt",
+      "description": "从文档与活动索引发现 Qoder CN 的新条款；索引本身不证明具体活动，须打开相应活动页。"
+    },
+    {
+      "title": "Qoder CN 计费说明",
+      "url": "https://docs.qoder.cn/product-overview/billing-description",
+      "description": "核对 Qoder CN 自己的订阅与 Credits 计费渠道；使用 Qwen 模型不等于阿里云百炼直接计费。"
+    },
+    {
+      "title": "DeepSeek 英文价目表",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "description": "交叉核对官方美元价目表、模型兼容名称及 UTC 峰谷说明；页面暂时不可访问本身不证明政策结束，也不得用汇率推算其他币种。"
+    },
+    {
+      "title": "Qoder CN Credits 与产品线互通",
+      "url": "https://docs.qoder.cn/product-overview/credits",
+      "description": "复核个人、企业及原灵码产品线的 Credits 边界；模型展示倍率不是每请求固定抵扣量。"
+    },
+    {
+      "title": "Qoder CN Service Account 后付费",
+      "url": "https://docs.qoder.cn/enterprise/service-account",
+      "description": "独立核对组织服务账号的按量后付费规则、用量限制和账单主体；不将服务账号视为预付成员席位。"
+    },
+    {
+      "title": "Qoder CN Qwen 系列错峰活动",
+      "url": "https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount",
+      "description": "逐模型检查折扣与生效时间，并分别核对 Service Account 与普通产品的窗口；旧版折扣结束不等于现行活动结束。"
+    },
+    {
+      "title": "Qoder CN Qwen3.8-Flash 免费活动",
+      "url": "https://docs.qoder.cn/events/flashoffer",
+      "description": "核对个人用户、免费账号及会员卡的指定模型活动；不得推广到企业订阅或未列明客户端。"
+    },
+    {
+      "title": "Qoder CN 每日领取 Credits",
+      "url": "https://docs.qoder.cn/events/100credits",
+      "description": "区分每日主动领取窗口、适用账号与每笔奖励的相对有效期；不把登录视为自动发放。"
+    },
+    {
+      "title": "Qoder CN 九月订阅加赠",
+      "url": "https://docs.qoder.cn/events/bogo",
+      "description": "核对首付、续费、升级、退款和 Qwen 专属额度限制；支付活动期与奖励使用期分别处理。"
+    },
+    {
+      "title": "Qoder CN 周年调用与邀请活动",
+      "url": "https://docs.qoder.cn/events/qwen-max",
+      "description": "分别复核领取截止、已领取次数的使用截止和邀请资格；留意正文与 FAQ 的适用套餐差异。"
+    },
+    {
+      "title": "阿里云百炼个人版权益升级公告",
+      "url": "https://www.aliyun.com/notice/118513",
+      "description": "交叉核对存量订阅的额度重置赠送及有效期；公告日期不代替实际发放或到期边界。"
+    },
+    {
+      "title": "火山引擎 Agent Plan 官方入口",
+      "url": "https://ai.volcengine.com/",
+      "description": "从订阅入口继续查看套餐详情和折扣规则；首页限时折扣只能指引调查，须完整核实适用期限及订单条件后才收录权益。"
+    },
+    {
+      "title": "Kimi API 官方平台",
+      "url": "https://platform.kimi.com/",
+      "description": "从官方模型、计费与文档入口调查新活动；普通单价、缓存价格差异和常规套餐规则不自动构成时段权益。"
+    },
+    {
+      "title": "智谱 GLM Coding Plan 套餐概览",
+      "url": "https://docs.bigmodel.cn/cn/coding-plan/overview",
+      "description": "复核 Coding Plan 的模型、适用工具、套餐额度与峰谷积分抵扣；套餐规则不得外推到普通按量 API 或未列明的产品环境。"
+    },
+    {
+      "title": "智谱开放文档索引",
+      "url": "https://docs.bigmodel.cn/llms.txt",
+      "description": "从官方机器可读索引发现 Coding Plan、API、权益与活动页面；索引条目和页面更新时间本身不证明优惠生效。"
+    },
+    {
+      "title": "MiniMax Token Plan",
+      "url": "https://platform.minimax.cn/subscribe/token-plan",
+      "description": "巡查套餐档位、模型、额度窗口、价格优惠与上下线通知；固定刷新周期和高峰限流不自动构成时间优惠。"
+    },
+    {
+      "title": "MiniMax 官方新闻",
+      "url": "https://www.minimax.cn/news",
+      "description": "发现官方发布的模型限时免费、套餐和计费变化；新闻发布时间不等于活动边界，历史公告不得当作现行权益。"
+    },
+    {
+      "title": "腾讯云 Token Plan 活动页",
+      "url": "https://cloud.tencent.com/act/pro/tokenplan",
+      "description": "发现 Token Plan 个人版的限时积分折扣、活动期限和适用对象；必须继续打开规则正文核对模型名单与请求判价条件。"
+    },
+    {
+      "title": "腾讯云 Token Plan 个人版积分规则",
+      "url": "https://cloud.tencent.com/document/product/1823/133811",
+      "description": "复核个人版积分抵扣、峰谷价格和多项限时活动；个人版资格及窗口不得套用到企业版、直连 API 或其他渠道。"
+    },
+    {
+      "title": "腾讯云 Token Plan 企业版专业套餐",
+      "url": "https://cloud.tencent.com/document/product/1823/130659",
+      "description": "独立复核企业版模型、峰谷判价时刻和限时积分价；已结束活动应作为历史边界，不得继续报为现行优惠。"
+    },
+    {
+      "title": "火山引擎方舟 Agent Plan 活动页",
+      "url": "https://www.volcengine.com/activity/agentplan",
+      "description": "复核 Agent Plan 套餐、限时折扣、邀请资格与规则链接；营销标签、邀请优惠和套餐常规权益必须分别核实。"
+    },
+    {
+      "title": "百度千帆大模型平台文档",
+      "url": "https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html",
+      "description": "从官方文档入口巡查模型计费、Coding Plan、产品公告与新用户限时额度；免费层和普通价格变化不自动构成时间优惠。"
+    },
+    {
+      "title": "百度千帆大模型特惠专场",
+      "url": "https://cloud.baidu.com/campaign/event/qianfan/index.html",
+      "description": "发现千帆新客优惠、限时资源包与活动规则；购买或领取期限不得代替到账后资源的使用期限。"
+    },
+    {
+      "title": "OpenAI Codex 官方帮助集合",
+      "url": "https://help.openai.com/en/collections/14937394-codex",
+      "description": "发现 Codex 套餐额度、临时扩容、一次性重置与推荐奖励规则；账户定向 offer 不得外推给所有用户。"
+    },
+    {
+      "title": "OpenAI Codex 套餐使用说明",
+      "url": "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan",
+      "description": "复核各 ChatGPT 套餐的 Codex 资格、当前限额与限时权益；ChatGPT 套餐额度不得与 OpenAI API 计费混为同一渠道。"
+    },
+    {
+      "title": "OpenAI 产品发布索引",
+      "url": "https://openai.com/news/product-releases/",
+      "description": "发现官方公布的 Codex 临时开放、套餐额度翻倍和限期 API Credits；历史发布稿必须结合当前规则核实是否仍生效。"
+    },
+    {
+      "title": "Anthropic 官方新闻",
+      "url": "https://www.anthropic.com/news",
+      "description": "发现 Claude 与 Claude Code 的套餐额度、峰时限制、临时模型权益和 API 变化；取消旧限制的公告不得反向登记为现行优惠。"
+    },
+    {
+      "title": "Claude 官方定价",
+      "url": "https://claude.com/pricing",
+      "description": "复核 Claude 套餐、Claude Platform 价格和按日或滚动窗口权益；常规 Batch 价格与额度刷新不自动构成促销。"
+    },
+    {
+      "title": "xAI 官方新闻",
+      "url": "https://x.ai/news",
+      "description": "发现 xAI API 的临时 Credits、模型开放和计费公告；已结束的公开测试优惠不得写成现行权益，API 与 Grok 消费套餐须分渠道。"
+    },
+    {
+      "title": "Cursor 官方博客",
+      "url": "https://cursor.com/blog",
+      "description": "发现 Cursor 作为独立计费渠道的模型倍率、临时额度提升与套餐变更；博客保留的历史活动必须核对截止日。"
+    },
+    {
+      "title": "OpenRouter 官方折扣模型集合",
+      "url": "https://openrouter.ai/collections/discounted-models",
+      "description": "发现 OpenRouter 渠道的模型促销折扣；动态集合不能单独证明起止边界，也不得归为底层模型厂商直连价格。"
+    },
+    {
+      "title": "GitHub Copilot 官方更新日志",
+      "url": "https://github.blog/changelog/label/copilot/",
+      "description": "发现 Copilot 套餐、AI Credits、模型计费切换及其生效日期；永久计费迁移不自动视为限期优惠。"
+    },
+    {
+      "title": "GitHub Copilot 模型与价格",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing",
+      "description": "复核 GitHub 这一独立计费渠道的模型价格、促销期限与套餐差异；不得套用为模型厂商直连 API 价格。"
+    },
+    {
+      "title": "Gemini Developer API 定价",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "description": "复核 Gemini API 明确标注截止日期的促销价和恢复价；免费层、Batch 与 Flex 的常规差价不单独视为时间优惠。"
+    },
+    {
+      "title": "Google 开发者工具官方新闻",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/",
+      "description": "发现 Gemini CLI、Gemini Code Assist 与相关编码产品的额度和套餐变化；永久提额只有在官方明确限期时才形成时间权益。"
+    },
+    {
+      "title": "火山方舟 Agent Plan Small/Medium 普惠折扣",
+      "url": "https://docs.volcengine.com/docs/ark/agent-plan-personal-universal-promotion?lang=zh",
+      "description": "核对 Small、Medium 首两个月的活动期限、折扣月价以及新购、续费、升配共享资格；不要把账号已使用的优惠月数推成公共时间条件。"
+    },
+    {
+      "title": "火山方舟 Agent Plan 连续包季/包年折扣",
+      "url": "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh",
+      "description": "核对连续包季、包年首个订阅周期的活动折扣与期限；后续自动续费价格以扣款日规则为准。"
+    },
+    {
+      "title": "火山方舟 Agent/Coding Plan 指定模型限时折扣",
+      "url": "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
+      "description": "逐产品、逐模型核对抵扣系数、活动起止与模型实际可用日期；若发布记录与活动页的开始日期冲突，只保留能够一致确认的边界。"
+    },
+    {
+      "title": "火山方舟在线推理（常规）",
+      "url": "https://docs.volcengine.com/docs/ark/online-inference-standard?lang=zh",
+      "description": "从按量后付费模型推理的官方说明发现语言模型的限时价格或额度；专用媒体生成模型的优惠不收录。"
+    },
+    {
+      "title": "百度千帆 Token Plan 个人版",
+      "url": "https://cloud.baidu.com/product/codingplan.html",
+      "description": "复核个人版当前月度首购价、续费活动及全时段梯度折扣；首购、续费历史与每日限量等账户或库存条件由官方原文承担，梯度折扣仅在取得完整窗口和精确模型费率后结构化。"
+    },
+    {
+      "title": "百度千帆 Token Plan 企业版",
+      "url": "https://cloud.baidu.com/product/qianfan_home/token_plan.html",
+      "description": "复核企业版按月套餐的当前限时价格、积分加赠与夜间权益；夜间“2折起”需取得完整模型名单和精确抵扣规则后再结构化。"
+    },
+    {
+      "title": "MiniMax Token Plan 国际版",
+      "url": "https://platform.minimax.io/subscribe/token-plan",
+      "description": "复核国际版 Token Plan 的年度与月度套餐价格、模型与共享额度；与 minimax.cn 渠道及普通按量 API 分开核对。"
+    },
+    {
+      "title": "百度千帆 Token 福利包",
+      "url": "https://cloud.baidu.com/product/qianfan_home/token.html",
+      "description": "复核面向 AI 模型与 Skills 的预付费月包首单价格和 Credits 规格；个人首购历史由官方原文承担，月包自身 1 个月有效期不冒充公共政策窗口。"
+    }
+  ]
+}
