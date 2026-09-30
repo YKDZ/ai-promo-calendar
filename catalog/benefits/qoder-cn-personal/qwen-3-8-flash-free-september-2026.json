@@ -1,1 +1,40 @@
-{"$schema":"../../schema/benefit.schema.json","schemaVersion":2,"accessChannelId":"qoder-cn-personal","id":"qwen-3-8-flash-free-september-2026","evidenceStatus":"supported","sourceReferences":["https://docs.qoder.cn/events/flashoffer","https://docs.qoder.cn/events/100credits"],"eligibilityConditions":[{"kind":"one_of","field":"account_type","values":["个人用户"]},{"kind":"one_of","field":"model","values":["Qwen3.8-Flash"]},{"kind":"one_of","field":"client","values":["Qoder CN","Qoder CN IDE","Qoder CN JetBrains 插件","Qoder CN CLI","QoderWake CN","Qoder Cloud Agents CN","Qoder CN 移动端","Qoder CN 网页版"]}],"timeTrigger":{"kind":"model_request"},"timeCondition":{"kind":"absolute","startsAt":"2026-09-18T10:00:00+08:00"},"effect":{"kind":"multiplier","target":"credits","unit":"Credits","value":"0"}}
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "qoder-cn-personal",
+  "id": "qwen-3-8-flash-free-september-2026",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.qoder.cn/events/flashoffer",
+    "https://docs.qoder.cn/events/100credits"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "account_type", "values": ["个人用户"] },
+    { "kind": "one_of", "field": "model", "values": ["Qwen3.8-Flash"] },
+    {
+      "kind": "one_of",
+      "field": "client",
+      "values": [
+        "Qoder CN",
+        "Qoder CN IDE",
+        "Qoder CN JetBrains 插件",
+        "Qoder CN CLI",
+        "QoderWake CN",
+        "Qoder Cloud Agents CN",
+        "Qoder CN 移动端",
+        "Qoder CN 网页版"
+      ]
+    }
+  ],
+  "timeTrigger": { "kind": "model_request" },
+  "timeCondition": {
+    "kind": "absolute",
+    "startsAt": "2026-09-18T10:00:00+08:00"
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "Credits",
+    "value": "0"
+  }
+}

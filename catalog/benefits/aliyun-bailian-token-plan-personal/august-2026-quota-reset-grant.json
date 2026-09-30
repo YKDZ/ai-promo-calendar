@@ -1,1 +1,31 @@
-{"$schema":"../../schema/benefit.schema.json","schemaVersion":2,"accessChannelId":"aliyun-bailian-token-plan-personal","id":"august-2026-quota-reset-grant","evidenceStatus":"uncertain","sourceReferences":["https://help.aliyun.com/zh/model-studio/token-plan-personal-overview","https://www.aliyun.com/notice/118513"],"eligibilityConditions":[],"timeTrigger":{"kind":"unknown"},"timeCondition":{"kind":"unresolved","knownBoundaries":[{"role":"start","date":"2026-08-05","timeZone":null}]},"effect":{"kind":"unit_rate","entries":[{"meter":"本活动额外发放额度","measure":{"kind":"quota","unit":"7 天额度重置次数"},"per":"订阅用户","regular":"0","benefit":"1"}]}}
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "aliyun-bailian-token-plan-personal",
+  "id": "august-2026-quota-reset-grant",
+  "evidenceStatus": "uncertain",
+  "sourceReferences": [
+    "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
+    "https://www.aliyun.com/notice/118513"
+  ],
+  "eligibilityConditions": [],
+  "timeTrigger": { "kind": "unknown" },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      { "role": "start", "date": "2026-08-05", "timeZone": null }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "本活动额外发放额度",
+        "measure": { "kind": "quota", "unit": "7 天额度重置次数" },
+        "per": "订阅用户",
+        "regular": "0",
+        "benefit": "1"
+      }
+    ]
+  }
+}

@@ -1,1 +1,28 @@
-{"$schema":"../../schema/benefit.schema.json","schemaVersion":2,"accessChannelId":"baidu-qianfan-token-benefit-pack","id":"master-first-order-monthly-price","evidenceStatus":"supported","sourceReferences":["https://cloud.baidu.com/product/qianfan_home/token.html"],"eligibilityConditions":[{"kind":"one_of","field":"plan_tier","values":["养虾大师权益月包"]},{"kind":"one_of","field":"billing_mode","values":["预付费"]}],"timeTrigger":{"kind":"unknown"},"timeCondition":{"kind":"unresolved"},"effect":{"kind":"unit_rate","entries":[{"meter":"养虾大师权益月包","measure":{"kind":"money","currency":"CNY"},"per":"月","regular":"800","benefit":"680"}]}}
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "baidu-qianfan-token-benefit-pack",
+  "id": "master-first-order-monthly-price",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://cloud.baidu.com/product/qianfan_home/token.html"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "plan_tier", "values": ["养虾大师权益月包"] },
+    { "kind": "one_of", "field": "billing_mode", "values": ["预付费"] }
+  ],
+  "timeTrigger": { "kind": "unknown" },
+  "timeCondition": { "kind": "unresolved" },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "养虾大师权益月包",
+        "measure": { "kind": "money", "currency": "CNY" },
+        "per": "月",
+        "regular": "800",
+        "benefit": "680"
+      }
+    ]
+  }
+}
