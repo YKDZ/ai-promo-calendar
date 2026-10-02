@@ -225,17 +225,17 @@
     {
       "title": "百度千帆 Token Plan 企业版",
       "url": "https://cloud.baidu.com/product/qianfan_home/token_plan.html",
-      "description": "复核企业版按月套餐的当前限时价格、积分加赠与夜间权益；夜间“2折起”需取得完整模型名单和精确抵扣规则后再结构化。"
+      "description": "调查企业版价格优惠是否有公共政策窗口，并复核限时积分加赠与夜间权益；夜间“2折起”需取得完整模型名单和精确抵扣规则后再结构化。"
     },
     {
-      "title": "MiniMax Token Plan 国际版",
-      "url": "https://platform.minimax.io/subscribe/token-plan",
-      "description": "复核国际版 Token Plan 的年度与月度套餐价格、模型与共享额度；与 minimax.cn 渠道及普通按量 API 分开核对。"
+      "title": "MiniMax 国际版套餐官方文档索引",
+      "url": "https://platform.minimax.io/docs/llms.txt",
+      "description": "从官方索引调查 M Plan 限期活动及旧 Token Plan 存量政策；常规年付折扣不自动构成时间优惠，与 minimax.cn 渠道及普通按量 API 分开核对。"
     },
     {
       "title": "百度千帆 Token 福利包",
       "url": "https://cloud.baidu.com/product/qianfan_home/token.html",
-      "description": "复核面向 AI 模型与 Skills 的预付费月包首单价格和 Credits 规格；个人首购历史由官方原文承担，月包自身 1 个月有效期不冒充公共政策窗口。"
+      "description": "调查预付费月包是否出现有公共政策窗口的限期活动；常规首单优惠不自动构成时间优惠，月包自身 1 个月有效期不冒充公共政策窗口。"
     }
   ]
 }

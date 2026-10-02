@@ -8,7 +8,8 @@
     "kind": "plan"
   },
   "sourceReferences": [
-    "https://platform.minimax.io/subscribe/token-plan",
+    "https://platform.minimax.io/docs/m-plan/token-plan-notice",
+    "https://platform.minimax.io/docs/guides/pricing-token-plan",
     "https://platform.minimax.io/protocol/paid-agreement"
   ]
 }
