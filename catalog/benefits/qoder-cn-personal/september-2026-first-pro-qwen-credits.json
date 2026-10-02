@@ -4,22 +4,30 @@
   "accessChannelId": "qoder-cn-personal",
   "id": "september-2026-first-pro-qwen-credits",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://docs.qoder.cn/events/bogo"],
+  "sourceReferences": [
+    "https://docs.qoder.cn/events/bogo"
+  ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": ["个人用户"]
+      "values": [
+        "个人用户"
+      ]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["专业版"]
+      "values": [
+        "专业版"
+      ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["个人月付订阅"]
+      "values": [
+        "个人月付订阅"
+      ]
     }
   ],
   "timeTrigger": {
@@ -27,10 +35,7 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T10:00:00+08:00",
-    "endsAt": "2026-10-01T00:00:00+08:00",
-    "endInclusive": null,
-    "endPrecision": "minute"
+    "startsAt": "2026-09-01T10:00:00+08:00"
   },
   "effect": {
     "kind": "unit_rate",

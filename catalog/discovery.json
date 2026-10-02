@@ -236,6 +236,16 @@
       "title": "百度千帆 Token 福利包",
       "url": "https://cloud.baidu.com/product/qianfan_home/token.html",
       "description": "调查预付费月包是否出现有公共政策窗口的限期活动；常规首单优惠不自动构成时间优惠，月包自身 1 个月有效期不冒充公共政策窗口。"
+    },
+    {
+      "title": "百度千帆国庆特惠",
+      "url": "https://cloud.baidu.com/product/qianfan_home/campaign.html?track=home_banner",
+      "description": "复核国庆期间按量模型、Token Plan 个人/企业版与 Token 福利包的限时活动；活动购买窗口与到账后套餐有效期分开处理。"
+    },
+    {
+      "title": "MiniMax M Plan 月付首月优惠",
+      "url": "https://platform.minimax.io/docs/m-plan/monthly-offer",
+      "description": "复核 M Plan Go、Explore、Build 月付首月优惠与升级折算规则；升级实付因剩余订阅价值而异，不能把宣传 5 折直接当统一实付公式。"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "tencent-token-plan-personal",
-  "id": "september-2026-auto-max-promotional-rate",
+  "id": "october-2026-auto-lite-promotional-rate",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
@@ -12,22 +12,30 @@
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": ["个人用户"]
+      "values": [
+        "个人用户"
+      ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["通用 Token Plan"]
+      "values": [
+        "通用 Token Plan"
+      ]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Max"]
+      "values": [
+        "Lite"
+      ]
     },
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["tc-code-latest"]
+      "values": [
+        "tc-code-latest"
+      ]
     }
   ],
   "timeTrigger": {
@@ -35,8 +43,8 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T00:00:00+08:00",
-    "endsAt": "2026-09-30T23:59:59+08:00",
+    "startsAt": "2026-10-01T00:30:00+08:00",
+    "endsAt": "2026-10-30T12:00:00+08:00",
     "endInclusive": null,
     "endPrecision": "second"
   },
@@ -50,7 +58,7 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "18.43",
+        "regular": "22.285",
         "benefit": "11"
       },
       {
@@ -60,7 +68,7 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "18.43",
+        "regular": "22.285",
         "benefit": "11"
       },
       {
@@ -70,7 +78,7 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "18.43",
+        "regular": "22.285",
         "benefit": "11"
       }
     ]

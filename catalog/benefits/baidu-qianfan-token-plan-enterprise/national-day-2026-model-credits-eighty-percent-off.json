@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "baidu-qianfan-token-plan-enterprise",
+  "id": "national-day-2026-model-credits-eighty-percent-off",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://cloud.baidu.com/product/qianfan_home/campaign.html?track=home_banner"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": [
+        "Deepseek-V4.1-Flash",
+        "Deepseek-V4-Pro-0813",
+        "GLM 5.3"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-09-24",
+        "timeZone": null
+      },
+      {
+        "role": "end",
+        "date": "2026-10-07",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "积分抵扣系数",
+    "value": "0.2"
+  }
+}
