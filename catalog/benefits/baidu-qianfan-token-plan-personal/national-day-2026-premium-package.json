@@ -11,10 +11,7 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "国庆畅享套餐 尊享版",
-        "尊享加油包"
-      ]
+      "values": ["国庆畅享套餐 尊享版", "尊享加油包"]
     }
   ],
   "timeTrigger": {

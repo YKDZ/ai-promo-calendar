@@ -4,25 +4,17 @@
   "accessChannelId": "minimax-m-plan-international",
   "id": "monthly-first-month-2026-launch-offer",
   "evidenceStatus": "supported",
-  "sourceReferences": [
-    "https://platform.minimax.io/docs/m-plan/monthly-offer"
-  ],
+  "sourceReferences": ["https://platform.minimax.io/docs/m-plan/monthly-offer"],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Go",
-        "Explore",
-        "Build"
-      ]
+      "values": ["Go", "Explore", "Build"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "monthly"
-      ]
+      "values": ["monthly"]
     }
   ],
   "timeTrigger": {

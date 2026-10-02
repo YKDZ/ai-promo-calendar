@@ -4,34 +4,22 @@
   "accessChannelId": "qoder-cn-personal",
   "id": "september-2026-renewal-qwen-credits",
   "evidenceStatus": "supported",
-  "sourceReferences": [
-    "https://docs.qoder.cn/events/bogo"
-  ],
+  "sourceReferences": ["https://docs.qoder.cn/events/bogo"],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "account_type",
-      "values": [
-        "个人用户"
-      ]
+      "values": ["个人用户"]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "专业版",
-        "高级版",
-        "旗舰版"
-      ]
+      "values": ["专业版", "高级版", "旗舰版"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "个人月付续费",
-        "个人月付升级",
-        "个人月付到期重开"
-      ]
+      "values": ["个人月付续费", "个人月付升级", "个人月付到期重开"]
     }
   ],
   "timeTrigger": {

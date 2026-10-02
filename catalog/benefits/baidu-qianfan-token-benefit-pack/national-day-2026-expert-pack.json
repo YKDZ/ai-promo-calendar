@@ -11,9 +11,7 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "专家版"
-      ]
+      "values": ["专家版"]
     }
   ],
   "timeTrigger": {

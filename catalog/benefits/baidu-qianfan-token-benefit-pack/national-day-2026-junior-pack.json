@@ -11,9 +11,7 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "初级版"
-      ]
+      "values": ["初级版"]
     }
   ],
   "timeTrigger": {
