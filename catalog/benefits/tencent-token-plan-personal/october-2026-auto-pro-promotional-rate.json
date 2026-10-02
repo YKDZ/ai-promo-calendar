@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "tencent-token-plan-personal",
-  "id": "september-2026-glm-5-3-discount",
+  "id": "october-2026-auto-pro-promotional-rate",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
@@ -22,12 +22,12 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Lite", "Standard", "Pro", "Max"]
+      "values": ["Pro"]
     },
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["glm-5.3", "glm-5-3"]
+      "values": ["tc-code-latest"]
     }
   ],
   "timeTrigger": {
@@ -35,8 +35,8 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T00:00:00+08:00",
-    "endsAt": "2026-09-30T23:59:59+08:00",
+    "startsAt": "2026-10-01T00:30:00+08:00",
+    "endsAt": "2026-10-30T12:00:00+08:00",
     "endInclusive": null,
     "endPrecision": "second"
   },
@@ -50,8 +50,8 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "160",
-        "benefit": "136"
+        "regular": "18.687",
+        "benefit": "11"
       },
       {
         "meter": "输出",
@@ -60,8 +60,8 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "560",
-        "benefit": "476"
+        "regular": "18.687",
+        "benefit": "11"
       },
       {
         "meter": "缓存命中输入",
@@ -70,8 +70,8 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "40",
-        "benefit": "34"
+        "regular": "18.687",
+        "benefit": "11"
       }
     ]
   }

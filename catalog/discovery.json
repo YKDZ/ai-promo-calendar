@@ -216,6 +216,36 @@
       "title": "火山方舟在线推理（常规）",
       "url": "https://docs.volcengine.com/docs/ark/online-inference-standard?lang=zh",
       "description": "从按量后付费模型推理的官方说明发现语言模型的限时价格或额度；专用媒体生成模型的优惠不收录。"
+    },
+    {
+      "title": "百度千帆 Token Plan 个人版",
+      "url": "https://cloud.baidu.com/product/codingplan.html",
+      "description": "复核个人版当前月度首购价、续费活动及全时段梯度折扣；首购、续费历史与每日限量等账户或库存条件由官方原文承担，梯度折扣仅在取得完整窗口和精确模型费率后结构化。"
+    },
+    {
+      "title": "百度千帆 Token Plan 企业版",
+      "url": "https://cloud.baidu.com/product/qianfan_home/token_plan.html",
+      "description": "调查企业版价格优惠是否有公共政策窗口，并复核限时积分加赠与夜间权益；夜间“2折起”需取得完整模型名单和精确抵扣规则后再结构化。"
+    },
+    {
+      "title": "MiniMax 国际版套餐官方文档索引",
+      "url": "https://platform.minimax.io/docs/llms.txt",
+      "description": "从官方索引调查 M Plan 限期活动及旧 Token Plan 存量政策；常规年付折扣不自动构成时间优惠，与 minimax.cn 渠道及普通按量 API 分开核对。"
+    },
+    {
+      "title": "百度千帆 Token 福利包",
+      "url": "https://cloud.baidu.com/product/qianfan_home/token.html",
+      "description": "调查预付费月包是否出现有公共政策窗口的限期活动；常规首单优惠不自动构成时间优惠，月包自身 1 个月有效期不冒充公共政策窗口。"
+    },
+    {
+      "title": "百度千帆国庆特惠",
+      "url": "https://cloud.baidu.com/product/qianfan_home/campaign.html?track=home_banner",
+      "description": "复核国庆期间按量模型、Token Plan 个人/企业版与 Token 福利包的限时活动；活动购买窗口与到账后套餐有效期分开处理。"
+    },
+    {
+      "title": "MiniMax M Plan 月付首月优惠",
+      "url": "https://platform.minimax.io/docs/m-plan/monthly-offer",
+      "description": "复核 M Plan Go、Explore、Build 月付首月优惠与升级折算规则；升级实付因剩余订阅价值而异，不能把宣传 5 折直接当统一实付公式。"
     }
   ]
 }

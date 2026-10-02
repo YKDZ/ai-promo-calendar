@@ -1,0 +1,41 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "baidu-qianfan-payg-api",
+  "id": "national-day-2026-model-price-forty-percent-off",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://cloud.baidu.com/product/qianfan_home/campaign.html?track=home_banner"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["DeepSeek-V4.1-Flash", "DeepSeek-V4-Pro-0813", "GLM 5.3"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-09-24",
+        "timeZone": null
+      },
+      {
+        "role": "end",
+        "date": "2026-10-07",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "price",
+    "unit": "按量 token 价格",
+    "value": "0.6"
+  }
+}

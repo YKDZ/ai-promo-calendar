@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "baidu-qianfan-token-plan-personal",
+  "id": "max-limited-monthly-price",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://cloud.baidu.com/product/codingplan.html",
+    "https://cloud.baidu.com/product/qianfan_home/token-plan-activity.html?pageId=469472b3-0ba6-4af8-8ac7-ba2450257829",
+    "https://qianfan.cloud.baidu.com/qianfandev/topic/688722"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "plan_tier", "values": ["Max"] },
+    { "kind": "one_of", "field": "billing_mode", "values": ["按月"] }
+  ],
+  "timeTrigger": { "kind": "subscription_order" },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      { "role": "start", "date": "2026-07-13", "timeZone": null }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Max 套餐订阅",
+        "measure": { "kind": "money", "currency": "CNY" },
+        "per": "月",
+        "regular": "600",
+        "benefit": "299.9"
+      }
+    ]
+  }
+}

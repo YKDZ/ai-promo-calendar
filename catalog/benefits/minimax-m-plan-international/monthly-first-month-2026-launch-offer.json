@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "minimax-m-plan-international",
+  "id": "monthly-first-month-2026-launch-offer",
+  "evidenceStatus": "supported",
+  "sourceReferences": ["https://platform.minimax.io/docs/m-plan/monthly-offer"],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["Go", "Explore", "Build"]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["monthly"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "subscription_order"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "end",
+        "date": "2026-10-14",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "unresolved"
+  }
+}

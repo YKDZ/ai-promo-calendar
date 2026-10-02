@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "volcengine-ark-agent-plan-personal",
+  "id": "auto-mode-2026-model-discount",
+  "evidenceStatus": "uncertain",
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-model-discount?lang=zh",
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-afp-credits-billing-rules?lang=zh"
+  ],
+  "eligibilityConditions": [
+    { "kind": "one_of", "field": "model", "values": ["Auto 模式"] }
+  ],
+  "timeTrigger": { "kind": "model_request" },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      { "role": "start", "date": "2026-06-10", "timeZone": null },
+      { "role": "end", "date": "2026-11-08", "timeZone": null }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Auto 模式输入/输出 token",
+        "measure": { "kind": "credits", "unit": "AFP" },
+        "per": "10,000 tokens",
+        "benefit": "0.5"
+      }
+    ]
+  }
+}

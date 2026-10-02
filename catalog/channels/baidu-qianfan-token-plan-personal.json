@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "百度智能云千帆",
+  "accessChannel": {
+    "id": "baidu-qianfan-token-plan-personal",
+    "name": "百度千帆 Token Plan 个人版",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://cloud.baidu.com/product/codingplan.html",
+    "https://cloud.baidu.com/product/qianfan_home/token-plan-activity.html?pageId=469472b3-0ba6-4af8-8ac7-ba2450257829",
+    "https://qianfan.cloud.baidu.com/qianfandev/topic/688722"
+  ]
+}

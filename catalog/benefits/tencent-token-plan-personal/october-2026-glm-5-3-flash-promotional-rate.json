@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "tencent-token-plan-personal",
-  "id": "september-2026-minimax-m3-half-price",
+  "id": "october-2026-glm-5-3-flash-promotional-rate",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
@@ -27,7 +27,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["minimax-m3", "minimax-m-3-0"]
+      "values": ["glm-5.3-flash"]
     }
   ],
   "timeTrigger": {
@@ -35,8 +35,8 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T00:00:00+08:00",
-    "endsAt": "2026-09-30T23:59:59+08:00",
+    "startsAt": "2026-10-01T00:30:00+08:00",
+    "endsAt": "2026-10-30T12:00:00+08:00",
     "endInclusive": null,
     "endPrecision": "second"
   },
@@ -44,64 +44,34 @@
     "kind": "unit_rate",
     "entries": [
       {
-        "meter": "未命中缓存输入（输入长度 ≤ 512k）",
+        "meter": "未命中缓存输入",
         "measure": {
           "kind": "credits",
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "42",
-        "benefit": "21"
+        "regular": "16",
+        "benefit": "11.2"
       },
       {
-        "meter": "输出（输入长度 ≤ 512k）",
+        "meter": "输出",
         "measure": {
           "kind": "credits",
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "168",
-        "benefit": "84"
+        "regular": "56",
+        "benefit": "39.2"
       },
       {
-        "meter": "缓存命中输入（输入长度 ≤ 512k）",
+        "meter": "缓存命中输入",
         "measure": {
           "kind": "credits",
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "8.4",
-        "benefit": "4.2"
-      },
-      {
-        "meter": "未命中缓存输入（输入长度 > 512k）",
-        "measure": {
-          "kind": "credits",
-          "unit": "积分"
-        },
-        "per": "1M tokens",
-        "regular": "84",
-        "benefit": "42"
-      },
-      {
-        "meter": "输出（输入长度 > 512k）",
-        "measure": {
-          "kind": "credits",
-          "unit": "积分"
-        },
-        "per": "1M tokens",
-        "regular": "336",
-        "benefit": "168"
-      },
-      {
-        "meter": "缓存命中输入（输入长度 > 512k）",
-        "measure": {
-          "kind": "credits",
-          "unit": "积分"
-        },
-        "per": "1M tokens",
-        "regular": "16.8",
-        "benefit": "8.4"
+        "regular": "4.6",
+        "benefit": "3.22"
       }
     ]
   }

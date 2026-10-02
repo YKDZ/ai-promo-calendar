@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "tencent-token-plan-personal",
-  "id": "september-2026-hy3-202608-half-price",
+  "id": "october-2026-kimi-k3-promotional-rate",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.tencent.com/document/product/1823/133811",
@@ -17,7 +17,7 @@
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["Hy Token Plan"]
+      "values": ["通用 Token Plan"]
     },
     {
       "kind": "one_of",
@@ -27,7 +27,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["hy3-202608"]
+      "values": ["kimi-k3"]
     }
   ],
   "timeTrigger": {
@@ -35,8 +35,8 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T00:00:00+08:00",
-    "endsAt": "2026-09-30T23:59:59+08:00",
+    "startsAt": "2026-10-01T00:30:00+08:00",
+    "endsAt": "2026-10-30T12:00:00+08:00",
     "endInclusive": null,
     "endPrecision": "second"
   },
@@ -50,8 +50,8 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "20",
-        "benefit": "10"
+        "regular": "400",
+        "benefit": "300"
       },
       {
         "meter": "输出",
@@ -60,8 +60,8 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "80",
-        "benefit": "40"
+        "regular": "2000",
+        "benefit": "1500"
       },
       {
         "meter": "缓存命中输入",
@@ -70,8 +70,8 @@
           "unit": "积分"
         },
         "per": "1M tokens",
-        "regular": "5",
-        "benefit": "2.5"
+        "regular": "40",
+        "benefit": "30"
       }
     ]
   }
