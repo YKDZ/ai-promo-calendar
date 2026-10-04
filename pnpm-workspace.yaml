@@ -37,7 +37,7 @@ catalog:
   "@vue/tsconfig": ^0.9.1
   "oxfmt": ^0.70.0
   "oxlint": ^1.85.0
-  "oxlint-tsgolint": ^7.0.2001
+  "oxlint-tsgolint": ^7.0.2003
   "pinia": ^4.0.2
   "tailwindcss": ^4.3.3
   "turbo": 2.11.3
