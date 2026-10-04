@@ -30,7 +30,7 @@ catalog:
   "json-schema-to-typescript": 16.0.0
   "@playwright/test": ^1.62.1
   "@tailwindcss/vite": ^4.3.3
-  "@types/node": ^24.13.3
+  "@types/node": ^24.19.0
   "@types/web-bluetooth": ^0.0.21
   "@vitejs/plugin-vue": ^6.0.8
   "@vue/devtools-api": ^8.1.5
