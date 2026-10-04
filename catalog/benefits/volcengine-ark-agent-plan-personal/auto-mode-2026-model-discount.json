@@ -3,7 +3,7 @@
   "schemaVersion": 2,
   "accessChannelId": "volcengine-ark-agent-plan-personal",
   "id": "auto-mode-2026-model-discount",
-  "evidenceStatus": "uncertain",
+  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.volcengine.com/docs/ark/agent-plan-personal-model-discount?lang=zh",
     "https://docs.volcengine.com/docs/ark/agent-plan-personal-afp-credits-billing-rules?lang=zh"

@@ -38,7 +38,7 @@
     "knownBoundaries": [
       {
         "role": "end",
-        "date": "2027-01-01",
+        "date": "2026-12-31",
         "timeZone": null
       }
     ]
