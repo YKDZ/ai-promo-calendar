@@ -20,7 +20,14 @@
     "kind": "model_request"
   },
   "timeCondition": {
-    "kind": "unresolved"
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "start",
+        "date": "2026-09-17",
+        "timeZone": null
+      }
+    ]
   },
   "effect": {
     "kind": "unresolved"

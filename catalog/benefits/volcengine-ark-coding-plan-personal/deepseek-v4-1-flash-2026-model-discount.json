@@ -23,6 +23,11 @@
     "kind": "unresolved",
     "knownBoundaries": [
       {
+        "role": "start",
+        "date": "2026-09-15",
+        "timeZone": null
+      },
+      {
         "role": "end",
         "date": "2026-10-30",
         "timeZone": null
