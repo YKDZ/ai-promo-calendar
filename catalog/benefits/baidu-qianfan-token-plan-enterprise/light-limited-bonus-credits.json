@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "baidu-qianfan-token-plan-enterprise",
   "id": "light-limited-bonus-credits",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.baidu.com/product/qianfan_home/token_plan.html"
   ],

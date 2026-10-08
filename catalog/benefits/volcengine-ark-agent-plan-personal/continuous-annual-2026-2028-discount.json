@@ -1,11 +1,11 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "volcengine-ark-agent-plan-personal",
   "id": "continuous-annual-2026-2028-discount",
-  "evidenceStatus": "uncertain",
   "sourceReferences": [
-    "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh"
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh",
+    "https://docs.volcengine.com/docs/82379/2479130?lang=zh"
   ],
   "eligibilityConditions": [
     {

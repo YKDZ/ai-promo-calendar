@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "xiaomi-mimo-token-plan-team",
   "id": "night-credits-twenty-percent-off",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://mimo.mi.com/docs/zh-CN/price/token-plan",
     "https://mimo.mi.com/docs/en-US/price/token-plan"
