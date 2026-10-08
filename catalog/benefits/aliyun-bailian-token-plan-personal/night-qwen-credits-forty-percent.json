@@ -5,13 +5,14 @@
   "id": "night-qwen-credits-forty-percent",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
-    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview"
+    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview",
+    "https://docs.agent.bailian.aliyun.com/zh/token-plan/token-plan-personal-overview"
   ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["qwen3.8-max", "qwen3.8-flash"]
+      "values": ["qwen3.8-max", "qwen3.8-flash", "qwen3.7-max"]
     },
     {
       "kind": "one_of",
