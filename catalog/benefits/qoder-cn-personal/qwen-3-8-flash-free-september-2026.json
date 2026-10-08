@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "qoder-cn-personal",
   "id": "qwen-3-8-flash-free-september-2026",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.qoder.cn/events/flashoffer",
     "https://docs.qoder.cn/events/100credits"

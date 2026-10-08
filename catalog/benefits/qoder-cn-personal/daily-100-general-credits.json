@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "qoder-cn-personal",
   "id": "daily-100-general-credits",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.qoder.cn/events/100credits",
     "https://docs.qoder.cn/product-overview/credits"

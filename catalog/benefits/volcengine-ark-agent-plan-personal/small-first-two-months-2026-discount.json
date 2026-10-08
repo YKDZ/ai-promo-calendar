@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "volcengine-ark-agent-plan-personal",
   "id": "small-first-two-months-2026-discount",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.volcengine.com/docs/ark/agent-plan-personal-universal-promotion?lang=zh",
     "https://www.volcengine.com/activity/agentplan"

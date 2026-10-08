@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "openai-chatgpt-codex",
   "id": "student-2500-codex-credits",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.openai.com/en/articles/20001147",
     "https://developers.openai.com/community/students"

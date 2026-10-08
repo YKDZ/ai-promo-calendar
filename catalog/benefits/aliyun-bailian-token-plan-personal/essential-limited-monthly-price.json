@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "aliyun-bailian-token-plan-personal",
   "id": "essential-limited-monthly-price",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
     "https://help.aliyun.com/en/model-studio/token-plan-personal-overview"

@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "qoder-cn-personal",
   "id": "september-2026-first-pro-qwen-credits",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.qoder.cn/events/bogo",
     "https://docs.qoder.cn/en/events/bogo"
@@ -22,8 +21,7 @@
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["个人月付订阅"],
-      "uncertainValues": ["个人年付订阅"]
+      "values": ["个人月付订阅"]
     }
   ],
   "timeTrigger": {

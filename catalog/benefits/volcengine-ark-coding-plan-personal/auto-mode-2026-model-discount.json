@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "volcengine-ark-coding-plan-personal",
   "id": "auto-mode-2026-model-discount",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
     "https://docs.volcengine.com/docs/ark/coding-plan-personal-plan-overview?lang=zh"
