@@ -12,7 +12,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["Gemini 3.6 Flash", "Gemini 3.7 Flash", "Gemini 3.8 Flash"]
+      "values": ["Gemini 3.8 Flash"]
     },
     {
       "kind": "one_of",

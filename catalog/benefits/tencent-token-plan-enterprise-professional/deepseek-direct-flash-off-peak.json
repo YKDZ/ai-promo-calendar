@@ -1,0 +1,91 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "evidenceStatus": "supported",
+  "accessChannelId": "tencent-token-plan-enterprise-professional",
+  "id": "deepseek-direct-flash-off-peak",
+  "sourceReferences": [
+    "https://cloud.tencent.com/document/product/1823/130659"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "region",
+      "values": ["广州", "新加坡"]
+    },
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": [
+        "DeepSeek-V4.1-Flash 原厂直供",
+        "DeepSeek-V4-Flash 0731 正式版 原厂直供",
+        "DeepSeek-V4-Flash-Vision-Exp 原厂直供"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "validFrom": "2026-08-29T00:00:00+08:00",
+    "windows": [
+      {
+        "weekdays": [1, 2, 3, 4, 5],
+        "start": "00:00",
+        "end": "09:00"
+      },
+      {
+        "weekdays": [1, 2, 3, 4, 5],
+        "start": "12:00",
+        "end": "14:00"
+      },
+      {
+        "weekdays": [1, 2, 3, 4, 5],
+        "start": "18:00",
+        "end": "24:00"
+      },
+      {
+        "weekdays": [6, 7],
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "命中缓存输入",
+        "measure": {
+          "kind": "credits",
+          "unit": "积分"
+        },
+        "per": "1M tokens",
+        "regular": "4",
+        "benefit": "2"
+      },
+      {
+        "meter": "未命中缓存输入",
+        "measure": {
+          "kind": "credits",
+          "unit": "积分"
+        },
+        "per": "1M tokens",
+        "regular": "200",
+        "benefit": "100"
+      },
+      {
+        "meter": "输出",
+        "measure": {
+          "kind": "credits",
+          "unit": "积分"
+        },
+        "per": "1M tokens",
+        "regular": "800",
+        "benefit": "400"
+      }
+    ]
+  }
+}

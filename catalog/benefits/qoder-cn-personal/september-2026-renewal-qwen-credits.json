@@ -27,10 +27,7 @@
   },
   "timeCondition": {
     "kind": "absolute",
-    "startsAt": "2026-09-01T10:00:00+08:00",
-    "endsAt": "2026-10-01T00:00:00+08:00",
-    "endInclusive": null,
-    "endPrecision": "minute"
+    "startsAt": "2026-09-01T10:00:00+08:00"
   },
   "effect": {
     "kind": "unit_rate",

@@ -1,0 +1,92 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "zhipu-glm-coding-plan-team",
+  "id": "model-off-peak-half-credits",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://docs.bigmodel.cn/cn/coding-plan/team",
+    "https://docs.bigmodel.cn/cn/coding-plan/tool/others"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["GLM-5.3", "GLM-5.3-Flash"]
+    },
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": ["团队标准版", "团队高级版"]
+    },
+    {
+      "kind": "one_of",
+      "field": "tool",
+      "values": [
+        "ZCode",
+        "Claude Code",
+        "Claude for IDE",
+        "Codex",
+        "OpenCode",
+        "Pi Coding Agent",
+        "TRAE",
+        "CodeBuddy",
+        "Lingma",
+        "Qoder",
+        "Kilo",
+        "MonkeyCode",
+        "Cline",
+        "Droid",
+        "Roo",
+        "Crush",
+        "Goose",
+        "Cursor",
+        "AutoClaw",
+        "WorkBuddy",
+        "OpenClaw",
+        "Cherry Studio",
+        "Hermes Agent"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["套餐内额度"]
+    },
+    {
+      "kind": "one_of",
+      "field": "meter",
+      "values": ["Input", "Cached Input", "Output"]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "windows": [
+      {
+        "weekdays": [1, 2, 3, 4, 5],
+        "start": "00:00",
+        "end": "14:00"
+      },
+      {
+        "weekdays": [1, 2, 3, 4, 5],
+        "start": "18:00",
+        "end": "24:00"
+      },
+      {
+        "weekdays": [6, 7],
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ]
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "积分",
+    "value": "0.5"
+  }
+}

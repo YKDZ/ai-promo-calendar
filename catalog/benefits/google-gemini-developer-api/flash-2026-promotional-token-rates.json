@@ -18,7 +18,7 @@
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["Paid Standard", "Paid Batch", "Paid Flex", "Paid Priority"]
+      "values": ["Paid Standard"]
     },
     {
       "kind": "one_of",
@@ -38,15 +38,44 @@
     "knownBoundaries": [
       {
         "role": "end",
-        "date": "2027-01-01",
+        "date": "2026-12-31",
         "timeZone": null
       }
     ]
   },
   "effect": {
-    "kind": "multiplier",
-    "target": "price",
-    "unit": "USD Paid Tier token rates",
-    "value": "0.5"
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Input price",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "1.50",
+        "benefit": "0.75"
+      },
+      {
+        "meter": "Output price (including thinking tokens)",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "7.50",
+        "benefit": "3.75"
+      },
+      {
+        "meter": "Context caching price",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "0.15",
+        "benefit": "0.075"
+      }
+    ]
   }
 }

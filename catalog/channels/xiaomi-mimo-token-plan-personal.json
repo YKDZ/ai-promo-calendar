@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "小米 MiMo",
+  "accessChannel": {
+    "id": "xiaomi-mimo-token-plan-personal",
+    "name": "小米 MiMo Token Plan 个人版",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://mimo.mi.com/docs/zh-CN/price/token-plan",
+    "https://mimo.mi.com/docs/en-US/price/token-plan"
+  ]
+}

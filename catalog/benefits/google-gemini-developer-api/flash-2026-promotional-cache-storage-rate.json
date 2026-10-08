@@ -30,15 +30,24 @@
     "knownBoundaries": [
       {
         "role": "end",
-        "date": "2027-01-01",
+        "date": "2026-12-31",
         "timeZone": null
       }
     ]
   },
   "effect": {
-    "kind": "multiplier",
-    "target": "price",
-    "unit": "USD Paid Tier context-cache storage rates",
-    "value": "0.5"
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Context cache storage price",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens·hour",
+        "regular": "1.00",
+        "benefit": "0.50"
+      }
+    ]
   }
 }

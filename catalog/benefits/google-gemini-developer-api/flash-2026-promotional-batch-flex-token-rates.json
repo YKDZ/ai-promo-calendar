@@ -1,0 +1,81 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "google-gemini-developer-api",
+  "id": "flash-2026-promotional-batch-flex-token-rates",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://ai.google.dev/gemini-api/docs/pricing",
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": ["gemini-3.6-flash", "gemini-3.7-flash", "gemini-3.8-flash"]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": ["Paid Batch", "Paid Flex"]
+    },
+    {
+      "kind": "one_of",
+      "field": "meter",
+      "values": [
+        "Input price",
+        "Output price (including thinking tokens)",
+        "Context caching price"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "unresolved",
+    "knownBoundaries": [
+      {
+        "role": "end",
+        "date": "2026-12-31",
+        "timeZone": null
+      }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Input price",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "0.75",
+        "benefit": "0.375"
+      },
+      {
+        "meter": "Output price (including thinking tokens)",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "3.75",
+        "benefit": "1.875"
+      },
+      {
+        "meter": "Context caching price",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens",
+        "regular": "0.075",
+        "benefit": "0.0375"
+      }
+    ]
+  }
+}

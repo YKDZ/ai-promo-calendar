@@ -6,7 +6,8 @@
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
-    "https://www.volcengine.com/activity/agentplan"
+    "https://www.volcengine.com/activity/agentplan",
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-afp-credits-billing-rules?lang=zh"
   ],
   "eligibilityConditions": [
     {
@@ -34,9 +35,28 @@
     ]
   },
   "effect": {
-    "kind": "multiplier",
-    "target": "credits",
-    "unit": "模型抵扣系数",
-    "value": "0.5"
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "输入",
+        "measure": {
+          "kind": "credits",
+          "unit": "AFP"
+        },
+        "per": "10,000 tokens",
+        "regular": "2.5",
+        "benefit": "1.25"
+      },
+      {
+        "meter": "输出",
+        "measure": {
+          "kind": "credits",
+          "unit": "AFP"
+        },
+        "per": "10,000 tokens",
+        "regular": "2.5",
+        "benefit": "1.25"
+      }
+    ]
   }
 }

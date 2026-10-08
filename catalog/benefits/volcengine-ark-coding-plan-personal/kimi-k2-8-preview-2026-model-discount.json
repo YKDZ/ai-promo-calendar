@@ -6,8 +6,8 @@
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
-    "https://docs.volcengine.com/docs/ark/coding-plan-personal-feature-release?lang=zh",
-    "https://docs.volcengine.com/docs/ark/coding-plan-personal-get-started?lang=zh"
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-plan-overview?lang=zh",
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-feature-release?lang=zh"
   ],
   "eligibilityConditions": [
     {
@@ -24,7 +24,7 @@
     "knownBoundaries": [
       {
         "role": "end",
-        "date": "2026-09-30",
+        "date": "2026-10-14",
         "timeZone": null
       }
     ]
