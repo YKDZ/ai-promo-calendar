@@ -12,7 +12,7 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["qwen3.8-max", "qwen3.8-flash", "qwen3.7-max"]
+      "values": ["qwen3.8-max", "qwen3.8-flash"]
     },
     {
       "kind": "one_of",
