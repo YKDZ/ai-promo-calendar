@@ -15,4 +15,8 @@ export type {
   TimedBenefit,
 } from "./model.ts";
 export { validateCatalog } from "./validate.ts";
-export type { ValidationIssue, ValidationResult } from "./validate.ts";
+export type {
+  ValidationIssue,
+  ValidationOptions,
+  ValidationResult,
+} from "./validate.ts";

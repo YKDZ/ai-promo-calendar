@@ -69,6 +69,8 @@ jobs:
           CATALOG_SCOPE_INCLUDE_WORKTREE: "true"
         run: node catalog/src/pr-scope.ts
       - name: Validate catalog data
+        env:
+          CATALOG_CHECK_EXPIRATION: "true"
         run: |
           pnpm --filter @ai-promo-calendar/catalog format:check
           pnpm run validate:catalog
