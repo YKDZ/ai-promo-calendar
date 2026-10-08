@@ -33,7 +33,7 @@ async function collectFiles(relativePath: string): Promise<CatalogFile[]> {
   return files;
 }
 
-void test("当前目录的数据文件与跨文件引用符合契约", async () => {
+void test("当前目录的数据文件与跨文件引用符合契约", async (context) => {
   const files = [
     {
       path: "discovery.json",
@@ -42,7 +42,14 @@ void test("当前目录的数据文件与跨文件引用符合契约", async () 
     ...(await collectFiles("channels")),
     ...(await collectFiles("benefits")),
   ];
-  const result = validateCatalog(files);
+  const options =
+    process.env.CATALOG_CHECK_EXPIRATION === "true"
+      ? { asOf: new Date().toISOString() }
+      : {};
+  if (options.asOf !== undefined) {
+    context.diagnostic(`维护发布判断时点：${options.asOf}`);
+  }
+  const result = validateCatalog(files, options);
   assert.ok(
     result.valid,
     result.valid

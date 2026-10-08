@@ -3,6 +3,7 @@ import { Ajv } from "ajv";
 import benefitSchema from "../schema/benefit.schema.json" with { type: "json" };
 import channelSchema from "../schema/channel.schema.json" with { type: "json" };
 import discoverySchema from "../schema/discovery.schema.json" with { type: "json" };
+import { expiredBoundary } from "./expiration.ts";
 import type {
   Catalog,
   CatalogFile,
@@ -21,6 +22,11 @@ export type ValidationIssue = {
 export type ValidationResult =
   | { valid: true; catalog: Catalog }
   | { valid: false; issues: ValidationIssue[] };
+
+export type ValidationOptions = {
+  /** 维护发布检查的显式判断时点；省略时只校验结构与业务不变量。 */
+  asOf?: string;
+};
 
 const channelPath = /^channels\/([a-z0-9]+(?:-[a-z0-9]+)*)\.json$/;
 const benefitPath =
@@ -176,25 +182,28 @@ function checkBenefit(
       );
     }
     seenEligibilityFields.set(condition.field, index);
-
-    if (
-      condition.kind !== "one_of" ||
-      condition.uncertainValues === undefined
-    ) {
-      return;
-    }
-    const supportedValues = new Set(condition.values);
-    condition.uncertainValues.forEach((value, valueIndex) => {
-      if (supportedValues.has(value)) {
-        issue(
-          issues,
-          file,
-          `/eligibilityConditions/${index}/uncertainValues/${valueIndex}`,
-          "同一资格值不能同时标为确定适用和不确定",
-        );
-      }
-    });
   });
+  if (benefit.schemaVersion === 2) {
+    benefit.eligibilityConditions.forEach((condition, index) => {
+      if (
+        condition.kind !== "one_of" ||
+        condition.uncertainValues === undefined
+      ) {
+        return;
+      }
+      const supportedValues = new Set(condition.values);
+      condition.uncertainValues.forEach((value, valueIndex) => {
+        if (supportedValues.has(value)) {
+          issue(
+            issues,
+            file,
+            `/eligibilityConditions/${index}/uncertainValues/${valueIndex}`,
+            "同一资格值不能同时标为确定适用和不确定",
+          );
+        }
+      });
+    });
+  }
 
   const time = benefit.timeCondition;
   if (time.kind === "absolute") {
@@ -469,6 +478,7 @@ function checkBenefit(
 
 export function validateCatalog(
   files: readonly CatalogFile[],
+  options: ValidationOptions = {},
 ): ValidationResult {
   const issues: ValidationIssue[] = [];
   const channels: { file: string; value: ChannelRecord }[] = [];
@@ -632,6 +642,24 @@ export function validateCatalog(
 
   if (issues.length > 0 || discovery === undefined) {
     return { valid: false, issues };
+  }
+  if (options.asOf !== undefined) {
+    const asOf = instant(options.asOf);
+    if (asOf === undefined) {
+      throw new RangeError("asOf 必须是包含时区偏移的有效判断时点");
+    }
+    for (const benefit of benefits) {
+      const path = expiredBoundary(benefit.value.timeCondition, asOf);
+      if (path !== undefined) {
+        issue(
+          issues,
+          benefit.file,
+          path,
+          "政策触发窗口在判断时点已确定结束；请复核后更新或撤出",
+        );
+      }
+    }
+    if (issues.length > 0) return { valid: false, issues };
   }
   return {
     valid: true,

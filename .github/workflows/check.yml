@@ -33,6 +33,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Validate catalog
+        env:
+          CATALOG_CHECK_EXPIRATION: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'catalog-update/') && 'true' || 'false' }}
         run: pnpm run validate:catalog
 
   catalog-pr-scope:
