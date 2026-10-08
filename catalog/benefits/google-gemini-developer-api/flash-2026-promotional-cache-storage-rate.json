@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "google-gemini-developer-api",
   "id": "flash-2026-promotional-cache-storage-rate",
-  "evidenceStatus": "supported",
   "sourceReferences": ["https://ai.google.dev/gemini-api/docs/pricing"],
   "eligibilityConditions": [
     {

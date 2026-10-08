@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "baidu-qianfan-token-plan-personal",
   "id": "max-limited-monthly-price",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://cloud.baidu.com/product/codingplan.html",
     "https://cloud.baidu.com/product/qianfan_home/token-plan-activity.html?pageId=469472b3-0ba6-4af8-8ac7-ba2450257829",

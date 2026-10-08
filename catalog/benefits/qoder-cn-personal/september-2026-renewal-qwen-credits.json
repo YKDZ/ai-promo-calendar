@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "qoder-cn-personal",
   "id": "september-2026-renewal-qwen-credits",
-  "evidenceStatus": "supported",
   "sourceReferences": ["https://docs.qoder.cn/events/bogo"],
   "eligibilityConditions": [
     {

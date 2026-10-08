@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "aliyun-bailian-token-plan-team",
   "id": "advanced-seat-limited-price",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-team-overview",
     "https://help.aliyun.com/en/model-studio/token-plan-team-overview"

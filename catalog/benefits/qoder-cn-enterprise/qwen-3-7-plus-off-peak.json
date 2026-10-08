@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "qoder-cn-enterprise",
   "id": "qwen-3-7-plus-off-peak",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.qoder.cn/product-overview/qwen-3-7-series-model-staggering-discount",
     "https://docs.qoder.cn/product-overview/credits",

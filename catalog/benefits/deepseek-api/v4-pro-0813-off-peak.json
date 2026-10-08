@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "deepseek-api",
   "id": "v4-pro-0813-off-peak",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
     "https://api-docs.deepseek.com/updates/",

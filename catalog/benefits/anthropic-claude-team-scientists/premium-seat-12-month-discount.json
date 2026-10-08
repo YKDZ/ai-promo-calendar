@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "anthropic-claude-team-scientists",
   "id": "premium-seat-12-month-discount",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://claude.com/programs/team-plan-for-scientists",
     "https://support.claude.com/en/articles/16634237-claude-team-plan-for-scientists",

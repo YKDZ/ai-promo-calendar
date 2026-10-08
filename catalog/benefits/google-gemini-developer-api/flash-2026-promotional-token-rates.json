@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "google-gemini-developer-api",
   "id": "flash-2026-promotional-token-rates",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://ai.google.dev/gemini-api/docs/pricing",
     "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",

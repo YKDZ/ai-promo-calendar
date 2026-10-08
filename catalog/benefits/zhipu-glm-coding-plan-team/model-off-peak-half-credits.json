@@ -1,9 +1,8 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "accessChannelId": "zhipu-glm-coding-plan-team",
   "id": "model-off-peak-half-credits",
-  "evidenceStatus": "supported",
   "sourceReferences": [
     "https://docs.bigmodel.cn/cn/coding-plan/team",
     "https://docs.bigmodel.cn/cn/coding-plan/tool/others"

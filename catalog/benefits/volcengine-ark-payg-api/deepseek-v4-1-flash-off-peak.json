@@ -1,7 +1,6 @@
 {
   "$schema": "../../schema/benefit.schema.json",
-  "schemaVersion": 2,
-  "evidenceStatus": "supported",
+  "schemaVersion": 3,
   "accessChannelId": "volcengine-ark-payg-api",
   "id": "deepseek-v4-1-flash-off-peak",
   "sourceReferences": [
