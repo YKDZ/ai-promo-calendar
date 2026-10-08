@@ -13,16 +13,12 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "Gemini 3.7 Flash"
-      ]
+      "values": ["Gemini 3.7 Flash"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "usage-based GitHub AI Credits"
-      ]
+      "values": ["usage-based GitHub AI Credits"]
     }
   ],
   "timeTrigger": {

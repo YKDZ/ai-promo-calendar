@@ -7,7 +7,5 @@
     "name": "GLM Coding Plan 个人版",
     "kind": "plan"
   },
-  "sourceReferences": [
-    "https://docs.bigmodel.cn/cn/coding-plan/overview"
-  ]
+  "sourceReferences": ["https://docs.bigmodel.cn/cn/coding-plan/overview"]
 }

@@ -12,17 +12,12 @@
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "在线推理（常规）"
-      ]
+      "values": ["在线推理（常规）"]
     },
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "deepseek-v4.1-flash",
-        "deepseek-v4-1-flash"
-      ]
+      "values": ["deepseek-v4.1-flash", "deepseek-v4-1-flash"]
     }
   ],
   "timeTrigger": {
@@ -33,43 +28,22 @@
     "timeZone": "Asia/Shanghai",
     "windows": [
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "00:00",
         "end": "09:00"
       },
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "12:00",
         "end": "14:00"
       },
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "18:00",
         "end": "24:00"
       },
       {
-        "weekdays": [
-          6,
-          7
-        ],
+        "weekdays": [6, 7],
         "start": "00:00",
         "end": "24:00"
       }

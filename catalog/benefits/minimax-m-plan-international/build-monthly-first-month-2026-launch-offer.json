@@ -12,16 +12,12 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Build"
-      ]
+      "values": ["Build"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "monthly · New purchases"
-      ]
+      "values": ["monthly · New purchases"]
     }
   ],
   "timeTrigger": {

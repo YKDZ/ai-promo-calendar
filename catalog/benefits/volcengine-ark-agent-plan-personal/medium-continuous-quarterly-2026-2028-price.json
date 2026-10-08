@@ -11,16 +11,12 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Medium"
-      ]
+      "values": ["Medium"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "连续包季开通"
-      ]
+      "values": ["连续包季开通"]
     }
   ],
   "timeTrigger": {

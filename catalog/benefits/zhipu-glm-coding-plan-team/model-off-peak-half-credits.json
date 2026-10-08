@@ -12,18 +12,12 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "GLM-5.3",
-        "GLM-5.3-Flash"
-      ]
+      "values": ["GLM-5.3", "GLM-5.3-Flash"]
     },
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "团队标准版",
-        "团队高级版"
-      ]
+      "values": ["团队标准版", "团队高级版"]
     },
     {
       "kind": "one_of",
@@ -57,18 +51,12 @@
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "套餐内额度"
-      ]
+      "values": ["套餐内额度"]
     },
     {
       "kind": "one_of",
       "field": "meter",
-      "values": [
-        "Input",
-        "Cached Input",
-        "Output"
-      ]
+      "values": ["Input", "Cached Input", "Output"]
     }
   ],
   "timeTrigger": {
@@ -79,32 +67,17 @@
     "timeZone": "Asia/Shanghai",
     "windows": [
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "00:00",
         "end": "14:00"
       },
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "18:00",
         "end": "24:00"
       },
       {
-        "weekdays": [
-          6,
-          7
-        ],
+        "weekdays": [6, 7],
         "start": "00:00",
         "end": "24:00"
       }

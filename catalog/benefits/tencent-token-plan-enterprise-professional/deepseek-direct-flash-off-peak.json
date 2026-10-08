@@ -11,10 +11,7 @@
     {
       "kind": "one_of",
       "field": "region",
-      "values": [
-        "广州",
-        "新加坡"
-      ]
+      "values": ["广州", "新加坡"]
     },
     {
       "kind": "one_of",
@@ -35,43 +32,22 @@
     "validFrom": "2026-08-29T00:00:00+08:00",
     "windows": [
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "00:00",
         "end": "09:00"
       },
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "12:00",
         "end": "14:00"
       },
       {
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "weekdays": [1, 2, 3, 4, 5],
         "start": "18:00",
         "end": "24:00"
       },
       {
-        "weekdays": [
-          6,
-          7
-        ],
+        "weekdays": [6, 7],
         "start": "00:00",
         "end": "24:00"
       }

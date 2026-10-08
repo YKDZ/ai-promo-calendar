@@ -14,16 +14,12 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Pro"
-      ]
+      "values": ["Pro"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "按月新购"
-      ]
+      "values": ["按月新购"]
     }
   ],
   "timeTrigger": {

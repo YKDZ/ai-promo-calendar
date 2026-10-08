@@ -13,18 +13,12 @@
     {
       "kind": "one_of",
       "field": "model",
-      "values": [
-        "gemini-3.6-flash",
-        "gemini-3.7-flash",
-        "gemini-3.8-flash"
-      ]
+      "values": ["gemini-3.6-flash", "gemini-3.7-flash", "gemini-3.8-flash"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "Paid Standard"
-      ]
+      "values": ["Paid Standard"]
     },
     {
       "kind": "one_of",

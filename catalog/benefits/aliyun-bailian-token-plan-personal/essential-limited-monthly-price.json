@@ -12,23 +12,17 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "Essential"
-      ]
+      "values": ["Essential"]
     },
     {
       "kind": "one_of",
       "field": "region",
-      "values": [
-        "华北2（北京）"
-      ]
+      "values": ["华北2（北京）"]
     },
     {
       "kind": "none_of",
       "field": "billing_mode",
-      "values": [
-        "升级"
-      ]
+      "values": ["升级"]
     }
   ],
   "timeTrigger": {
