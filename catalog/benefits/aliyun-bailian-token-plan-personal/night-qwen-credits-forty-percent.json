@@ -5,7 +5,8 @@
   "id": "night-qwen-credits-forty-percent",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
-    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview"
+    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview",
+    "https://docs.agent.bailian.aliyun.com/zh/token-plan/token-plan-personal-overview"
   ],
   "eligibilityConditions": [
     {
