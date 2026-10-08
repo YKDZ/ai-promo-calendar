@@ -1,9 +1,9 @@
 {
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
-  "evidenceStatus": "supported",
   "accessChannelId": "volcengine-ark-agent-plan-personal",
   "id": "continuous-annual-2026-2028-discount",
+  "evidenceStatus": "uncertain",
   "sourceReferences": [
     "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh"
   ],
@@ -11,7 +11,7 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Small"]
+      "values": ["Small", "Medium", "Large", "Max"]
     },
     {
       "kind": "one_of",
@@ -38,18 +38,9 @@
     ]
   },
   "effect": {
-    "kind": "unit_rate",
-    "entries": [
-      {
-        "meter": "Agent Plan 套餐订阅",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
-        "per": "年",
-        "regular": "480",
-        "benefit": "456"
-      }
-    ]
+    "kind": "multiplier",
+    "target": "price",
+    "unit": "首个连续包年订阅周期价格",
+    "value": "0.95"
   }
 }
