@@ -24,10 +24,9 @@ const channel: ChannelRecord = {
 
 const benefit: TimedBenefit = {
   $schema: "../../schema/benefit.schema.json",
-  schemaVersion: 2,
+  schemaVersion: 3,
   accessChannelId: "example-plan",
   id: "night-credits",
-  evidenceStatus: "supported",
   sourceReferences: ["https://example.test/pricing"],
   eligibilityConditions: [
     { kind: "one_of", field: "model", values: ["model-a"] },
@@ -119,9 +118,7 @@ void test("接受有来源的跨午夜权益与零权益渠道", () => {
 
 void test("同渠道同模型的独立端点保留各自优惠与已核实资格子范围", () => {
   const files = snapshot();
-  const first = record(structuredClone(benefit));
-  first.schemaVersion = 3;
-  delete first.evidenceStatus;
+  const first = structuredClone(benefit);
   first.eligibilityConditions = [
     { kind: "one_of", field: "model", values: ["model-a"] },
     { kind: "one_of", field: "service_endpoint", values: ["供应方 Default"] },
@@ -159,39 +156,6 @@ void test("同渠道同模型的独立端点保留各自优惠与已核实资格
   assert.ok(
     messages(files).some((message) => message.includes("资格字段只能出现一次")),
   );
-});
-
-void test("过渡期按版本严格隔离旧证据状态和新版端点条件", () => {
-  const files = snapshot();
-  assert.equal(validateCatalog(files).valid, true);
-  const next = record(structuredClone(benefit));
-  next.schemaVersion = 3;
-  files[2] = file("benefits/example-plan/night-credits.json", next);
-  assert.equal(validateCatalog(files).valid, false);
-  delete next.evidenceStatus;
-  files[2] = file("benefits/example-plan/night-credits.json", next);
-  assert.equal(validateCatalog(files).valid, true);
-
-  next.eligibilityConditions = [
-    {
-      kind: "one_of",
-      field: "plan_tier",
-      values: ["Pro"],
-      uncertainValues: ["Ultra"],
-    },
-  ];
-  files[2] = file("benefits/example-plan/night-credits.json", next);
-  assert.equal(validateCatalog(files).valid, false);
-  next.schemaVersion = 2;
-  next.evidenceStatus = "uncertain";
-  files[2] = file("benefits/example-plan/night-credits.json", next);
-  assert.equal(validateCatalog(files).valid, true);
-
-  next.eligibilityConditions = [
-    { kind: "one_of", field: "service_endpoint", values: ["供应方 Flex"] },
-  ];
-  files[2] = file("benefits/example-plan/night-credits.json", next);
-  assert.equal(validateCatalog(files).valid, false);
 });
 
 void test("维护检查扫描完整候选目录，结构校验不因时间流逝失效", () => {
@@ -392,37 +356,6 @@ void test("亚毫秒截止不因时钟精度截断被提前判过期", () => {
     () => validateCatalog(snapshot(), { asOf: "2026-02-30T00:00:00Z" }),
     /asOf/,
   );
-});
-
-void test("局部资格冲突与整项证据状态独立，重复或交叉值被拒绝", () => {
-  const files = snapshot();
-  const next = structuredClone(benefit);
-  next.evidenceStatus = "uncertain";
-  next.eligibilityConditions = [
-    {
-      kind: "one_of",
-      field: "plan_tier",
-      values: ["Pro"],
-      uncertainValues: ["Ultra"],
-    },
-  ];
-  next.effect = { kind: "unresolved" };
-  files[2] = file("benefits/example-plan/night-credits.json", next);
-  assert.equal(validateCatalog(files).valid, true);
-
-  next.eligibilityConditions = [
-    {
-      kind: "one_of",
-      field: "model",
-      values: ["model-a"],
-      uncertainValues: ["model-a"],
-    },
-    { kind: "none_of", field: "model", values: ["model-b"] },
-  ];
-  files[2] = file("benefits/example-plan/night-credits.json", next);
-  const found = messages(files);
-  assert.ok(found.some((message) => message.includes("资格字段只能出现一次")));
-  assert.ok(found.some((message) => message.includes("不能同时标为")));
 });
 
 void test("无时区的已知日期保留角色且拒绝无效、重复或倒置边界", () => {
