@@ -1,70 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "独立时段权益记录",
-  "type": "object",
   "description": "一份文件记录同一计费渠道下的一项独立时段权益，而不是笼统对应一张营销活动页面。仅收录通用语言模型及直接影响其使用成本或额度的套餐，不收录专用媒体生成模型、结构化决策模型或独立工具、安全、运行时服务。全部适用情形共享同一政策触发事件和效果范围；套餐档位、计费项或事件导致实际效果不同时拆成不同权益。",
-  "additionalProperties": false,
-  "required": [
-    "$schema",
-    "schemaVersion",
-    "accessChannelId",
-    "id",
-    "evidenceStatus",
-    "sourceReferences",
-    "eligibilityConditions",
-    "timeTrigger",
-    "timeCondition",
-    "effect"
-  ],
-  "properties": {
-    "$schema": {
-      "const": "../../schema/benefit.schema.json"
-    },
-    "schemaVersion": {
-      "const": 2
-    },
-    "accessChannelId": {
-      "$ref": "#/$defs/id",
-      "description": "实际负责计费的使用渠道 ID，必须与所在目录及渠道记录一致；模型品牌不是计费渠道。"
-    },
-    "id": {
-      "$ref": "#/$defs/id",
-      "description": "同一渠道内稳定的权益 ID，必须与文件名一致。"
-    },
-    "evidenceStatus": {
-      "enum": ["supported", "uncertain"],
-      "description": "supported 表示当前采纳的公开资料支持本记录；uncertain 表示来源失联或冲突，不能当作确定生效。它不是任务分派状态。"
-    },
-    "sourceReferences": {
-      "$ref": "#/$defs/sourceReferences",
-      "description": "直接支撑本项权益的计费方公开条款 URL；发现入口或第三方转述不能自动代替它。"
-    },
-    "eligibilityConditions": {
-      "type": "array",
-      "description": "数组成员只是已结构化的必要条件；全部匹配或空数组都不证明某个账户最终享有权益。账户历史与实际发放情况不在目录中判定。",
-      "items": {
-        "$ref": "#/$defs/eligibilityCondition"
-      }
-    },
-    "timeTrigger": {
-      "$ref": "#/$defs/timeTrigger"
-    },
-    "timeCondition": {
-      "$ref": "#/$defs/timeCondition",
-      "description": "政策触发事件的时间窗口；有已知窗口但某个边界、年份或账号状态不明时保留已知部分，勿把整条规则标为 unresolved。"
-    },
-    "effect": {
-      "$ref": "#/$defs/effect",
-      "description": "同一使用渠道内相对通常规则的变化，保持官方原有货币、积分或额度单位。"
-    },
-    "combinationRelations": {
-      "type": "array",
-      "description": "仅记录官方明确说明的同渠道权益组合关系；缺省不表示自动叠加。",
-      "items": {
-        "$ref": "#/$defs/combinationRelation"
-      }
-    }
-  },
   "$defs": {
     "id": {
       "type": "string",
@@ -137,7 +74,7 @@
       }
     },
     "eligibilityField": {
-      "description": "条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型或计费模式。",
+      "description": "条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型、计费模式或服务端点。service_endpoint 使用渠道公开且足以界定优惠范围的名称或标识；不从宽泛 Provider 名称或基础路由 slug 推导端点，不建立别名或路由关系。",
       "enum": [
         "model",
         "meter",
@@ -146,11 +83,12 @@
         "region",
         "client",
         "account_type",
-        "billing_mode"
+        "billing_mode",
+        "service_endpoint"
       ]
     },
     "eligibilityCondition": {
-      "description": "每一项都是针对公共查询维度的必要条件，而不是原文全部资格的复刻；所有已记录条件匹配或条件为空，也不证明某账户最终适用。同一字段在一项权益中只出现一次，one_of 可局部保留来源冲突的候选值。model 值仅记录该渠道优惠适用条款直接列明的称谓或 ID，同一条款列出多个 ID 时全部保留，不从另行说明的路由或兼容关系推导更多值。账户历史、实际发放、效果解释和一般说明不得写入此处。",
+      "description": "每项限定本记录已获证据支持的公共使用情形；未匹配不能推导官方明确不适用。必要限制无法确认时，整项暂不收录或拆出能独立证实的子范围，不得删去限制来扩大范围。同一字段只出现一次；model 只录优惠条款直接列明的称谓或 ID，不从路由或兼容说明推导；service_endpoint 仅录渠道公开的明确服务选项。账户历史与实际发放仍由原文承担。",
       "oneOf": [
         {
           "type": "object",
@@ -166,15 +104,6 @@
             "values": {
               "type": "array",
               "description": "现有公开资料明确支持的值。",
-              "minItems": 1,
-              "uniqueItems": true,
-              "items": {
-                "$ref": "#/$defs/text"
-              }
-            },
-            "uncertainValues": {
-              "type": "array",
-              "description": "仅列入同一条件中公开资料相互冲突、不能确定是否适用的值；不得与 values 重复。",
               "minItems": 1,
               "uniqueItems": true,
               "items": {
@@ -564,6 +493,211 @@
           "$ref": "#/$defs/sourceReferences"
         }
       }
+    },
+    "legacyEligibilityCondition": {
+      "description": "每一项都是针对公共查询维度的必要条件，而不是原文全部资格的复刻；所有已记录条件匹配或条件为空，也不证明某账户最终适用。同一字段在一项权益中只出现一次，one_of 可局部保留来源冲突的候选值。model 值仅记录该渠道优惠适用条款直接列明的称谓或 ID，同一条款列出多个 ID 时全部保留，不从另行说明的路由或兼容关系推导更多值。账户历史、实际发放、效果解释和一般说明不得写入此处。",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "field", "values"],
+          "properties": {
+            "kind": {
+              "const": "one_of"
+            },
+            "field": {
+              "$ref": "#/$defs/legacyEligibilityField"
+            },
+            "values": {
+              "type": "array",
+              "description": "现有公开资料明确支持的值。",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/text"
+              }
+            },
+            "uncertainValues": {
+              "type": "array",
+              "description": "仅列入同一条件中公开资料相互冲突、不能确定是否适用的值；不得与 values 重复。",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "field", "values"],
+          "properties": {
+            "kind": {
+              "const": "none_of"
+            },
+            "field": {
+              "$ref": "#/$defs/legacyEligibilityField"
+            },
+            "values": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "legacyEligibilityField": {
+      "description": "条件针对模型、计费项、套餐档位、工具、地域、客户端、账户类型或计费模式。",
+      "enum": [
+        "model",
+        "meter",
+        "plan_tier",
+        "tool",
+        "region",
+        "client",
+        "account_type",
+        "billing_mode"
+      ]
+    },
+    "currentBenefit": {
+      "title": "CurrentTimedBenefit",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "$schema",
+        "schemaVersion",
+        "accessChannelId",
+        "id",
+        "sourceReferences",
+        "eligibilityConditions",
+        "timeTrigger",
+        "timeCondition",
+        "effect"
+      ],
+      "properties": {
+        "$schema": {
+          "const": "../../schema/benefit.schema.json"
+        },
+        "schemaVersion": {
+          "const": 3
+        },
+        "accessChannelId": {
+          "$ref": "#/$defs/id",
+          "description": "实际负责计费的使用渠道 ID，必须与所在目录及渠道记录一致；模型品牌不是计费渠道。"
+        },
+        "id": {
+          "$ref": "#/$defs/id",
+          "description": "同一渠道内稳定的权益 ID，必须与文件名一致。"
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/sourceReferences",
+          "description": "直接支撑本项权益的计费方公开条款 URL；发现入口或第三方转述不能自动代替它。"
+        },
+        "eligibilityConditions": {
+          "type": "array",
+          "description": "本记录仅收录能独立证实的公共使用情形；未匹配不证明官方政策不适用，全部匹配或空数组也不证明某个账户最终享有权益。必要公共限制无法确认时不能省略限制以扩大范围。",
+          "items": {
+            "$ref": "#/$defs/eligibilityCondition"
+          }
+        },
+        "timeTrigger": {
+          "$ref": "#/$defs/timeTrigger"
+        },
+        "timeCondition": {
+          "$ref": "#/$defs/timeCondition",
+          "description": "政策触发事件的时间窗口；有已知窗口但某个边界、年份或账号状态不明时保留已知部分，勿把整条规则标为 unresolved。"
+        },
+        "effect": {
+          "$ref": "#/$defs/effect",
+          "description": "同一使用渠道内相对通常规则的变化，保持官方原有货币、积分或额度单位。"
+        },
+        "combinationRelations": {
+          "type": "array",
+          "description": "仅记录官方明确说明的同渠道权益组合关系；缺省不表示自动叠加。",
+          "items": {
+            "$ref": "#/$defs/combinationRelation"
+          }
+        }
+      }
+    },
+    "legacyBenefit": {
+      "title": "LegacyTimedBenefit",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "$schema",
+        "schemaVersion",
+        "accessChannelId",
+        "id",
+        "evidenceStatus",
+        "sourceReferences",
+        "eligibilityConditions",
+        "timeTrigger",
+        "timeCondition",
+        "effect"
+      ],
+      "properties": {
+        "$schema": {
+          "const": "../../schema/benefit.schema.json"
+        },
+        "schemaVersion": {
+          "const": 2
+        },
+        "accessChannelId": {
+          "$ref": "#/$defs/id",
+          "description": "实际负责计费的使用渠道 ID，必须与所在目录及渠道记录一致；模型品牌不是计费渠道。"
+        },
+        "id": {
+          "$ref": "#/$defs/id",
+          "description": "同一渠道内稳定的权益 ID，必须与文件名一致。"
+        },
+        "evidenceStatus": {
+          "enum": ["supported", "uncertain"],
+          "description": "supported 表示当前采纳的公开资料支持本记录；uncertain 表示来源失联或冲突，不能当作确定生效。它不是任务分派状态。"
+        },
+        "sourceReferences": {
+          "$ref": "#/$defs/sourceReferences",
+          "description": "直接支撑本项权益的计费方公开条款 URL；发现入口或第三方转述不能自动代替它。"
+        },
+        "eligibilityConditions": {
+          "type": "array",
+          "description": "数组成员只是已结构化的必要条件；全部匹配或空数组都不证明某个账户最终享有权益。账户历史与实际发放情况不在目录中判定。",
+          "items": {
+            "$ref": "#/$defs/legacyEligibilityCondition"
+          }
+        },
+        "timeTrigger": {
+          "$ref": "#/$defs/timeTrigger"
+        },
+        "timeCondition": {
+          "$ref": "#/$defs/timeCondition",
+          "description": "政策触发事件的时间窗口；有已知窗口但某个边界、年份或账号状态不明时保留已知部分，勿把整条规则标为 unresolved。"
+        },
+        "effect": {
+          "$ref": "#/$defs/effect",
+          "description": "同一使用渠道内相对通常规则的变化，保持官方原有货币、积分或额度单位。"
+        },
+        "combinationRelations": {
+          "type": "array",
+          "description": "仅记录官方明确说明的同渠道权益组合关系；缺省不表示自动叠加。",
+          "items": {
+            "$ref": "#/$defs/combinationRelation"
+          }
+        }
+      }
     }
-  }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/currentBenefit"
+    },
+    {
+      "$ref": "#/$defs/legacyBenefit"
+    }
+  ]
 }

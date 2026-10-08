@@ -5,6 +5,7 @@ import type {
   CatalogFile,
   ChannelRecord,
   DiscoveryCatalog,
+  TimeCondition,
   TimedBenefit,
 } from "../src/model.ts";
 import { validateCatalog } from "../src/validate.ts";
@@ -114,6 +115,283 @@ void test("接受有来源的跨午夜权益与零权益渠道", () => {
   };
   files[2] = file("benefits/example-plan/night-credits.json", quota);
   assert.equal(validateCatalog(files).valid, true);
+});
+
+void test("同渠道同模型的独立端点保留各自优惠与已核实资格子范围", () => {
+  const files = snapshot();
+  const first = record(structuredClone(benefit));
+  first.schemaVersion = 3;
+  delete first.evidenceStatus;
+  first.eligibilityConditions = [
+    { kind: "one_of", field: "model", values: ["model-a"] },
+    { kind: "one_of", field: "service_endpoint", values: ["供应方 Default"] },
+    { kind: "one_of", field: "billing_mode", values: ["月付"] },
+  ];
+  files[2] = file("benefits/example-plan/night-credits.json", first);
+  const second = structuredClone(first);
+  second.id = "flex-credits";
+  second.eligibilityConditions = [
+    { kind: "one_of", field: "model", values: ["model-a"] },
+    { kind: "one_of", field: "service_endpoint", values: ["供应方 Flex"] },
+  ];
+  second.effect = {
+    kind: "multiplier",
+    target: "credits",
+    unit: "模型积分",
+    value: "0.25",
+  };
+  files.push(file("benefits/example-plan/flex-credits.json", second));
+
+  const result = validateCatalog(files);
+  assert.equal(result.valid, true);
+  if (!result.valid) assert.fail();
+  assert.equal(result.catalog.benefits.length, 2);
+  assert.deepEqual(
+    result.catalog.benefits[1]?.eligibilityConditions,
+    first.eligibilityConditions,
+  );
+
+  second.eligibilityConditions = [
+    { kind: "one_of", field: "service_endpoint", values: ["供应方 Flex"] },
+    { kind: "none_of", field: "service_endpoint", values: ["供应方 Default"] },
+  ];
+  files[3] = file("benefits/example-plan/flex-credits.json", second);
+  assert.ok(
+    messages(files).some((message) => message.includes("资格字段只能出现一次")),
+  );
+});
+
+void test("过渡期按版本严格隔离旧证据状态和新版端点条件", () => {
+  const files = snapshot();
+  assert.equal(validateCatalog(files).valid, true);
+  const next = record(structuredClone(benefit));
+  next.schemaVersion = 3;
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, false);
+  delete next.evidenceStatus;
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  next.eligibilityConditions = [
+    {
+      kind: "one_of",
+      field: "plan_tier",
+      values: ["Pro"],
+      uncertainValues: ["Ultra"],
+    },
+  ];
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, false);
+  next.schemaVersion = 2;
+  next.evidenceStatus = "uncertain";
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, true);
+
+  next.eligibilityConditions = [
+    { kind: "one_of", field: "service_endpoint", values: ["供应方 Flex"] },
+  ];
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(validateCatalog(files).valid, false);
+});
+
+void test("维护检查扫描完整候选目录，结构校验不因时间流逝失效", () => {
+  const files = snapshot();
+  const untouched = structuredClone(benefit);
+  untouched.id = "previous-campaign";
+  untouched.timeCondition = {
+    kind: "absolute",
+    endsAt: "2026-10-01T00:00:00Z",
+    endInclusive: false,
+  };
+  files.push(file("benefits/example-plan/previous-campaign.json", untouched));
+  assert.equal(validateCatalog(files).valid, true);
+  assert.equal(
+    validateCatalog(files, { asOf: "2026-09-30T23:59:59Z" }).valid,
+    true,
+  );
+  const result = validateCatalog(files, { asOf: "2026-10-01T00:00:00Z" });
+  assert.equal(result.valid, false);
+  if (result.valid) assert.fail();
+  assert.deepEqual(
+    result.issues.map(({ file: path, path: field }) => [path, field]),
+    [["benefits/example-plan/previous-campaign.json", "/timeCondition/endsAt"]],
+  );
+  assert.match(result.issues[0]!.message, /确定结束/);
+});
+
+void test("确定过期尊重结束包含性及分钟和秒的未知精度", () => {
+  const cases: { time: TimeCondition; pending: string; expired: string }[] = [
+    {
+      time: {
+        kind: "absolute",
+        endsAt: "2026-10-01T00:00:00Z",
+        endInclusive: true,
+      },
+      pending: "2026-10-01T00:00:00Z",
+      expired: "2026-10-01T00:00:00.001Z",
+    },
+    {
+      time: {
+        kind: "absolute",
+        endsAt: "2026-10-01T00:00:00+08:00",
+        endInclusive: null,
+        endPrecision: "minute",
+      },
+      pending: "2026-09-30T16:00:59.999Z",
+      expired: "2026-09-30T16:01:00Z",
+    },
+    {
+      time: {
+        kind: "absolute",
+        endsAt: "2026-10-01T00:00:00Z",
+        endInclusive: null,
+        endPrecision: "second",
+      },
+      pending: "2026-10-01T00:00:00.999Z",
+      expired: "2026-10-01T00:00:01Z",
+    },
+  ];
+  for (const { time, pending, expired } of cases) {
+    const files = snapshot();
+    files[2] = file("benefits/example-plan/night-credits.json", {
+      ...benefit,
+      timeCondition: time,
+    });
+    assert.equal(
+      validateCatalog(files, { asOf: pending }).valid,
+      true,
+      pending,
+    );
+    assert.equal(
+      validateCatalog(files, { asOf: expired }).valid,
+      false,
+      expired,
+    );
+  }
+});
+
+void test("重复政策只按总有效期结束，峰时和未知未来日历不等于政策过期", () => {
+  const files = snapshot();
+  // 北京时间中午不在夜间窗口内，但没有总截止的政策仍保留。
+  assert.equal(
+    validateCatalog(files, { asOf: "2026-10-08T04:00:00Z" }).valid,
+    true,
+  );
+  assert.equal(
+    validateCatalog(files, { asOf: "2028-01-03T04:00:00Z" }).valid,
+    true,
+  );
+  const next = structuredClone(benefit);
+  if (next.timeCondition.kind !== "recurring") assert.fail();
+  next.timeCondition.validUntil = "2026-10-08T12:00:00+08:00";
+  next.effect = { kind: "unresolved" };
+  files[2] = file("benefits/example-plan/night-credits.json", next);
+  assert.equal(
+    validateCatalog(files, { asOf: "2026-10-08T03:59:59Z" }).valid,
+    true,
+  );
+  const result = validateCatalog(files, { asOf: "2026-10-08T04:00:00Z" });
+  assert.equal(result.valid, false);
+  if (result.valid) assert.fail();
+  assert.equal(result.issues[0]?.path, "/timeCondition/validUntil");
+});
+
+void test("未知时区日期只在保守界限后到期，日精度不假定夏令时结束日为24小时", () => {
+  const cases: {
+    time: TimeCondition;
+    pending: string;
+    expired: string;
+    path: string;
+  }[] = [
+    {
+      time: {
+        kind: "unresolved",
+        knownBoundaries: [{ role: "end", date: "2026-10-01", timeZone: null }],
+      },
+      pending: "2026-10-02T23:59:59Z",
+      expired: "2026-10-03T00:00:00Z",
+      path: "/timeCondition/knownBoundaries/0/date",
+    },
+    {
+      // 美国东部该民用日可能持续25小时，不能按结束日午夜加24小时判过期。
+      time: {
+        kind: "absolute",
+        endsAt: "2026-11-01T00:00:00-04:00",
+        endInclusive: null,
+        endPrecision: "day",
+      },
+      pending: "2026-11-02T04:30:00Z",
+      expired: "2026-11-03T00:00:00Z",
+      path: "/timeCondition/endsAt",
+    },
+  ];
+  for (const { time, pending, expired, path } of cases) {
+    const files = snapshot();
+    files[2] = file("benefits/example-plan/night-credits.json", {
+      ...benefit,
+      timeCondition: time,
+      effect: { kind: "unresolved" },
+    });
+    assert.equal(validateCatalog(files, { asOf: pending }).valid, true);
+    const result = validateCatalog(files, { asOf: expired });
+    assert.equal(result.valid, false);
+    if (result.valid) assert.fail();
+    assert.equal(result.issues[0]?.path, path);
+  }
+  const files = snapshot();
+  files[2] = file("benefits/example-plan/night-credits.json", {
+    ...benefit,
+    timeCondition: {
+      kind: "unresolved",
+      knownBoundaries: [{ role: "start", date: "2020-01-01", timeZone: null }],
+    },
+    effect: { kind: "unresolved" },
+  });
+  assert.equal(
+    validateCatalog(files, { asOf: "2026-10-08T00:00:00Z" }).valid,
+    true,
+  );
+});
+
+void test("亚毫秒截止不因时钟精度截断被提前判过期", () => {
+  const cases: TimeCondition[] = [
+    {
+      kind: "absolute",
+      endsAt: "2026-10-01T00:00:00.0009Z",
+      endInclusive: false,
+    },
+    {
+      kind: "recurring",
+      timeZone: "Asia/Shanghai",
+      windows: [
+        { weekdays: [1, 2, 3, 4, 5, 6, 7], start: "00:00", end: "24:00" },
+      ],
+      validUntil: "2026-10-01T00:00:00.0009Z",
+    },
+  ];
+  for (const time of cases) {
+    const files = snapshot();
+    files[2] = file("benefits/example-plan/night-credits.json", {
+      ...benefit,
+      timeCondition: time,
+    });
+    assert.equal(
+      validateCatalog(files, { asOf: "2026-10-01T00:00:00.000Z" }).valid,
+      true,
+    );
+    assert.equal(
+      validateCatalog(files, { asOf: "2026-10-01T00:00:00.001Z" }).valid,
+      false,
+    );
+  }
+  assert.throws(
+    () => validateCatalog(snapshot(), { asOf: "next Thursday" }),
+    /asOf/,
+  );
+  assert.throws(
+    () => validateCatalog(snapshot(), { asOf: "2026-02-30T00:00:00Z" }),
+    /asOf/,
+  );
 });
 
 void test("局部资格冲突与整项证据状态独立，重复或交叉值被拒绝", () => {
