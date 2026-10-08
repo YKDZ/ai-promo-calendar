@@ -1,26 +1,26 @@
 {
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
-  "accessChannelId": "minimax-m-plan-international",
-  "id": "monthly-first-month-2026-launch-offer",
+  "accessChannelId": "volcengine-ark-agent-plan-personal",
+  "id": "medium-first-two-months-2026-upgrade-discount",
   "evidenceStatus": "supported",
   "sourceReferences": [
-    "https://platform.minimax.io/docs/m-plan/monthly-offer",
-    "https://platform.minimax.io/docs/token-plan/announcements"
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-universal-promotion?lang=zh",
+    "https://www.volcengine.com/activity/agentplan"
   ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "plan_tier",
       "values": [
-        "Go"
+        "Medium"
       ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
       "values": [
-        "monthly · New purchases"
+        "升配"
       ]
     }
   ],
@@ -31,16 +31,18 @@
     "kind": "unresolved",
     "knownBoundaries": [
       {
+        "role": "start",
+        "date": "2026-06-08",
+        "timeZone": null
+      },
+      {
         "role": "end",
-        "date": "2026-10-14",
+        "date": "2026-11-08",
         "timeZone": null
       }
     ]
   },
   "effect": {
-    "kind": "multiplier",
-    "target": "price",
-    "unit": "first-month subscription price",
-    "value": "0.5"
+    "kind": "unresolved"
   }
 }

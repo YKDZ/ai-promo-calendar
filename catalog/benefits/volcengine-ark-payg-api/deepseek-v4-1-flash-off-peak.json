@@ -1,0 +1,113 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "evidenceStatus": "supported",
+  "accessChannelId": "volcengine-ark-payg-api",
+  "id": "deepseek-v4-1-flash-off-peak",
+  "sourceReferences": [
+    "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
+    "https://docs.volcengine.com/docs/ark/model-service-pricing?lang=zh"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": [
+        "在线推理（常规）"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "model",
+      "values": [
+        "deepseek-v4.1-flash",
+        "deepseek-v4-1-flash"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "model_request"
+  },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "windows": [
+      {
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start": "00:00",
+        "end": "09:00"
+      },
+      {
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start": "12:00",
+        "end": "14:00"
+      },
+      {
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start": "18:00",
+        "end": "24:00"
+      },
+      {
+        "weekdays": [
+          6,
+          7
+        ],
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ]
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "输入(非音频)",
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
+        "per": "1M tokens",
+        "regular": "2.00",
+        "benefit": "1.00"
+      },
+      {
+        "meter": "缓存命中(非音频)",
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
+        "per": "1M tokens",
+        "regular": "0.04",
+        "benefit": "0.02"
+      },
+      {
+        "meter": "输出",
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
+        "per": "1M tokens",
+        "regular": "8.00",
+        "benefit": "4.00"
+      }
+    ]
+  }
+}

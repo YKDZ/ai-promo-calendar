@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "智谱AI",
+  "accessChannel": {
+    "id": "zhipu-glm-coding-plan-team",
+    "name": "GLM Coding Plan 团队版",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://docs.bigmodel.cn/cn/coding-plan/team"
+  ]
+}

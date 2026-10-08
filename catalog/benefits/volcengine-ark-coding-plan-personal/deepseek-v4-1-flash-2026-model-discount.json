@@ -7,13 +7,16 @@
   "sourceReferences": [
     "https://docs.volcengine.com/docs/ark/coding-plan-personal-model-discount?lang=zh",
     "https://docs.volcengine.com/docs/ark/coding-plan-personal-feature-release?lang=zh",
-    "https://docs.volcengine.com/docs/ark/coding-plan-personal-get-started?lang=zh"
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-get-started?lang=zh",
+    "https://docs.volcengine.com/docs/ark/coding-plan-personal-plan-overview?lang=zh"
   ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["deepseek-v4.1-flash"]
+      "values": [
+        "deepseek-v4.1-flash"
+      ]
     }
   ],
   "timeTrigger": {
@@ -22,11 +25,6 @@
   "timeCondition": {
     "kind": "unresolved",
     "knownBoundaries": [
-      {
-        "role": "start",
-        "date": "2026-09-15",
-        "timeZone": null
-      },
       {
         "role": "end",
         "date": "2026-10-30",

@@ -1,28 +1,25 @@
 {
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
-  "accessChannelId": "baidu-qianfan-token-plan-personal",
-  "id": "lite-limited-monthly-price",
   "evidenceStatus": "supported",
+  "accessChannelId": "volcengine-ark-agent-plan-personal",
+  "id": "medium-continuous-quarterly-2026-2028-price",
   "sourceReferences": [
-    "https://cloud.baidu.com/product/codingplan.html",
-    "https://cloud.baidu.com/product/qianfan_home/token-plan-activity.html?pageId=469472b3-0ba6-4af8-8ac7-ba2450257829",
-    "https://qianfan.cloud.baidu.com/qianfandev/topic/688722",
-    "https://cloud.baidu.com/doc/qianfan/s/Dmrabu8b6"
+    "https://docs.volcengine.com/docs/ark/agent-plan-personal-annual-quarterly?lang=zh"
   ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "plan_tier",
       "values": [
-        "Lite"
+        "Medium"
       ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
       "values": [
-        "按月新购"
+        "连续包季开通"
       ]
     }
   ],
@@ -34,7 +31,12 @@
     "knownBoundaries": [
       {
         "role": "start",
-        "date": "2026-07-13",
+        "date": "2026-05-19",
+        "timeZone": null
+      },
+      {
+        "role": "end",
+        "date": "2028-05-19",
         "timeZone": null
       }
     ]
@@ -43,14 +45,14 @@
     "kind": "unit_rate",
     "entries": [
       {
-        "meter": "套餐订阅",
+        "meter": "Agent Plan 套餐订阅",
         "measure": {
           "kind": "money",
           "currency": "CNY"
         },
-        "per": "月",
-        "regular": "40",
-        "benefit": "19.9"
+        "per": "季",
+        "regular": "600",
+        "benefit": "582"
       }
     ]
   }

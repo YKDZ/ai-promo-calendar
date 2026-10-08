@@ -2,25 +2,26 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "minimax-m-plan-international",
-  "id": "monthly-first-month-2026-launch-offer",
+  "id": "build-monthly-upgrade-2026-launch-offer",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://platform.minimax.io/docs/m-plan/monthly-offer",
-    "https://platform.minimax.io/docs/token-plan/announcements"
+    "https://platform.minimax.io/docs/token-plan/announcements",
+    "https://platform.minimax.io/docs/m-plan/change-plan"
   ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "plan_tier",
       "values": [
-        "Go"
+        "Build"
       ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
       "values": [
-        "monthly · New purchases"
+        "monthly · Upgrades"
       ]
     }
   ],
@@ -38,9 +39,6 @@
     ]
   },
   "effect": {
-    "kind": "multiplier",
-    "target": "price",
-    "unit": "first-month subscription price",
-    "value": "0.5"
+    "kind": "unresolved"
   }
 }

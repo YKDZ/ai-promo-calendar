@@ -63,9 +63,9 @@
       "description": "区分每日主动领取窗口、适用账号与每笔奖励的相对有效期；不把登录视为自动发放。"
     },
     {
-      "title": "Qoder CN 九月订阅加赠",
+      "title": "Qoder CN 订阅加赠",
       "url": "https://docs.qoder.cn/events/bogo",
-      "description": "核对首付、续费、升级、退款和 Qwen 专属额度限制；支付活动期与奖励使用期分别处理。"
+      "description": "核对首购、续费和升级加赠及延期公告；交叉核对月付与年付适用冲突，支付活动期与到账后有效期分别处理。"
     },
     {
       "title": "Qoder CN 周年调用与邀请活动",
@@ -120,7 +120,7 @@
     {
       "title": "腾讯云 Token Plan 企业版专业套餐",
       "url": "https://cloud.tencent.com/document/product/1823/130659",
-      "description": "独立复核企业版模型、峰谷判价时刻和限时积分价；已结束活动应作为历史边界，不得继续报为现行优惠。"
+      "description": "独立复核企业版专业套餐在广州、新加坡的模型名单、峰谷时段、开始时点和实际积分价；个人版与模型原厂的规则不能套用。"
     },
     {
       "title": "火山引擎方舟 Agent Plan 活动页",
@@ -175,7 +175,7 @@
     {
       "title": "OpenRouter 官方折扣模型集合",
       "url": "https://openrouter.ai/collections/discounted-models",
-      "description": "发现 OpenRouter 渠道的模型促销折扣；动态集合不能单独证明起止边界，也不得归为底层模型厂商直连价格。"
+      "description": "发现 OpenRouter 渠道的模型促销；集合价格仅代表最便宜提供方，须继续核对实际提供方路由，动态集合不能单独证明起止边界，也不得套用底层厂商直连价格。"
     },
     {
       "title": "GitHub Copilot 官方更新日志",
@@ -246,6 +246,91 @@
       "title": "MiniMax M Plan 月付首月优惠",
       "url": "https://platform.minimax.io/docs/m-plan/monthly-offer",
       "description": "复核 M Plan Go、Explore、Build 月付首月优惠与升级折算规则；升级实付因剩余订阅价值而异，不能把宣传 5 折直接当统一实付公式。"
+    },
+    {
+      "title": "智谱 GLM Coding Plan 团队版",
+      "url": "https://docs.bigmodel.cn/cn/coding-plan/team",
+      "description": "独立复核团队套餐的模型、积分峰谷与超额计费活动；团队标准版和高级版不得直接套用个人版规则，宣传折扣仍须核对实际计费值。"
+    },
+    {
+      "title": "智谱 GLM Coding Plan 支持工具",
+      "url": "https://docs.bigmodel.cn/cn/coding-plan/tool/others",
+      "description": "核对 Coding Plan 明确支持的产品和工具名单；支持模型与支持工具须分别判断，不把一般兼容接口推广为活动资格。"
+    },
+    {
+      "title": "GitHub Copilot 模型支持与退役",
+      "url": "https://docs.github.com/en/copilot/reference/ai-models/supported-models",
+      "description": "交叉核对促销模型在 GitHub 渠道的可用性与已公布退役日期；明确退役可限制有效政策日期，但不得把日期擅自换算成 UTC 截止时点。"
+    },
+    {
+      "title": "Claude Team 科研计划正式条款",
+      "url": "https://www.anthropic.com/legal/team-plan-for-scientists-terms",
+      "description": "核对科学家计划的四种席位与计费周期价格、名额和订阅条件；个人优惠使用期、审批及历史付款条件留在官方条款，不冒充公共政策窗口。"
+    },
+    {
+      "title": "Kimi Code 会员权益",
+      "url": "https://www.kimi.com/code/docs/en/kimi-code/membership.html",
+      "description": "从官方会员说明巡查订阅、额度与额外使用权益；套餐迁移、滚动限流及常规额度恢复不自动构成限时优惠，Kimi Code 与开放平台 API 分别核对。"
+    },
+    {
+      "title": "TRAE CN 企业版内置模型限时半价",
+      "url": "https://docs.trae.cn/enterprise_half-price-campaign-for-trae-built-in-models",
+      "description": "复核套餐内基础会话用量的模型、套餐、客户端、优惠效果及截止；企业自定义模型、超额用量与套餐购买价须分别判断。"
+    },
+    {
+      "title": "TRAE CN 企业版模型计费",
+      "url": "https://docs.trae.cn/enterprise_billing-items",
+      "description": "核对活动明确引用的完整内置模型清单和实际 Token 价格；模型活动价与套餐优惠的组合关系没有明示时不得自行相乘。"
+    },
+    {
+      "title": "小米 MiMo Token Plan",
+      "url": "https://mimo.mi.com/docs/zh-CN/price/token-plan",
+      "description": "分别核对个人版、团队版的语言模型 Token 消耗与北京时间夜间折扣；语音生成和账户额度刷新不并入语言模型时段权益。"
+    },
+    {
+      "title": "小米 MiMo 模型更新",
+      "url": "https://mimo.mi.com/docs/en-US/updates/model",
+      "description": "交叉核对模型发布、退役和计费调整；发布日不自动代替 Token Plan 折扣的开始日期。"
+    },
+    {
+      "title": "百度千帆 Token Plan 个人版文档",
+      "url": "https://cloud.baidu.com/doc/qianfan/s/Dmrabu8b6",
+      "description": "完整核对个人版活动价、订阅操作、升配折算及梯度用量规则；展示月价与订单实付分开，图示窗口未可靠读取时不猜边界。"
+    },
+    {
+      "title": "百度千帆 Token Plan 企业版文档",
+      "url": "https://cloud.baidu.com/doc/qianfan/s/ymq8wwch2",
+      "description": "核对企业版活动明确列出的模型、每日夜间窗口和积分加赠；缺少可靠时区时保留时间未知，不将一般支持表外推为优惠名单。"
+    },
+    {
+      "title": "MiniMax 国际版套餐公告",
+      "url": "https://platform.minimax.io/docs/token-plan/announcements",
+      "description": "核对 M Plan 限期首月活动与旧 Token Plan 存量订阅政策；公告发布日期不自动等于优惠开始日，国际版规则不外推至中国站。"
+    },
+    {
+      "title": "火山方舟 Agent Plan 指定模型限时折扣",
+      "url": "https://docs.volcengine.com/docs/ark/agent-plan-personal-model-discount?lang=zh",
+      "description": "独立核对 Agent Plan 的 Auto、DeepSeek 和 Kimi 活动窗口；不得用 Agent 的发布日期或抵扣方式替代 Coding Plan。"
+    },
+    {
+      "title": "火山方舟 Coding Plan 个人版套餐概览",
+      "url": "https://docs.volcengine.com/docs/ark/coding-plan-personal-plan-overview?lang=zh",
+      "description": "交叉核对 Coding Plan 专属活动日期、抵扣系数和适用模型；与合并活动页冲突的开始日期应保留未决。"
+    },
+    {
+      "title": "火山方舟按量模型价格",
+      "url": "https://docs.volcengine.com/docs/ark/model-pricing?lang=zh",
+      "description": "独立复核在线推理的峰谷时段、时区与实际人民币费率；缓存存储、Batch 和专用媒体生成不得并入请求优惠。"
+    },
+    {
+      "title": "火山方舟 Agent Plan Small/Medium 邀请活动",
+      "url": "https://docs.volcengine.com/docs/ark/agent-plan-personal-small-medium-invitation?lang=zh",
+      "description": "分别核对被邀请者首次订阅订单折扣和邀请人代金券奖励；他人订单现金基数、个人历史与已发券使用期不伪装为公共资格或政策窗口。"
+    },
+    {
+      "title": "火山方舟 Agent Plan AFP 积分计费",
+      "url": "https://docs.volcengine.com/docs/ark/agent-plan-personal-afp-credits-billing-rules?lang=zh",
+      "description": "完整复核各模型输入输出的 AFP 实际系数与活动计费；页面正文暂不可得时保留既有草案并报告未完成核对。"
     }
   ]
 }

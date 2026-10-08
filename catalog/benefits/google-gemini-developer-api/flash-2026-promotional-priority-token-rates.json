@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "google-gemini-developer-api",
-  "id": "flash-2026-promotional-token-rates",
+  "id": "flash-2026-promotional-priority-token-rates",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://ai.google.dev/gemini-api/docs/pricing",
@@ -23,7 +23,7 @@
       "kind": "one_of",
       "field": "billing_mode",
       "values": [
-        "Paid Standard"
+        "Paid Priority"
       ]
     },
     {
@@ -59,8 +59,8 @@
           "currency": "USD"
         },
         "per": "1M tokens",
-        "regular": "1.50",
-        "benefit": "0.75"
+        "regular": "2.70",
+        "benefit": "1.35"
       },
       {
         "meter": "Output price (including thinking tokens)",
@@ -69,8 +69,8 @@
           "currency": "USD"
         },
         "per": "1M tokens",
-        "regular": "7.50",
-        "benefit": "3.75"
+        "regular": "13.50",
+        "benefit": "6.75"
       },
       {
         "meter": "Context caching price",
@@ -79,8 +79,8 @@
           "currency": "USD"
         },
         "per": "1M tokens",
-        "regular": "0.15",
-        "benefit": "0.075"
+        "regular": "0.27",
+        "benefit": "0.135"
       }
     ]
   }

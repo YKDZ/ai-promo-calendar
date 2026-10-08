@@ -5,18 +5,30 @@
   "id": "pro-limited-monthly-price",
   "evidenceStatus": "supported",
   "sourceReferences": [
-    "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview"
+    "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
+    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview"
   ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Pro"]
+      "values": [
+        "Pro"
+      ]
     },
     {
       "kind": "one_of",
       "field": "region",
-      "values": ["华北2（北京）"]
+      "values": [
+        "华北2（北京）"
+      ]
+    },
+    {
+      "kind": "none_of",
+      "field": "billing_mode",
+      "values": [
+        "升级"
+      ]
     }
   ],
   "timeTrigger": {
@@ -29,7 +41,7 @@
     "kind": "unit_rate",
     "entries": [
       {
-        "meter": "Pro 套餐订阅",
+        "meter": "套餐订阅",
         "measure": {
           "kind": "money",
           "currency": "CNY"

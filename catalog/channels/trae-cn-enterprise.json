@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "火山引擎",
+  "accessChannel": {
+    "id": "trae-cn-enterprise",
+    "name": "TRAE CN 企业版",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://docs.trae.cn/enterprise_subscription-rules",
+    "https://docs.trae.cn/enterprise_billing-items"
+  ]
+}

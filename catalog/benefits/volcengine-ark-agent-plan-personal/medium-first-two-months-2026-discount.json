@@ -12,12 +12,17 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Medium"]
+      "values": [
+        "Medium"
+      ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["新购", "续费", "升配"]
+      "values": [
+        "新购",
+        "续费"
+      ]
     }
   ],
   "timeTrigger": {
@@ -42,7 +47,7 @@
     "kind": "unit_rate",
     "entries": [
       {
-        "meter": "Agent Plan Medium 套餐订阅",
+        "meter": "Agent Plan 套餐订阅",
         "measure": {
           "kind": "money",
           "currency": "CNY"

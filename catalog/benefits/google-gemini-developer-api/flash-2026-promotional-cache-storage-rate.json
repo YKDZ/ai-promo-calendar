@@ -4,22 +4,35 @@
   "accessChannelId": "google-gemini-developer-api",
   "id": "flash-2026-promotional-cache-storage-rate",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://ai.google.dev/gemini-api/docs/pricing"],
+  "sourceReferences": [
+    "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "model",
-      "values": ["gemini-3.6-flash", "gemini-3.7-flash", "gemini-3.8-flash"]
+      "values": [
+        "gemini-3.6-flash",
+        "gemini-3.7-flash",
+        "gemini-3.8-flash"
+      ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["Paid Standard", "Paid Batch", "Paid Flex", "Paid Priority"]
+      "values": [
+        "Paid Standard",
+        "Paid Batch",
+        "Paid Flex",
+        "Paid Priority"
+      ]
     },
     {
       "kind": "one_of",
       "field": "meter",
-      "values": ["Context cache storage price"]
+      "values": [
+        "Context cache storage price"
+      ]
     }
   ],
   "timeTrigger": {
@@ -36,9 +49,18 @@
     ]
   },
   "effect": {
-    "kind": "multiplier",
-    "target": "price",
-    "unit": "USD Paid Tier context-cache storage rates",
-    "value": "0.5"
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "Context cache storage price",
+        "measure": {
+          "kind": "money",
+          "currency": "USD"
+        },
+        "per": "1M tokens·hour",
+        "regular": "1.00",
+        "benefit": "0.50"
+      }
+    ]
   }
 }

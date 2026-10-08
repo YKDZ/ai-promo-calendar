@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 2,
+  "accessChannelId": "xiaomi-mimo-token-plan-personal",
+  "id": "night-credits-twenty-percent-off",
+  "evidenceStatus": "supported",
+  "sourceReferences": [
+    "https://mimo.mi.com/docs/zh-CN/price/token-plan",
+    "https://mimo.mi.com/docs/en-US/price/token-plan"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "meter",
+      "values": [
+        "输入（命中缓存）Token",
+        "输入（未命中缓存）Token",
+        "输出 Token"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "unknown"
+  },
+  "timeCondition": {
+    "kind": "recurring",
+    "timeZone": "Asia/Shanghai",
+    "windows": [
+      {
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "start": "00:00",
+        "end": "08:00"
+      }
+    ]
+  },
+  "effect": {
+    "kind": "multiplier",
+    "target": "credits",
+    "unit": "Credits",
+    "value": "0.8"
+  }
+}

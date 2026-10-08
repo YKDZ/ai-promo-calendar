@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "minimax-m-plan-international",
-  "id": "monthly-first-month-2026-launch-offer",
+  "id": "explore-monthly-first-month-2026-launch-offer",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://platform.minimax.io/docs/m-plan/monthly-offer",
@@ -13,7 +13,7 @@
       "kind": "one_of",
       "field": "plan_tier",
       "values": [
-        "Go"
+        "Explore"
       ]
     },
     {

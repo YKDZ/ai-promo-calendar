@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/channel.schema.json",
+  "schemaVersion": 2,
+  "billingProvider": "腾讯云 TokenHub",
+  "accessChannel": {
+    "id": "tencent-token-plan-enterprise-professional",
+    "name": "腾讯云 TokenHub Token Plan 企业版专业套餐",
+    "kind": "plan"
+  },
+  "sourceReferences": [
+    "https://cloud.tencent.com/document/product/1823/130659"
+  ]
+}

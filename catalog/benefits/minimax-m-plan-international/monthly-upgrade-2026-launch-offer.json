@@ -4,17 +4,25 @@
   "accessChannelId": "minimax-m-plan-international",
   "id": "monthly-upgrade-2026-launch-offer",
   "evidenceStatus": "supported",
-  "sourceReferences": ["https://platform.minimax.io/docs/m-plan/monthly-offer"],
+  "sourceReferences": [
+    "https://platform.minimax.io/docs/m-plan/monthly-offer",
+    "https://platform.minimax.io/docs/token-plan/announcements",
+    "https://platform.minimax.io/docs/m-plan/change-plan"
+  ],
   "eligibilityConditions": [
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": ["Go", "Explore", "Build"]
+      "values": [
+        "Go"
+      ]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": ["monthly · Upgrades"]
+      "values": [
+        "monthly · Upgrades"
+      ]
     }
   ],
   "timeTrigger": {

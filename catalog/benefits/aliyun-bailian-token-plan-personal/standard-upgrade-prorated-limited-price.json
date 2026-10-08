@@ -2,7 +2,7 @@
   "$schema": "../../schema/benefit.schema.json",
   "schemaVersion": 2,
   "accessChannelId": "aliyun-bailian-token-plan-personal",
-  "id": "standard-limited-monthly-price",
+  "id": "standard-upgrade-prorated-limited-price",
   "evidenceStatus": "supported",
   "sourceReferences": [
     "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "kind": "none_of",
+      "kind": "one_of",
       "field": "billing_mode",
       "values": [
         "升级"
@@ -38,18 +38,6 @@
     "kind": "unresolved"
   },
   "effect": {
-    "kind": "unit_rate",
-    "entries": [
-      {
-        "meter": "套餐订阅",
-        "measure": {
-          "kind": "money",
-          "currency": "CNY"
-        },
-        "per": "月",
-        "regular": "180",
-        "benefit": "139"
-      }
-    ]
+    "kind": "unresolved"
   }
 }
