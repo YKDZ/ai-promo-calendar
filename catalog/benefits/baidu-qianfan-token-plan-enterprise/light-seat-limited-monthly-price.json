@@ -11,16 +11,12 @@
     {
       "kind": "one_of",
       "field": "plan_tier",
-      "values": [
-        "企业轻享版"
-      ]
+      "values": ["企业轻享版"]
     },
     {
       "kind": "one_of",
       "field": "billing_mode",
-      "values": [
-        "新购"
-      ]
+      "values": ["新购"]
     }
   ],
   "timeTrigger": {
