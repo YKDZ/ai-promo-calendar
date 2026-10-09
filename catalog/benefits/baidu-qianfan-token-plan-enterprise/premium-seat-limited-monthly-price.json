@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema/benefit.schema.json",
+  "schemaVersion": 3,
+  "accessChannelId": "baidu-qianfan-token-plan-enterprise",
+  "id": "premium-seat-limited-monthly-price",
+  "sourceReferences": [
+    "https://cloud.baidu.com/doc/qianfan/s/ymq8wwch2",
+    "https://cloud.baidu.com/product/qianfan_home/token_plan.html"
+  ],
+  "eligibilityConditions": [
+    {
+      "kind": "one_of",
+      "field": "plan_tier",
+      "values": [
+        "企业尊享版"
+      ]
+    },
+    {
+      "kind": "one_of",
+      "field": "billing_mode",
+      "values": [
+        "新购"
+      ]
+    }
+  ],
+  "timeTrigger": {
+    "kind": "subscription_order"
+  },
+  "timeCondition": {
+    "kind": "unresolved"
+  },
+  "effect": {
+    "kind": "unit_rate",
+    "entries": [
+      {
+        "meter": "席位订阅",
+        "measure": {
+          "kind": "money",
+          "currency": "CNY"
+        },
+        "per": "席位·月",
+        "regular": "2500",
+        "benefit": "1398"
+      }
+    ]
+  }
+}
